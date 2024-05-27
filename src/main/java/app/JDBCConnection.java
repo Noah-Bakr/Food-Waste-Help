@@ -107,7 +107,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT * FROM Personas";
+            String query = "SELECT * FROM Persona";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
