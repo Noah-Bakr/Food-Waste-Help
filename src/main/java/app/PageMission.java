@@ -77,6 +77,8 @@ public class PageMission implements Handler {
         // Next we will ask this *class* for the Countries
         ArrayList<Country> countries = jdbc.getAllCountries();
 
+        ArrayList<Persona> personas = jdbc.getAllPersonas();
+
         // Add HTML for the countries list
         html = html + "<h1>All Countries in the foodloss database (using JDBC Connection)</h1>" + "<ul>";
 
@@ -86,10 +88,26 @@ public class PageMission implements Handler {
         //                 + " - " + country.getName() + "</li>";
         // }
 
+            html = html + "<h1>Personas</h1>";
+
+            //TODO 
+        for(Persona persona : personas)
+        {
+            // html = html + "<personaIntro>";
+            html = html + "<h2>"+persona.getName()+"</h2>";
+            html = html + "<p>"+ persona.getAttributes() + " " + persona.getBackground() +"</p>";
+            html = html + "<img src ='./" + persona.getImage() + "'class = 'persona_thumbnail'>";
+            // html = html + "</personaIntro>";
+            html = html + "<h3>Needs</h3>";
+            html = html + "<p>" + persona.getNeeds() + "</p>";
+            html = html + "<h3>Goals</h3>";
+            html = html + "<p>" + persona.getGoals() + "</p>";
+            html = html + "<h3>Skills and Experience</h3>";
+            html = html + "<p>" + persona.getSkills() + "</p>";
+        }
+
         // Finish the List HTML
         html = html + "</ul>";
-
-        html = html + "<img src='./John_Smith.png'>";
 
 
         // Close Content div
