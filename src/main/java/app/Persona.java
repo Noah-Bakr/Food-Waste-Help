@@ -23,13 +23,7 @@ public class Persona {
    private String Skills;
 
   
-
-
-
-
-   /**
-    * Create a Country and set the fields
-    */
+   //Persona Constructor
    public Persona(String name, String image, String attributes, String backgrounds, String needs, String goals, String skills) {
       this.Name = name;
       this.Image = image;
@@ -40,6 +34,8 @@ public class Persona {
       this.Skills = skills;
    }
 
+
+   //Getters
    public String getName() {
       return this.Name;
    }
