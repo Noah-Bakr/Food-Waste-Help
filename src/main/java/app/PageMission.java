@@ -81,13 +81,15 @@ public class PageMission implements Handler {
         html = html + "<h1>All Countries in the foodloss database (using JDBC Connection)</h1>" + "<ul>";
 
         // Finally we can print out all of the Countries
-        for (Country country : countries) {
-            html = html + "<li>" + country.getM49Code()
-                        + " - " + country.getName() + "</li>";
-        }
+        // for (Country country : countries) {
+        //     html = html + "<li>" + country.getM49Code()
+        //                 + " - " + country.getName() + "</li>";
+        // }
 
         // Finish the List HTML
         html = html + "</ul>";
+
+        html = html + "<img src='./John_Smith.png'>";
 
 
         // Close Content div
