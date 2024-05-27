@@ -68,8 +68,14 @@ public class PageMission implements Handler {
 
         // Add HTML for the page content
         html = html + """
-            <p>Mission page content</p>
+            <h1>How the website addresses the social challenge</h1>
             """;
+
+        html = html + "<p>Sample text</p>";
+
+        html = html + "<h1>Usage and primary functions</h1>";
+
+        html = html + "<p>William Bore</p>";
 
         // This example uses JDBC to lookup the countries
         JDBCConnection jdbc = new JDBCConnection();
@@ -80,7 +86,7 @@ public class PageMission implements Handler {
         ArrayList<Persona> personas = jdbc.getAllPersonas();
 
         // Add HTML for the countries list
-        html = html + "<h1>All Countries in the foodloss database (using JDBC Connection)</h1>" + "<ul>";
+        // html = html + "<h1>All Countries in the foodloss database (using JDBC Connection)</h1>" + "<ul>";
 
         // Finally we can print out all of the Countries
         // for (Country country : countries) {
@@ -90,7 +96,7 @@ public class PageMission implements Handler {
 
             html = html + "<h1>Personas</h1>";
 
-            //TODO 
+            //TODO Fix quotation marks breaking
         for(Persona persona : personas)
         {
             // html = html + "<personaIntro>";
