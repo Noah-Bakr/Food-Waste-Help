@@ -77,6 +77,9 @@ public class PageMission implements Handler {
 
         html = html + "<p>The site has multiple primary ways that it can be used depending on what the intended user wants to do. If the user is new or does not understand much about food waste and just needs a summary, the website contains sections that allows for the user to read a brief summary of what food waste is and what the website aims to do to help prevent or educate about it. There is a section that informs new users of the most important information summarized in the form of a few small boxes, these will tell the user about percentage changes, this can also be repurposed into a grid that tells the user 8 or so (4 Increase, 4 Decrease) of the highest percentage changes within the year / averaged over a few years. For advanced users and people looking for more specific information, there may be one (possibly two depending on how it turns out) interactive charts, depending on how the end website layout ends up (One big page or many little pages with navigation) The simple graph will only allow customization of some parameters such as start and end year as well as categorizing by or choosing a country or a food group which will then be summarized into a simple graph. For the advanced usage graph it will provide more ways to filter through the data, possibly bringing thuser to a different area dedicated to the advanced graph that allows for sorting for specifics such as by specific food divisions as well as being able to compare the yearly food waste of different products side by side, this is on top of the other features that are provided in the simple graph menu on the main page.</p>";
 
+
+        html = html + "<h1>The Creators</h1>";
+        
         // This example uses JDBC to lookup the countries
         JDBCConnection jdbc = new JDBCConnection();
 
