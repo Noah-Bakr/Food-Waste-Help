@@ -40,7 +40,9 @@ public class PageIndex implements Handler {
 
         // Add some CSS (external file)
         html = html + "<link rel='stylesheet' type='text/css' href='common.css' />";
-        html = html + "<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0' />";
+
+        html = html + nav.getExtraCSS();
+
         html = html + "</head>";
 
         // Add the body

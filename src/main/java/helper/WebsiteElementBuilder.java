@@ -11,7 +11,7 @@ public class WebsiteElementBuilder {
                 <ul>
                     <li class='logo'>
                     
-                    <span class="material-symbols-outlined">grocery</span>
+                    <i class='material-symbols-outlined'>grocery</i>
                     <h2>Food Waste Help</h2>
                     </li>
                     <li><a href='/'>Homepage</a></li>
@@ -25,4 +25,15 @@ public class WebsiteElementBuilder {
         """; 
         return str;
     }
+
+    //Returns extra APIs and elements, such as icons and fonts
+    public String getExtraCSS() {
+        String str = """
+            <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0' />";
+            <link rel='preconnect' href='https://fonts.googleapis.com'>";
+            <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>";
+            <link href='https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap' rel='stylesheet'>
+            """;
+            return str;
+        }
 }

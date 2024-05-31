@@ -40,6 +40,7 @@ public class PageST3A implements Handler {
 
         // Add some CSS (external file)
         html = html + "<link rel='stylesheet' type='text/css' href='common.css' />";
+        html = html + nav.getExtraCSS();
         html = html + "</head>";
 
         // Add the body

@@ -24,10 +24,11 @@ body {
 
 .topnav h2 {
    font-size: 25px;
-   font-family: ;
+   font-family: comfortaa, sans-serif;
    text-align: left;
-   padding: 10px;
    color: #fff;
+   float: left;
+   padding: 0px 2px;
 }
 
 
@@ -62,6 +63,11 @@ img.top-image {
  
 
 .material-symbols-outlined {
+  font-size: 80px;
+  width: 40;
+  color: #fff;
+  float: left;
+  padding: 2px 4px;
   font-variation-settings: 
   'FILL' 0,
   'wght' 400,
