@@ -83,10 +83,19 @@ public class PageMission implements Handler {
         // This example uses JDBC to lookup the countries
         JDBCConnection jdbc = new JDBCConnection();
 
+        ArrayList<Student> students = jdbc.getAllStudents();
+
         // Next we will ask this *class* for the Countries
         ArrayList<Country> countries = jdbc.getAllCountries();
 
         ArrayList<Persona> personas = jdbc.getAllPersonas();
+
+        for(Student student : students)
+        {
+            // html = html + "<personaIntro>";
+            html = html + "<p>"+student.getFirstName()+ " " + student.getLastName() + " | " + student.getStudentCode() + "</p>";
+            
+        }
 
         // Add HTML for the countries list
         // html = html + "<h1>All Countries in the foodloss database (using JDBC Connection)</h1>" + "<ul>";
