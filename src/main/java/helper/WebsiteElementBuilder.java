@@ -1,6 +1,7 @@
 package helper;
 
 public class WebsiteElementBuilder {
+    //Navigation properties update globally
     public String getNavBar() {
     String str = """
             <div class='topnav'>

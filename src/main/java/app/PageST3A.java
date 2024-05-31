@@ -2,6 +2,7 @@ package app;
 
 import java.util.ArrayList;
 
+import helper.WebsiteElementBuilder;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 
@@ -23,6 +24,7 @@ import java.sql.Statement;
  */
 
 public class PageST3A implements Handler {
+    WebsiteElementBuilder nav = new WebsiteElementBuilder();
 
     // URL of this page relative to http://localhost:7001/
     public static final String URL = "/page3A.html";
@@ -45,16 +47,7 @@ public class PageST3A implements Handler {
 
         // Add the topnav
         // This uses a Java v15+ Text Block
-        html = html + """
-            <div class='topnav'>
-                <a href='/'>Homepage</a>
-                <a href='mission.html'>Our Mission</a>
-                <a href='page2A.html'>Sub Task 2.A</a>
-                <a href='page2B.html'>Sub Task 2.B</a>
-                <a href='page3A.html'>Sub Task 3.A</a>
-                <a href='page3B.html'>Sub Task 3.B</a>
-            </div>
-        """;
+        html = html + nav.getNavBar();
 
         // Add header content block
         html = html + """
