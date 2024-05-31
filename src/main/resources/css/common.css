@@ -45,6 +45,9 @@ img.top-image {
    padding: 0;
    overflow: hidden;
    background-color: #4F7302;
+   position: fixed;
+   top: 0;
+   width: 100%;
  }
 
  .topnav ul li img {
