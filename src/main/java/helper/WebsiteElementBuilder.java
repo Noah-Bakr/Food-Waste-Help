@@ -1,18 +1,15 @@
 package helper;
-
+//<i class='material-symbols-outlined'>grocery</i>
 public class WebsiteElementBuilder {
     //Navigation properties update globally
-
-    // <img src='./icons/Logo1.png' alt='Food Waste Help Logo'>
-
     public String getNavBar() {
     String str = """
             <div class='topnav'>
                 <ul>
-                    <li class='logo'>
-                    
-                    <i class='material-symbols-outlined'>grocery</i>
-                    <h2>Food Waste Help</h2>
+                    <li>
+                        <h2>
+                        <img src='./icons/logo.png'>
+                            Food Waste Help</h2>
                     </li>
                     <li><a href='/'>Homepage</a></li>
                     <li><a href='mission.html'>Our Mission</a></li>
