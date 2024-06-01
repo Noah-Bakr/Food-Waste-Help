@@ -5,7 +5,7 @@
 }
 
 body {
-   font-family: Arial;
+   font-family: 'Montserrat', sans-serif;
    padding: 10px;
    background: #f1f1f1;
 }
@@ -13,16 +13,27 @@ body {
 /* Header (div) formatting */
 .header {
    padding: 10px;
-   margin-top:30px;
+   margin-top:10px;
    text-align: center;
    background-color: #cccccc;
    color: #000000;
 }
 
-.header h1 {
-   font-size: 50px;
+#headerGrid {
+  display: flex;
+  align-items: center; 
 }
 
+.header h1 {
+  font-size: 50px;
+}
+
+img.top-image {
+  vertical-align: middle;
+  height: 500;
+  width: 500;
+  object-fit: cover
+}
 
 /* Style the top navigation bar */
 .topnav ul {
@@ -82,34 +93,7 @@ body {
    transform: translateY(-50%);
 }
 
-
-/* Make the logo have a rounded edge */
-img.top-image {
-   vertical-align: middle;
-}
-
 /* CSS Layout from W3Schools: https://www.w3schools.com/css/css_templates.asp */
-
- 
-
-.material-symbols-outlined {
-  font-size: 80px;
-  width: 40;
-  color: #fff;
-  float: left;
-  padding: 2px 4px;
-  font-variation-settings: 
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24,
-}
-
- 
-
- 
-
- 
  .active {
    background-color: #04AA6D;
  }

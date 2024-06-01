@@ -54,12 +54,11 @@ public class PageIndex implements Handler {
         html = html + nav.getNavBar();
 
         // Add header content block
+        //Image Credits: https://stock.adobe.com/au/Library/urn:aaid:sc:AP:726decc2-5dcc-4f8c-9401-fc8719bcff2e?asset_id=118175173
         html = html + """
-            <div class='header'>
-                <h1>
-                    <img src='logo.png' class='top-image' alt='RMIT logo' height='75'>
-                    Homepage
-                </h1>
+            <div id='headerGrid' class='header'>
+                    <h1>The Road to a Greener Future Starts With You.</h1>
+                    <img src='./AdobeStock_LandingPageVeggies.jpeg' class='top-image' alt='Fresh Veggies'>
             </div>
         """;
 
