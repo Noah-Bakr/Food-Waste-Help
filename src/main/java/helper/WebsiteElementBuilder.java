@@ -6,11 +6,11 @@ public class WebsiteElementBuilder {
     String str = """
             <div class='topnav'>
                 <ul>
+                    
                     <li>
-                        <h2>
-                        <img src='./icons/logo.png'>
-                            Food Waste Help</h2>
+                        <img src='./icons/logo.png' class='topnavimg'>
                     </li>
+                    <li><h2>Food Waste Help</h2></li>
                     <li><a href='/'>Homepage</a></li>
                     <li><a href='mission.html'>Our Mission</a></li>
                     <li><a href='page2A.html'>Sub Task 2.A</a></li>

@@ -23,6 +23,51 @@ body {
    font-size: 50px;
 }
 
+
+/* Style the top navigation bar */
+.topnav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0px 20px;
+  overflow: hidden;
+  background-color: #4F7302;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: fit-content;
+}
+
+.topnavimg {
+  color: #fff;
+  height: 50;
+  width: 50;
+  float: left;
+  object-fit: contain;
+  object-position: 50% 50%;
+  display: block;
+  padding: 5px;
+}
+
+ /* Change color on hover */
+ .topnav ul li a:hover {
+   background-color: #fff;
+   color: #fff;
+ }
+ 
+ .topnav ul li a:hover:not(.active) {
+   background-color: #375001;
+ }
+
+  /* Style the topnav links */
+.topnav ul li a {
+ float: right;
+ display: block;
+ color: #f2f2f2;
+ text-align: center;
+ padding: 14px 16px;
+ text-decoration: none;
+}
+
 .topnav h2 {
    font-size: 25px;
    font-family: comfortaa, sans-serif;
@@ -30,6 +75,11 @@ body {
    color: #fff;
    float: left;
    padding: 0px 10px;
+   margin: 0px;
+   margin-left: 3.5%;
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
 }
 
 
@@ -39,29 +89,7 @@ img.top-image {
 }
 
 /* CSS Layout from W3Schools: https://www.w3schools.com/css/css_templates.asp */
-/* Style the top navigation bar */
-.topnav ul {
-   list-style: none;
-   margin: 0;
-   padding: 0px 20px;
-   overflow: hidden;
-   background-color: #4F7302;
-   position: fixed;
-   top: 0;
-   width: 100%;
-   height: fit-content;
- }
 
- .topnav ul li h2 img {
-   color: #fff;
-   height: 50;
-   width: 50;
-   float: left;
-   object-fit: contain;
-   object-position: 50% 50%;
-   display: block;
-   padding: 5px;
- }
  
 
 .material-symbols-outlined {
@@ -78,25 +106,9 @@ img.top-image {
 }
 
  
- /* Style the topnav links */
- .topnav ul li a {
-   float: right;
-   display: block;
-   color: #f2f2f2;
-   text-align: center;
-   padding: 14px 16px;
-   text-decoration: none;
- }
+
  
- /* Change color on hover */
- .topnav ul li a:hover {
-   background-color: #fff;
-   color: #fff;
- }
- 
- .topnav ul li a:hover:not(.active) {
-   background-color: #375001;
- }
+
  
  .active {
    background-color: #04AA6D;
