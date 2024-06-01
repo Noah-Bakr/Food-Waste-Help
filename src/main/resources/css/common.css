@@ -40,6 +40,26 @@ img.top-image {
   margin-right: 10%;
 }
 
+.button {
+  background-color: #4F7302; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 2px solid #4F7302;
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background-color: white; 
+  color: #4F7302;
+}
+
 /* Style the top navigation bar */
 .topnav ul {
   list-style: none;

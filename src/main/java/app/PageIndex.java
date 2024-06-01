@@ -62,7 +62,7 @@ public class PageIndex implements Handler {
                     Greener Future <br>
                     Starts With You.</h1>
 
-                    
+                    <button class="button">Learn More</button>
                 </div>
                 <div>
                     <img src='./AdobeStock_LandingPageVeggies.jpeg' class='top-image' alt='Fresh Veggies'>
