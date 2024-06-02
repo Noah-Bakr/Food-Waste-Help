@@ -7,10 +7,9 @@ public class WebsiteElementBuilder {
             <div class='topnav'>
                 <ul>
                     <a href='/'>
-                    <li>
-                        <img src='./icons/logo.png' class='topnavimg'>
-                    </li>
-                    <li><h2>Food Waste Help</h2></li></a>
+                        <li><img src='./icons/logo.png' class='topnavimg'></li>
+                        <li><h2>Food Waste Help</h2></li>
+                    </a>
                     <li><a href='/'>Homepage</a></li>
                     <li><a href='mission.html'>Our Mission</a></li>
                     <li><a href='page2A.html'>Sub Task 2.A</a></li>
