@@ -75,7 +75,19 @@ public class PageIndex implements Handler {
 
         // Add HTML for the page content
         html = html + """
-            <p>Homepage content</p>
+            <div class='damages-section'>
+                <div class='damages-header'>
+                    <h1>Let us take a look at the <br>damages...</h1>
+                    <div class='damages-tooltip'>
+                        <h3></h3>
+                        <p></p>
+                        <h4></h4>
+                </div>
+                <div class='damages-table'>
+
+                </div>
+                <button class="button">Learn More</button>
+            </div>
             """;
 
         // Get the ArrayList of Strings of all countries
