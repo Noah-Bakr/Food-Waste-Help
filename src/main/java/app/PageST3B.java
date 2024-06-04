@@ -53,12 +53,25 @@ public class PageST3B implements Handler {
         // Add header content block
         html = html + """
             <div class='header'>
-                <h1>Subtask 3.B</h1>
+                <h1>Commodity code and statistic lookup</h1>
             </div>
         """;
 
         // Add Div for page Content
         html = html + "<div class='content'>";
+
+        html = html + "<input type='radio' id='avg' name='sortby' value='avg'>";
+        html = html + "<label for='avg'>Food Loss Average </label><br>";
+        html = html + "<input type='radio' id='highest' name='sortby' value='highest'>";
+        html = html + "<label for='highest'>Highest Percentage of Food Loss</label><br>";
+        html = html + "<input type='radio' id='lowest' name='sortby' value='lowest'>";
+        html = html + "<label for='lowest'>Lowest Percentage or Food Loss</label>";
+
+        html = html + "<br>";
+
+        html = html + "<input class='form-control' id='number_of_results' name='number_of_results' placeholder = 'Enter number of results'>";
+        html = html + "   <button type='submit' class='searchButton'>Search</button>";
+      
 
         // Add HTML for the page content
         html = html + """
