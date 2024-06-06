@@ -24,7 +24,7 @@ import java.sql.Statement;
  */
 
 public class PageIndex implements Handler {
-    WebsiteElementBuilder nav = new WebsiteElementBuilder();
+    WebsiteElementBuilder elements = new WebsiteElementBuilder();
 
     // URL of this page relative to http://localhost:7001/
     public static final String URL = "/";
@@ -41,17 +41,17 @@ public class PageIndex implements Handler {
         // Add some CSS (external file)
         html = html + "<link rel='stylesheet' type='text/css' href='common.css' />";
 
-        html = html + nav.getExtraCSS();
+        html = html + elements.getExtraCSS();
 
         html = html + "</head>";
 
         // Add the body
         html = html + "<body>";
 
-        // Add the topnav
+        // Add the topelements
         // This uses a Java v15+ Text Block
         
-        html = html + nav.getNavBar();
+        html = html + elements.getNavBar();
 
         // Add header content block
         //Image Credits: https://stock.adobe.com/au/Library/urn:aaid:sc:AP:726decc2-5dcc-4f8c-9401-fc8719bcff2e?asset_id=118175173
@@ -108,11 +108,7 @@ public class PageIndex implements Handler {
         html = html + "</div>";
 
         // Footer
-        html = html + """
-            <div class='footer'>
-                <p>COSC2803 - Studio Project Starter Code (Apr24)</p>
-            </div>
-        """;
+        html = html + elements.getFooter();
 
         // Finish the HTML webpage
         html = html + "</body>" + "</html>";
