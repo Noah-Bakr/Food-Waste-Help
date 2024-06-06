@@ -60,7 +60,9 @@ public class PageST3B implements Handler {
         // Add Div for page Content
         html = html + "<div class='content'>";
 
-        html = html + "<input type='radio' id='avg' name='sortby' value='avg'>";
+        html = html + "<form action='/page3B.html' method='post'>";
+
+        html = html + "<input type='radio' id='avg' name='sortby' value='avg' required>";
         html = html + "<label for='avg'>Food Loss Average </label><br>";
         html = html + "<input type='radio' id='highest' name='sortby' value='highest'>";
         html = html + "<label for='highest'>Highest Percentage of Food Loss</label><br>";
@@ -69,14 +71,23 @@ public class PageST3B implements Handler {
 
         html = html + "<br>";
 
-        html = html + "<input class='form-control' id='number_of_results' name='number_of_results' placeholder = 'Enter number of results'>";
+        html = html + "<input class='form-control' id='number_of_results' name='number_of_results' placeholder = 'Enter number of results' required>";
         html = html + "   <button type='submit' class='searchButton'>Search</button>";
+
+        html = html + "</form>";
       
 
         // Add HTML for the page content
         html = html + """
             <p>Subtask 3.B page content</p>
             """;
+
+
+            String sort_by = context.formParam("sortby");
+            String no_of_results = context.formParam("number_of_results");
+
+        html = html + "<p>" + sort_by + "</p>";
+        html = html + "<p>" + no_of_results + "</p>";
 
         // Close Content div
         html = html + "</div>";
