@@ -11,6 +11,12 @@ body {
    background: #f1f1f1;
 }
 
+ /* Style the content */
+ .content {
+  background-color: #ddd;
+  padding: 10px 0px;
+}
+
 /* Header (div) formatting */
 .header-section {
    padding: 20px;
@@ -41,8 +47,9 @@ img.top-image {
   margin-right: 10%;
 }
 
+/* Button Formatting */
 .button {
-  background-color: #4F7302; /* Green */
+  background-color: #4F7302;
   border: none;
   color: white;
   padding: 10px 24px;
@@ -119,22 +126,60 @@ img.top-image {
    transform: translateY(-50%);
 }
 
-/* CSS Layout from W3Schools: https://www.w3schools.com/css/css_templates.asp */
- .active {
-   background-color: #04AA6D;
- }
+/* Style the bottom footer */
+.footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0px 20px;
+  overflow: hidden;
+  background-color: #4F7302;
+  position: sticky;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: fit-content;
+}
 
- /* Style the content */
- .content {
-   background-color: #ddd;
-   padding: 10px;
- }
- 
- /* Style the footer */
- .footer {
-   background-color: #cccccc;
-   padding: 10px;
- }
+.footerimg {
+  color: #fff;
+  height: 50;
+  width: 50;
+  margin: 0 auto;
+  float: left;
+  object-fit: contain;
+  object-position: 50% 50%;
+  display: block;
+  padding: 5px;
+}
+
+/* Style the footer links */
+.footer ul li a {
+ float: right;
+ display: block;
+ color: #f2f2f2;
+ text-align: center;
+ padding: 30px 16px;
+ text-decoration: none;
+}
+
+.footer h2 {
+  font-size: 25px;
+  font-family: comfortaa, sans-serif;
+  text-align: left;
+  color: #fff;
+  float: left;
+  padding: 0px 10px;
+  margin: 0px;
+  margin-left: 3.5%;
+  position: absolute;
+  bottom: 0;
+  transform: translateY(-50%);
+  object-position: center;
+}
+
+.damages-section {
+  padding: 0px 1%
+}
 
  .persona_thumbnail{
    
