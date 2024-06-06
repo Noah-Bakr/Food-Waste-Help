@@ -35,4 +35,15 @@ public class WebsiteElementBuilder {
             """;
             return str;
         }
+
+    //Footer properties update globally
+    public String getFooter() {
+        String str = """
+            <div class='footer'>
+                <p>COSC2803 - Studio Project Starter Code (Apr24)</p>
+            </div>
+        """;
+        return str;
+    }
 }
+
