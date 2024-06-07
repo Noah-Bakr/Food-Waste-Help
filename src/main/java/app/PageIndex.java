@@ -98,6 +98,43 @@ public class PageIndex implements Handler {
                                 <td>Australia</td>
                                 <td>87%</td>
                             </tr>
+                            <tr>
+                                <td>America</td>
+                                <td>95%</td>
+                            </tr>
+                            <tr>
+                                <td>Italy</td>
+                                <td>42%</td>
+                            </tr>
+                            <tr>
+                                <td>Brazil</td>
+                                <td>76%</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class='damages-table'>
+                        <table>
+                            <tr>
+                                <th>Country</th>
+                                <th>Percentage</th>
+                            </tr>
+                            <tr>
+                                <td><h3>Australia</h3></td>
+                                <td><h4>87%</h4></td>
+                            </tr>
+                            <tr>
+                                <td>America</td>
+                                <td>95%</td>
+                            </tr>
+                            <tr>
+                                <td>Italy</td>
+                                <td>42%</td>
+                            </tr>
+                            <tr>
+                                <td>Brazil</td>
+                                <td>76%</td>
+                            </tr>
                         </table>
                     </div>
                 </div>

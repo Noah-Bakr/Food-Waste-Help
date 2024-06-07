@@ -118,22 +118,44 @@ img.top-image {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
 }
 
 .damages-table {
   padding-left: 10%;
   padding-right: 2.5%;
   width: 50%;
-  text-align: center;
-  padding: 5px;
+  padding: 10px;
+  top: 0;
+  margin: 30px;
 }
 
 .damages-table table, .damages-table th, .damages-table td {
   border-top: 5px solid #4F7302;
   border-bottom: 5px solid #4F7302;
   border-collapse: collapse;
-  padding: 5px;
+}
 
+.damages-table th, .damages-table td {
+  padding: 15px 5px;
+  text-align: center;
+}
+
+.damages-table h3 {
+  font-weight: bold;
+  font-size: 25px;
+  color: #000000;
+}
+
+.damages-table h4 {
+  font-weight: bold;
+  font-size: 25px;
+  color: #4F7302;
+}
+
+.damages-table th {
+  /* visibility: collapse;  */
+  display:none;
 }
 
 .damages-button {
