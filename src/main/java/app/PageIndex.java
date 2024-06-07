@@ -53,6 +53,9 @@ public class PageIndex implements Handler {
         
         html = html + elements.getNavBar();
 
+        // Add Div for page Content
+        html = html + "<div class='content'>";
+
         // Add header content block
         //Image Credits: https://stock.adobe.com/au/Library/urn:aaid:sc:AP:726decc2-5dcc-4f8c-9401-fc8719bcff2e?asset_id=118175173
         html = html + """
@@ -61,17 +64,15 @@ public class PageIndex implements Handler {
                     <h1>The Road to a <br>
                     Greener Future <br>
                     Starts With You.</h1>
-
-                    <button class="button">Learn More</button>
+                    <div class='header-button'>
+                        <button class="button">Learn More</button>
+                    </div>
                 </div>
                 <div>
                     <img src='./AdobeStock_LandingPageVeggies.jpeg' class='top-image' alt='Fresh Veggies'>
                 </div>
             </div>
         """;
-
-        // Add Div for page Content
-        html = html + "<div class='content'>";
 
         // Add HTML for the page content
         html = html + """
