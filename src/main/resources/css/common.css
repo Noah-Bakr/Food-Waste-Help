@@ -1,18 +1,18 @@
 /* External CSS style file */
 
 * {
-   box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-   font-family: 'Montserrat', sans-serif;
-   padding: 0;
-   margin: 0;
-   background: #f1f1f1;
+  font-family: 'Montserrat', sans-serif;
+  padding: 0;
+  margin: 0;
+  background: #f1f1f1;
 }
 
- /* Style the content */
- .content {
+/* Style the content */
+.content {
   background-image: url("Background.jpg");
   background-color: #ddd;
   padding: 10px 0px;
@@ -20,23 +20,24 @@ body {
 
 /* Header (div) formatting */
 .header-section {
-   padding: 2%;
-   margin-top: 20px;
-   color: #000000;
+  padding: 2%;
+  margin-top: 20px;
+  color: #000000;
 }
 
 #header-grid {
   display: flex;
-  justify-content: center;
-  align-items: center; 
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .header h1 {
   font-size: 50px;
-  padding: 10px 15px;
+  padding: 5px 15px;
   text-align: left;
   left: 0;
-  margin-left: 10%;
+  /* margin-left: 10%; */
 }
 
 img.top-image {
@@ -49,8 +50,8 @@ img.top-image {
 }
 
 .header-button {
-  text-align: right;
-  padding: 20px;
+  text-align: left;
+  padding: 0 20px;
 }
 
 /* Button Formatting */
@@ -70,7 +71,7 @@ img.top-image {
 }
 
 .button:hover {
-  background-color: white; 
+  background-color: white;
   color: #4F7302;
 }
 
@@ -98,38 +99,38 @@ img.top-image {
   padding: 5px;
 }
 
- /* Change color on hover */
- .topnav ul li a:hover {
-   background-color: #fff;
-   color: #fff;
- }
- 
- .topnav ul li a:hover:not(.active) {
-   background-color: #375001;
- }
+/* Change color on hover */
+.topnav ul li a:hover {
+  background-color: #fff;
+  color: #fff;
+}
 
-  /* Style the topnav links */
+.topnav ul li a:hover:not(.active) {
+  background-color: #375001;
+}
+
+/* Style the topnav links */
 .topnav ul li a {
- float: right;
- display: block;
- color: #f2f2f2;
- text-align: center;
- padding: 14px 16px;
- text-decoration: none;
+  float: right;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }
 
 .topnav h2 {
-   font-size: 25px;
-   font-family: comfortaa, sans-serif;
-   text-align: left;
-   color: #fff;
-   float: left;
-   padding: 0px 10px;
-   margin: 0px;
-   margin-left: 3.5%;
-   position: absolute;
-   top: 50%;
-   transform: translateY(-50%);
+  font-size: 25px;
+  font-family: comfortaa, sans-serif;
+  text-align: left;
+  color: #fff;
+  float: left;
+  padding: 0px 10px;
+  margin: 0px;
+  margin-left: 3.5%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /* Style the bottom footer */
@@ -160,12 +161,12 @@ img.top-image {
 
 /* Style the footer links */
 .footer ul li a {
- float: right;
- display: block;
- color: #f2f2f2;
- text-align: center;
- padding: 30px 16px;
- text-decoration: none;
+  float: right;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 30px 16px;
+  text-decoration: none;
 }
 
 .footer h2 {
@@ -187,6 +188,4 @@ img.top-image {
   padding: 0px 1%
 }
 
- .persona_thumbnail{
-   
- }
+.persona_thumbnail {}
