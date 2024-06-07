@@ -28,7 +28,8 @@ body {
 
 #header-grid {
   display: flex;
-  align-items: flex-start; 
+  justify-content: center;
+  align-items: center; 
 }
 
 .header h1 {

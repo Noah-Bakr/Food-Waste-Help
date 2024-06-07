@@ -82,6 +82,7 @@ public class PageIndex implements Handler {
                         <h3></h3>
                         <p></p>
                         <h4></h4>
+                    </div>
                 </div>
                 <div class='damages-table'>
 
