@@ -50,15 +50,13 @@ public class PageMission implements Handler {
         // This uses a Java v15+ Text Block
         html = html + nav.getNavBar();
 
-        // Add header content block
-        html = html + """
-            <div class='header'>
-                <h1>Our Mission</h1>
-            </div>
-        """;
-
         // Add Div for page Content
-        html = html + "<div class='content'>";
+        html = html + "<div class='content' style='padding:30px'>";
+
+        // Add header content block
+        html = html + "<h1>Our Mission</h1>";
+
+        
 
         // Add HTML for the page content
         html = html + """
