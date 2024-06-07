@@ -4,7 +4,7 @@ public class WebsiteElementBuilder {
     //Returns extra APIs and elements, such as icons and fonts
     public String getExtraCSS() {
         String str = """
-            <link rel='icon' type='image/x-icon' href='./icons/logo.png'>
+            <link rel='icon' type='image/x-icon' href='./icons/TabLogo.png'>
             
             <link rel='preconnect' href='https://fonts.googleapis.com'>
             <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
