@@ -79,18 +79,31 @@ public class PageIndex implements Handler {
         // Add HTML for the page content
         html = html + """
             <div class='damages-section'>
-                <div class='damages-header'>
-                    <h1>Let us take a look at the <br>damages...</h1>
+                <div id='damages-heading-grid' class='damages-heading'>
+                    <h2>Let us take a look at the <br>damages...</h2>
                     <div class='damages-tooltip'>
-                        <h3></h3>
-                        <p></p>
-                        <h4></h4>
+                        <h3>High Impact Data</h3>
+                        <p>There is where I tell you what data the table is showing you</p>
+                        <h4>1966 - 2002</h4>
                     </div>
                 </div>
-                <div class='damages-table'>
-
+                <div class='damages-tables-grid'>
+                    <div class='damages-table'>
+                        <table>
+                            <tr>
+                                <th>Country</th>
+                                <th>Percentage</th>
+                            </tr>
+                            <tr>
+                                <td>Australia</td>
+                                <td>87%</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-                <button class="button">Learn More</button>
+                <div class='damages-button'>
+                    <button class="button">Learn More</button>
+                </div>
             </div>
             """;
 

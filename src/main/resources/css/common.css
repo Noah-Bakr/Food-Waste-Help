@@ -15,7 +15,8 @@ body {
 .content {
   background-image: url("Background.jpg");
   background-color: #ddd;
-  padding: 10px 0px;
+  top: 0;
+  padding: 0px;
 }
 
 /* Header (div) formatting */
@@ -34,6 +35,7 @@ body {
 
 .header h1 {
   font-size: 50px;
+  font-weight: bold;
   padding: 5px 15px;
   text-align: left;
   left: 0;
@@ -53,6 +55,93 @@ img.top-image {
   text-align: left;
   padding: 0 20px;
 }
+
+.damages-section {
+  padding: 0px 0px 0px 1%;
+}
+
+#damages-heading-grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.damages-section h2 {
+  font-weight: 300;
+  font-size: 40px;
+  padding: 5px 15px;
+  text-align: left;
+  left: 0;
+}
+
+.damages-tooltip {
+  border-radius: 50px 0px 0px 50px;
+  background: #9FC847;
+  padding: 20px;
+  margin: 0;
+  width: 500px;
+  height: fit-content;
+  text-align: right;
+  object-fit: contain;
+}
+
+.damages-tooltip h3 {
+  font-weight: bold;
+  font-size: 25px;
+  color: #000000;
+  padding: 0px 15px;
+  margin: 0;
+  right: 0;
+}
+
+.damages-tooltip p {
+  font-weight: 200;
+  font-size: 18;
+  color: #000000;
+  padding: 5px 15px;
+  margin: 0;
+  right: 0;
+}
+
+.damages-tooltip h4 {
+  font-weight: 300;
+  font-size: 40px;
+  color: #4F7302;
+  padding: 0px 15px;
+  margin: 0;
+  right: 0;
+}
+
+.damages-tables-grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.damages-table {
+  padding-left: 10%;
+  padding-right: 2.5%;
+  width: 50%;
+  text-align: center;
+  padding: 5px;
+}
+
+.damages-table table, .damages-table th, .damages-table td {
+  border-top: 5px solid #4F7302;
+  border-bottom: 5px solid #4F7302;
+  border-collapse: collapse;
+  padding: 5px;
+
+}
+
+.damages-button {
+  text-align: right;
+  padding: 0 20px;
+  margin-right: 10%;
+}
+
 
 /* Button Formatting */
 .button {
@@ -182,10 +271,6 @@ img.top-image {
   bottom: 0;
   transform: translateY(-50%);
   object-position: center;
-}
-
-.damages-section {
-  padding: 0px 1%
 }
 
 .persona_thumbnail {}
