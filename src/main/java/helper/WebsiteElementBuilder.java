@@ -3,9 +3,10 @@ package helper;
 public class WebsiteElementBuilder {
     //Returns extra APIs and elements, such as icons and fonts
     public String getExtraCSS() {
-        String str = """
-            <link rel='icon' type='image/x-icon' href='./icons/TabLogo.png'>
-            
+        String str = """            
+            <link rel='icon' type='image/x-icon' href='./icons/logo.png' media="(prefers-color-scheme: light)">
+            <link rel='icon' type='image/x-icon' href='./icons/logo-dark.png' media="(prefers-color-scheme: dark)">
+
             <link rel='preconnect' href='https://fonts.googleapis.com'>
             <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
 
