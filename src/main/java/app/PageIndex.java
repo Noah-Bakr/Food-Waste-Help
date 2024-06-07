@@ -65,7 +65,9 @@ public class PageIndex implements Handler {
                     Greener Future <br>
                     Starts With You.</h1>
                     <div class='header-button'>
-                        <button class="button">Learn More</button>
+                        <a href='mission.html'>
+                            <button class="button">Learn More</button>
+                        </a>
                     </div>
                 </div>
                 <div>
