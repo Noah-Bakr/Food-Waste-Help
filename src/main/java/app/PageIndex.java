@@ -51,9 +51,7 @@ public class PageIndex implements Handler {
         // Add Div for page Content
         html = html + "<div class='content'>";
 
-                // Add the topelements
-        // This uses a Java v15+ Text Block
-        
+        // Add the topelements
         html = html + elements.getNavBar();
 
         // Add header content
@@ -112,7 +110,6 @@ public class PageIndex implements Handler {
                             </tr>
                         </table>
                     </div>
-
                     <div class='damages-table'>
                         <table>
                             <tr>
@@ -171,7 +168,6 @@ public class PageIndex implements Handler {
                         </div>
                     </div>
                 </div>
-
                 <div class='business-item-grid'>
                     <div class='business-item'>
                         <h3>Woolworths</h3>

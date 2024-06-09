@@ -19,6 +19,14 @@ body {
   padding: 0px;
 }
 
+.two-a-content {
+  background-image: url("Background-2A.jpg");
+  background-color: #ddd;
+  top: 0;
+  padding: 0px;
+  margin: 0;
+}
+
 /* Header (div) formatting */
 .header-section {
   padding: 2%;
@@ -400,6 +408,59 @@ img.top-image {
 
 .footer ul li a:hover:not(.active) {
   text-decoration: none;
+}
+
+.timed-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 2%;
+  margin-top: 20px;
+  color: #000000;
+}
+
+.timed-data-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+}
+
+.timed-data-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.timed-data-title h3 {
+  font-weight: 600;
+  font-size: 50px;
+  color: #000000;
+  margin: 0px 10px;
+  padding: 15px 5px;
+  text-align: right;
+  left: 0;
+}
+
+.timed-data-title h4 {
+  font-weight: 300;
+  font-size: 40px;
+  color: #4F7302;
+  padding: 0px 15px;
+  text-align: right;
+  margin: 0;
+  left: 0;
+}
+
+.timed-data-info h2 {
+  font-weight: 300;
+  font-size: 40px;
+  padding: 5px 30px;
+  text-align: right;
+  right: 0;
 }
 
 .persona_thumbnail {}

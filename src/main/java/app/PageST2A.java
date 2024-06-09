@@ -24,7 +24,7 @@ import java.sql.Statement;
  */
 
 public class PageST2A implements Handler {
-    WebsiteElementBuilder nav = new WebsiteElementBuilder();
+    WebsiteElementBuilder elements = new WebsiteElementBuilder();
 
     // URL of this page relative to http://localhost:7001/
     public static final String URL = "/page2A.html";
@@ -34,50 +34,70 @@ public class PageST2A implements Handler {
         // Create a simple HTML webpage in a String
         String html = "<html>";
 
-        // Add some Head information
+        // Add some Header information
         html = html + "<head>" + 
-               "<title>Subtask 2.1</title>";
+               "<title>Sub Task 2.A</title>";
 
         // Add some CSS (external file)
         html = html + "<link rel='stylesheet' type='text/css' href='common.css' />";
-        html = html + nav.getExtraCSS();
+
+        html = html + elements.getExtraCSS();
+
         html = html + "</head>";
 
         // Add the body
         html = html + "<body>";
 
-        // Add the topnav
-        // This uses a Java v15+ Text Block
-        html = html + nav.getNavBar();
+        // Add Div for page Content
+        html = html + "<div class='two-a-content'>";
 
-        // Add header content block
+        // Add the topelements
+        html = html + elements.getNavBar();
+
+        // Add line graph section
         html = html + """
-            <div class='header'>
-                <h1>Subtask 2.A</h1>
+                <div class='timed-data'>
+                    <div class='timed-data-header'>
+                        <div class='timed-data-title'>
+                            <h3>World Data</h3>
+                            <h4>1966 - 2022</h4>
+                        </div>
+                        <div class='timed-data-info'>
+                            <h2>Food loss and waste changes<br>
+                                for user selected Countries</h2>
+                        </div>
+                    </div>
+                    <div class='timed-search-box'>
+                        
+                    </div>
+                </div>
+                """;
+
+        // Add header content
+        //Image Credits: https://stock.adobe.com/au/Library/urn:aaid:sc:AP:726decc2-5dcc-4f8c-9401-fc8719bcff2e?asset_id=118175173
+        html = html + """
+            <div id='header-grid' class='header-section'>
+                <div class='header'>
+                    <h1>The Road to a <br>
+                    Greener Future <br>
+                    Starts With You.</h1>
+                    <div class='header-button'>
+                        <a href='mission.html'>
+                            <button class="button">Learn More</button>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <img src='./AdobeStock_LandingPageVeggies.jpeg' class='top-image' alt='Fresh Veggies'>
+                </div>
             </div>
         """;
-
-        // Add Div for page Content
-        html = html + "<div class='content'>";
-
-        // Add HTML for the page content
-        html = html + """
-            <p>Subtask 2.A page content</p>
-            """;
-
-        // Close Content div
-        html = html + "</div>";
 
         // Footer
-        html = html + """
-            <div class='footer'>
-                <p>COSC2803 - Studio Project Starter Code (Apr24)</p>
-            </div>
-        """;
+        html = html + elements.getFooter();
 
         // Finish the HTML webpage
         html = html + "</body>" + "</html>";
-        
 
         // DO NOT MODIFY THIS
         // Makes Javalin render the webpage
