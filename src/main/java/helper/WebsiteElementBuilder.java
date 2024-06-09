@@ -45,11 +45,18 @@ public class WebsiteElementBuilder {
         String str = """
             <div class='footer'>
                 <ul>
-                    <a href='/'>
-                        <li><img src='./icons/logo.png' class='footerimg'></li>
-                        <li><h2>Food Waste Help</h2></li>
-                    </a>
-                    <li><a href='mission.html'>Our Mission</a></li>
+                    <div class='nav-logo'>
+                        <a href='/'>
+                            <li><img src='./icons/logo.png' class='footerimg'></li>
+                            <li><h2>Food Waste Help</h2></li>
+                        </a>
+                    </div>
+                    <div class='footer-links'>
+                        <li><a href='mission.html'>Our Mission</a></li>
+                    </div>
+                    <div class='copyright'>
+                        <p>&copy; Food Waste Help. 2024</p>
+                    </div>
                 </ul>
             </div>
         """;
