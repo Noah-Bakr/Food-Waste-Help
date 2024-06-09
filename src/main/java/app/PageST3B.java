@@ -71,7 +71,7 @@ public class PageST3B implements Handler {
 
         html = html + "<br>";
 
-        html = html + "<input class='form-control' id='number_of_results' name='number_of_results' placeholder = 'Enter number of results' required>";
+        html = html + "<input type='number' min='1' class='form-control' id='number_of_results' name='number_of_results' placeholder = 'Enter number of results' required>";
         html = html + "   <button type='submit' class='searchButton'>Search</button>";
 
         html = html + "</form>";
