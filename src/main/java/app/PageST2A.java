@@ -68,7 +68,45 @@ public class PageST2A implements Handler {
                         </div>
                     </div>
                     <div class='timed-search-box'>
-                        
+                        <h3>Present Data Between 1996 and 2013</h3>
+                    </div>
+                    <div class='graph-grid'>
+                        <div class='scroll-menu'>
+                            <div class='scroll-menu-title'>
+                                <h2>Country</h2>
+                            </div>
+                            <div class='scroll-menu-items'>
+                                <a><input type="checkbox" id="country1" name="country1" value="Australia">
+                                <label for="country1">Australia</label></a>
+                                <a><input type="checkbox" id="country1" name="country1" value="Australia">
+                                <label for="country1">Australia</label></a>
+                                <a><input type="checkbox" id="country1" name="country1" value="Australia">
+                                <label for="country1">Australia</label></a>
+                                <a><input type="checkbox" id="country1" name="country1" value="Australia">
+                                <label for="country1">Australia</label></a><a><input type="checkbox" id="country1" name="country1" value="Australia">
+                                <label for="country1">Australia</label></a>
+                                <a><input type="checkbox" id="country1" name="country1" value="Australia">
+                                <label for="country1">Australia</label></a><a><input type="checkbox" id="country1" name="country1" value="Australia">
+                                <label for="country1">Australia</label></a>
+                                <a><input type="checkbox" id="country1" name="country1" value="Australia">
+                                <label for="country1">Australia</label></a><a><input type="checkbox" id="country1" name="country1" value="Australia">
+                                <label for="country1">Australia</label></a>
+                                <a><input type="checkbox" id="country1" name="country1" value="Australia">
+                                <label for="country1">Australia</label></a><a><input type="checkbox" id="country1" name="country1" value="Australia">
+                                <label for="country1">Australia</label></a>
+                                <a><input type="checkbox" id="country1" name="country1" value="Australia">
+                                <label for="country1">Australia</label></a><a><input type="checkbox" id="country1" name="country1" value="Australia">
+                                <label for="country1">Australia</label></a>
+                                <a><input type="checkbox" id="country1" name="country1" value="Australia">
+                                <label for="country1">Australia</label></a><a><input type="checkbox" id="country1" name="country1" value="Australia">
+                                <label for="country1">Australia</label></a>
+                                <a><input type="checkbox" id="country1" name="country1" value="Australia">
+                                <label for="country1">Australia</label></a>
+                            </div>
+                        </div>
+                        <div class='line-graph'>
+
+                        </div>
                     </div>
                 </div>
                 """;
