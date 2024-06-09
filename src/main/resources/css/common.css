@@ -176,7 +176,7 @@ img.top-image {
 
 /* Business Section */
 .business-section {
-  padding: 0px 0px 0px 1%;
+  padding: 0px 0px 80px 1%;
 }
 
 .business-heading-grid {
@@ -191,7 +191,7 @@ img.top-image {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  padding: 20px 0;
+  padding: 40px 0 20px 0;
 }
 
 .business-item {
@@ -329,23 +329,26 @@ img.top-image {
 
 /* Style the bottom footer */
 .footer ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   list-style: none;
   margin: 0;
-  padding: 0px 20px;
+  padding: 0px 20px 0px;
   overflow: hidden;
   background-color: #4F7302;
   position: sticky;
   left: 0;
   bottom: 0;
   width: 100%;
-  height: fit-content;
+  height: 150px;
 }
 
 .footerimg {
   color: #fff;
   height: 50;
   width: 50;
-  margin: 0 auto;
   float: left;
   object-fit: contain;
   object-position: 50% 50%;
@@ -355,12 +358,12 @@ img.top-image {
 
 /* Style the footer links */
 .footer ul li a {
-  float: right;
-  display: block;
+  float: center;
+  justify-content: center;
+  display: flex;
   color: #f2f2f2;
   text-align: center;
-  padding: 30px 16px;
-  text-decoration: none;
+  padding: 5px;
 }
 
 .footer h2 {
@@ -373,9 +376,30 @@ img.top-image {
   margin: 0px;
   margin-left: 3.5%;
   position: absolute;
-  bottom: 0;
+  top: 50%;
   transform: translateY(-50%);
-  object-position: center;
+}
+
+.footer p {
+  color: #fff;
+  padding: 10px;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.footer ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer ul li a:hover:not(.active) {
+  text-decoration: none;
 }
 
 .persona_thumbnail {}
