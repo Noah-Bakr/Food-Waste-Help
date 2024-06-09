@@ -96,7 +96,7 @@ img.top-image {
 }
 
 .damages-tooltip p {
-  font-weight: 200;
+  font-weight: 400;
   font-size: 18;
   color: #000000;
   padding: 5px 15px;
@@ -116,15 +116,14 @@ img.top-image {
 .damages-tables-grid {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
-
 }
 
 .damages-table {
   padding-left: 10%;
   padding-right: 2.5%;
-  width: 50%;
+  width: fit-content;
   padding: 10px;
   top: 0;
   margin: 30px;
@@ -137,20 +136,31 @@ img.top-image {
 }
 
 .damages-table th, .damages-table td {
-  padding: 15px 5px;
-  text-align: center;
+  width: 50%;
+  height: fit-content;
 }
 
 .damages-table h3 {
   font-weight: bold;
   font-size: 25px;
   color: #000000;
+  text-align: center;
+  margin: 0px 100px;
+  padding: 15px 5px;
 }
 
 .damages-table h4 {
   font-weight: bold;
   font-size: 25px;
   color: #4F7302;
+  margin: 0;
+  text-align: center;
+  margin: 0px 40px;
+  padding: 5px 5px;
+}
+
+.damages-table h4[target="red"] {
+  color: #C84747;
 }
 
 .damages-table th {

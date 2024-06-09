@@ -95,20 +95,20 @@ public class PageIndex implements Handler {
                                 <th>Percentage</th>
                             </tr>
                             <tr>
-                                <td>Australia</td>
-                                <td>87%</td>
+                                <td><h3>Australia</h3></td>
+                                <td><h4 target='red'>87%</h4></td>
                             </tr>
                             <tr>
-                                <td>America</td>
-                                <td>95%</td>
+                                <td><h3>America</h3></td>
+                                <td><h4>95%</h4></td>
                             </tr>
                             <tr>
-                                <td>Italy</td>
-                                <td>42%</td>
+                                <td><h3>Italy</h3></td>
+                                <td><h4>42%</h4></td>
                             </tr>
                             <tr>
-                                <td>Brazil</td>
-                                <td>76%</td>
+                                <td><h3>Brazil</h3></td>
+                                <td><h4>76%</h4></td>
                             </tr>
                         </table>
                     </div>
@@ -124,16 +124,16 @@ public class PageIndex implements Handler {
                                 <td><h4>87%</h4></td>
                             </tr>
                             <tr>
-                                <td>America</td>
-                                <td>95%</td>
+                                <td><h3>America</h3></td>
+                                <td><h4 target='red'>95%</h4></td>
                             </tr>
                             <tr>
-                                <td>Italy</td>
-                                <td>42%</td>
+                                <td><h3>Italy</h3></td>
+                                <td><h4>42%</h4></td>
                             </tr>
                             <tr>
-                                <td>Brazil</td>
-                                <td>76%</td>
+                                <td><h3>Brazil</h3></td>
+                                <td><h4>76%</h4></td>
                             </tr>
                         </table>
                     </div>
