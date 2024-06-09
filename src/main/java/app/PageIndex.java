@@ -48,13 +48,13 @@ public class PageIndex implements Handler {
         // Add the body
         html = html + "<body>";
 
-        // Add the topelements
+        // Add Div for page Content
+        html = html + "<div class='content'>";
+
+                // Add the topelements
         // This uses a Java v15+ Text Block
         
         html = html + elements.getNavBar();
-
-        // Add Div for page Content
-        html = html + "<div class='content'>";
 
         // Add header content
         //Image Credits: https://stock.adobe.com/au/Library/urn:aaid:sc:AP:726decc2-5dcc-4f8c-9401-fc8719bcff2e?asset_id=118175173

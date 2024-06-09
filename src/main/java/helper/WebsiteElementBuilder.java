@@ -21,15 +21,19 @@ public class WebsiteElementBuilder {
     String str = """
             <div class='topnav'>
                 <ul>
-                    <a href='/'>
-                        <li><img src='./icons/logo.png' class='topnavimg'></li>
-                        <li><h2>Food Waste Help</h2></li>
-                    </a>
-                    <li><a href='mission.html'>Our Mission</a></li>
-                    <li><a href='page2A.html'>Sub Task 2.A</a></li>
-                    <li><a href='page2B.html'>Sub Task 2.B</a></li>
-                    <li><a href='page3A.html'>Sub Task 3.A</a></li>
-                    <li><a href='page3B.html'>Sub Task 3.B</a></li>
+                    <div class='nav-logo'>
+                        <a href='/'>
+                            <li><img src='./icons/logo.png' class='topnavimg'></li>
+                            <li><h2>Food Waste Help</h2></li>
+                        </a>
+                    </div>
+                    <div class='nav-links'>
+                        <li><a href='mission.html'>Our Mission</a></li>
+                        <li><a href='page2A.html'>Sub Task 2.A</a></li>
+                        <li><a href='page2B.html'>Sub Task 2.B</a></li>
+                        <li><a href='page3A.html'>Sub Task 3.A</a></li>
+                        <li><a href='page3B.html'>Sub Task 3.B</a></li>
+                    </div>
                 </ul>
             </div>
         """; 
