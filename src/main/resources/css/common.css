@@ -15,7 +15,8 @@ body {
 .content {
   background-image: url("Background.jpg");
   background-color: #ddd;
-  padding: 10px 0px;
+  top: 0;
+  padding: 0px;
 }
 
 /* Header (div) formatting */
@@ -34,6 +35,7 @@ body {
 
 .header h1 {
   font-size: 50px;
+  font-weight: bold;
   padding: 5px 15px;
   text-align: left;
   left: 0;
@@ -52,6 +54,183 @@ img.top-image {
 .header-button {
   text-align: left;
   padding: 0 20px;
+}
+
+.damages-section {
+  padding: 0px 0px 0px 1%;
+}
+
+.damages-heading-grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.damages-section h2 {
+  font-weight: 300;
+  font-size: 40px;
+  padding: 5px 15px;
+  text-align: left;
+  left: 0;
+}
+
+.damages-tooltip {
+  border-radius: 50px 0px 0px 50px;
+  background: #9FC847;
+  padding: 20px;
+  margin: 0;
+  width: 500px;
+  height: fit-content;
+  text-align: right;
+  object-fit: contain;
+}
+
+.damages-tooltip h3 {
+  font-weight: bold;
+  font-size: 25px;
+  color: #000000;
+  padding: 0px 15px;
+  margin: 0;
+  right: 0;
+}
+
+.damages-tooltip p {
+  font-weight: 400;
+  font-size: 18;
+  color: #000000;
+  padding: 5px 15px;
+  margin: 0;
+  right: 0;
+}
+
+.damages-tooltip h4 {
+  font-weight: 300;
+  font-size: 40px;
+  color: #4F7302;
+  padding: 0px 15px;
+  margin: 0;
+  right: 0;
+}
+
+.damages-tables-grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.damages-table {
+  padding-left: 10%;
+  padding-right: 2.5%;
+  width: fit-content;
+  padding: 10px;
+  top: 0;
+  margin: 30px;
+}
+
+.damages-table table, .damages-table th, .damages-table td {
+  border-top: 5px solid #4F7302;
+  border-bottom: 5px solid #4F7302;
+  border-collapse: collapse;
+}
+
+.damages-table th, .damages-table td {
+  width: 50%;
+  height: fit-content;
+}
+
+.damages-table h3 {
+  font-weight: bold;
+  font-size: 25px;
+  color: #000000;
+  text-align: center;
+  margin: 0px 100px;
+  padding: 15px 5px;
+}
+
+.damages-table h4 {
+  font-weight: bold;
+  font-size: 25px;
+  color: #4F7302;
+  margin: 0;
+  text-align: center;
+  margin: 0px 40px;
+  padding: 5px 5px;
+}
+
+.damages-table h4[target="red"] {
+  color: #C84747;
+}
+
+.damages-table th {
+  /* visibility: collapse;  */
+  display:none;
+}
+
+.damages-button {
+  text-align: right;
+  padding: 0 20px;
+  margin-right: 10%;
+}
+
+/* Business Section */
+.business-section {
+  padding: 0px 0px 0px 1%;
+}
+
+.business-heading-grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.business-item-grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.business-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.business-button {
+  text-align: left;
+  padding: 0 0 0 20px;
+  margin-top: 5;
+}
+
+.business-section h2 {
+  font-weight: 300;
+  font-size: 40px;
+  padding: 5px 15px;
+  text-align: left;
+  left: 0;
+}
+
+.business-item h3 {
+  font-weight: bold;
+  font-size: 24px;
+  color: #000000;
+  padding: 0px 15px;
+  margin: 0;
+  left: 0;
+}
+
+.business-item p {
+  font-weight: 400;
+  font-size: 18;
+  color: #000000;
+  padding: 10px 15px;
+  margin: 0;
+  left: 0;
 }
 
 /* Button Formatting */
@@ -182,10 +361,6 @@ img.top-image {
   bottom: 0;
   transform: translateY(-50%);
   object-position: center;
-}
-
-.damages-section {
-  padding: 0px 1%
 }
 
 .persona_thumbnail {}

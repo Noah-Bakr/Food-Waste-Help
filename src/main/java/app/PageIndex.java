@@ -56,7 +56,7 @@ public class PageIndex implements Handler {
         // Add Div for page Content
         html = html + "<div class='content'>";
 
-        // Add header content block
+        // Add header content
         //Image Credits: https://stock.adobe.com/au/Library/urn:aaid:sc:AP:726decc2-5dcc-4f8c-9401-fc8719bcff2e?asset_id=118175173
         html = html + """
             <div id='header-grid' class='header-section'>
@@ -76,40 +76,141 @@ public class PageIndex implements Handler {
             </div>
         """;
 
-        // Add HTML for the page content
+        // Add HTML for the damages section
         html = html + """
             <div class='damages-section'>
-                <div class='damages-header'>
-                    <h1>Let us take a look at the <br>damages...</h1>
+                <div class='damages-heading-grid'>
+                    <h2>Let us take a look at the <br>damages...</h2>
                     <div class='damages-tooltip'>
-                        <h3></h3>
-                        <p></p>
-                        <h4></h4>
+                        <h3>High Impact Data</h3>
+                        <p>There is where I tell you what data the table is showing you</p>
+                        <h4>1966 - 2002</h4>
                     </div>
                 </div>
-                <div class='damages-table'>
+                <div class='damages-tables-grid'>
+                    <div class='damages-table'>
+                        <table>
+                            <tr>
+                                <th>Country</th>
+                                <th>Percentage</th>
+                            </tr>
+                            <tr>
+                                <td><h3>Australia</h3></td>
+                                <td><h4 target='red'>87%</h4></td>
+                            </tr>
+                            <tr>
+                                <td><h3>America</h3></td>
+                                <td><h4>95%</h4></td>
+                            </tr>
+                            <tr>
+                                <td><h3>Italy</h3></td>
+                                <td><h4>42%</h4></td>
+                            </tr>
+                            <tr>
+                                <td><h3>Brazil</h3></td>
+                                <td><h4>76%</h4></td>
+                            </tr>
+                        </table>
+                    </div>
 
+                    <div class='damages-table'>
+                        <table>
+                            <tr>
+                                <th>Country</th>
+                                <th>Percentage</th>
+                            </tr>
+                            <tr>
+                                <td><h3>Australia</h3></td>
+                                <td><h4>87%</h4></td>
+                            </tr>
+                            <tr>
+                                <td><h3>America</h3></td>
+                                <td><h4 target='red'>95%</h4></td>
+                            </tr>
+                            <tr>
+                                <td><h3>Italy</h3></td>
+                                <td><h4>42%</h4></td>
+                            </tr>
+                            <tr>
+                                <td><h3>Brazil</h3></td>
+                                <td><h4>76%</h4></td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-                <button class="button">Learn More</button>
+                <div class='damages-button'>
+                    <button class="button">Show More</button>
+                </div>
             </div>
             """;
 
-        // Get the ArrayList of Strings of all countries
-        ArrayList<String> countryNames = getAllCountries();
+        // Add HTML for the businesses section
+        html = html + """
+            <div class='business-section'>
+                <div class='business-heading-grid'>
+                    <h2>What businesses are doing to <br>
+                    help this social challenge</h2>
+                </div>
+                <div class='business-item-grid'>
+                    <div class='business-item'>
+                        <h3>Woolworths</h3>
+                        <p>There is where I tell you what data the table is showing you</p>
+                        <div class='business-button'>
+                            <a href='mission.html'>
+                                <button class="button">Learn More</button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class='business-item'>
+                        <h3>Woolworths</h3>
+                        <p>There is where I tell you what data the table is showing you</p>
+                        <div class='business-button'>
+                            <a href='mission.html'>
+                                <button class="button">Learn More</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-        // Add HTML for the country list
-        html = html + "<h1>All Countries in the food loss database</h1>" + "<ul>";
+                <div class='business-item-grid'>
+                    <div class='business-item'>
+                        <h3>Woolworths</h3>
+                        <p>There is where I tell you what data the table is showing you</p>
+                        <div class='business-button'>
+                            <a href='mission.html'>
+                                <button class="button">Learn More</button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class='business-item'>
+                        <h3>Woolworths</h3>
+                        <p>There is where I tell you what data the table is showing you</p>
+                        <div class='business-button'>
+                            <a href='mission.html'>
+                                <button class="button">Learn More</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        """;
 
-        // Finally we can print out all of the countries
-        for (String name : countryNames) {
-            html = html + "<li>" + name + "</li>";
-        }
+        // // Get the ArrayList of Strings of all countries
+        // ArrayList<String> countryNames = getAllCountries();
 
-        // Finish the List HTML
-        html = html + "</ul>";
+        // // Add HTML for the country list
+        // html = html + "<h1>All Countries in the food loss database</h1>" + "<ul>";
 
-        // Close Content div
-        html = html + "</div>";
+        // // Finally we can print out all of the countries
+        // for (String name : countryNames) {
+        //     html = html + "<li>" + name + "</li>";
+        // }
+
+        // // Finish the List HTML
+        // html = html + "</ul>";
+
+        // // Close Content div
+        // html = html + "</div>";
 
         // Footer
         html = html + elements.getFooter();
