@@ -50,7 +50,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT * FROM Country";
+            String query = "SELECT * FROM Country ORDER BY countryName ASC";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
