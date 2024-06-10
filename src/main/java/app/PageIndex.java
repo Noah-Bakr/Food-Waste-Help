@@ -51,9 +51,7 @@ public class PageIndex implements Handler {
         // Add Div for page Content
         html = html + "<div class='content'>";
 
-                // Add the topelements
-        // This uses a Java v15+ Text Block
-        
+        // Add the topelements
         html = html + elements.getNavBar();
 
         // Add header content
@@ -112,7 +110,6 @@ public class PageIndex implements Handler {
                             </tr>
                         </table>
                     </div>
-
                     <div class='damages-table'>
                         <table>
                             <tr>
@@ -171,7 +168,6 @@ public class PageIndex implements Handler {
                         </div>
                     </div>
                 </div>
-
                 <div class='business-item-grid'>
                     <div class='business-item'>
                         <h3>Woolworths</h3>
@@ -195,22 +191,8 @@ public class PageIndex implements Handler {
             </div>
         """;
 
-        // // Get the ArrayList of Strings of all countries
-        // ArrayList<String> countryNames = getAllCountries();
-
-        // // Add HTML for the country list
-        // html = html + "<h1>All Countries in the food loss database</h1>" + "<ul>";
-
-        // // Finally we can print out all of the countries
-        // for (String name : countryNames) {
-        //     html = html + "<li>" + name + "</li>";
-        // }
-
-        // // Finish the List HTML
-        // html = html + "</ul>";
-
         // // Close Content div
-        // html = html + "</div>";
+        html = html + "</div>";
 
         // Footer
         html = html + elements.getFooter();
@@ -222,61 +204,5 @@ public class PageIndex implements Handler {
         // DO NOT MODIFY THIS
         // Makes Javalin render the webpage
         context.html(html);
-    }
-
-
-    /**
-     * Get the names of the countries in the database.
-     */
-    public ArrayList<String> getAllCountries() {
-        // Create the ArrayList of String objects to return
-        ArrayList<String> countries = new ArrayList<String>();
-
-        // Setup the variable for the JDBC connection
-        Connection connection = null;
-
-        try {
-            // Connect to JDBC data base
-            connection = DriverManager.getConnection(JDBCConnection.DATABASE);
-
-            // Prepare a new SQL Query & Set a timeout
-            Statement statement = connection.createStatement();
-            statement.setQueryTimeout(30);
-
-            // The Query
-            String query = "SELECT * FROM country";
-            
-            // Get Result
-            ResultSet results = statement.executeQuery(query);
-
-            // Process all of the results
-            while (results.next()) {
-                String countryName  = results.getString("countryName");
-
-                // Add the country object to the array
-                countries.add(countryName);
-            }
-
-            // Close the statement because we are done with it
-            statement.close();
-        } catch (SQLException e) {
-            // If there is an error, lets just print the error
-            System.err.println(e.getMessage());
-            //e.printStackTrace();
-        } finally {
-            // Safety code to cleanup
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                // connection close failed.
-                System.err.println(e.getMessage());
-                //e.printStackTrace();
-            }
-        }
-
-        // Finally we return all of the countries
-        return countries;
     }
 }
