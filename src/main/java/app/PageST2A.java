@@ -134,27 +134,7 @@ public class PageST2A implements Handler {
                     </div>
                 </div>
                 """;
-
-        // Add header content
-        //Image Credits: https://stock.adobe.com/au/Library/urn:aaid:sc:AP:726decc2-5dcc-4f8c-9401-fc8719bcff2e?asset_id=118175173
-        html = html + """
-            <div id='header-grid' class='header-section'>
-                <div class='header'>
-                    <h1>The Road to a <br>
-                    Greener Future <br>
-                    Starts With You.</h1>
-                    <div class='header-button'>
-                        <a href='mission.html'>
-                            <button class="button">Learn More</button>
-                        </a>
-                    </div>
-                </div>
-                <div>
-                    <img src='./AdobeStock_LandingPageVeggies.jpeg' class='top-image' alt='Fresh Veggies'>
-                </div>
-            </div>
-        """;
-
+                
         // Footer
         html = html + elements.getFooter();
 
