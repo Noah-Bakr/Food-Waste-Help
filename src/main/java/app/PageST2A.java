@@ -78,13 +78,25 @@ public class PageST2A implements Handler {
                             <option value="from">From</option>
                         </select>
                         <select name="first-year" id="first-year">
-                            <option value="1966">1966</option>
-                            <option value="1967">1967</option>
+                        """;
+
+                        ArrayList<String> years = jdbc.getAllYears();
+
+                        for (String year : years) {
+                            html = html + "<option value='" + year + "'>" + year + "</option>";
+                        }
+
+        html = html + """
                         </select>
                         <h3>and</h3> 
                         <select name="second-year" id="second-year">
-                            <option value="2021">2021</option>
-                            <option value="2022">2022</option>
+                        """;
+
+                        for (String year : years) {
+                            html = html + "<option value='" + year + "'>" + year + "</option>";
+                        }
+        
+        html = html + """
                         </select>
                     </div>
                     <div class='graph-grid'>
@@ -134,7 +146,7 @@ public class PageST2A implements Handler {
                     </div>
                 </div>
                 """;
-                
+
         // Footer
         html = html + elements.getFooter();
 
