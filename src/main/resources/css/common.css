@@ -477,8 +477,10 @@ img.top-image {
 }
 
 .timed-search-box select {
-  width: fit-content;
+  width: 450px;
   height: fit-content;
+  overflow: scroll;
+  word-wrap: break-word;
   background-color: #CFE3A3;
   border: 5px solid #4F7302;
   border-radius: 25px;
@@ -487,6 +489,10 @@ img.top-image {
   font-size: 50px;
   font-weight: 550;
   margin: 0px 10px;
+}
+
+#first-year, #second-year {
+  width: fit-content;
 }
 
 .timed-search-box h3 {
