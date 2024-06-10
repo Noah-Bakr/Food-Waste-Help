@@ -2,6 +2,8 @@ package app;
 
 import java.util.ArrayList;
 
+import org.sqlite.JDBC;
+
 import helper.WebsiteElementBuilder;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
@@ -25,6 +27,7 @@ import java.sql.Statement;
 
 public class PageST2A implements Handler {
     WebsiteElementBuilder elements = new WebsiteElementBuilder();
+    JDBCConnection jdbc = new JDBCConnection();
 
     // URL of this page relative to http://localhost:7001/
     public static final String URL = "/page2A.html";
@@ -75,33 +78,16 @@ public class PageST2A implements Handler {
                             <div class='scroll-menu-title'>
                                 <h2>Country</h2>
                             </div>
-                            <div class='scroll-menu-items'>
-                                <a><input type="checkbox" id="country1" name="country1" value="Australia">
-                                <label for="country1">Australia</label></a>
-                                <a><input type="checkbox" id="country1" name="country1" value="Australia">
-                                <label for="country1">Australia</label></a>
-                                <a><input type="checkbox" id="country1" name="country1" value="Australia">
-                                <label for="country1">Australia</label></a>
-                                <a><input type="checkbox" id="country1" name="country1" value="Australia">
-                                <label for="country1">Australia</label></a><a><input type="checkbox" id="country1" name="country1" value="Australia">
-                                <label for="country1">Australia</label></a>
-                                <a><input type="checkbox" id="country1" name="country1" value="Australia">
-                                <label for="country1">Australia</label></a><a><input type="checkbox" id="country1" name="country1" value="Australia">
-                                <label for="country1">Australia</label></a>
-                                <a><input type="checkbox" id="country1" name="country1" value="Australia">
-                                <label for="country1">Australia</label></a><a><input type="checkbox" id="country1" name="country1" value="Australia">
-                                <label for="country1">Australia</label></a>
-                                <a><input type="checkbox" id="country1" name="country1" value="Australia">
-                                <label for="country1">Australia</label></a><a><input type="checkbox" id="country1" name="country1" value="Australia">
-                                <label for="country1">Australia</label></a>
-                                <a><input type="checkbox" id="country1" name="country1" value="Australia">
-                                <label for="country1">Australia</label></a><a><input type="checkbox" id="country1" name="country1" value="Australia">
-                                <label for="country1">Australia</label></a>
-                                <a><input type="checkbox" id="country1" name="country1" value="Australia">
-                                <label for="country1">Australia</label></a><a><input type="checkbox" id="country1" name="country1" value="Australia">
-                                <label for="country1">Australia</label></a>
-                                <a><input type="checkbox" id="country1" name="country1" value="Australia">
-                                <label for="country1">Australia</label></a>
+                            <div class='scroll-menu-items'> """;
+
+                            ArrayList<Country> countryNames = jdbc.getAllCountries();
+
+                            for (Country name : countryNames) {
+                                html = html + "<a><input type='checkbox' id='" + name.getM49Code() + "' name='" + name.getM49Code() + "' value='" + name.getName() + "'>";
+                                html = html + "<label for='" + name.getM49Code() + "'>" + name.getName() + "</label></a>";
+                            }
+                                
+        html = html + """
                             </div>
                         </div>
                         <div class='line-graph'>
