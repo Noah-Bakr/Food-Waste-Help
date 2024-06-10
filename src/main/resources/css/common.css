@@ -464,12 +464,29 @@ img.top-image {
 }
 
 .timed-search-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
   width: 100%;
   height: fit-content;
   background-color: #CFE3A3;
   border-radius: 25px;
   border: 2px solid #CFE3A3;
   padding: 10px;
+}
+
+.timed-search-box select {
+  width: fit-content;
+  height: fit-content;
+  background-color: #CFE3A3;
+  border: 5px solid #4F7302;
+  border-radius: 25px;
+  padding: 10px;
+  text-align: center;
+  font-size: 50px;
+  font-weight: 550;
+  margin: 0px 10px;
 }
 
 .timed-search-box h3 {

@@ -72,7 +72,20 @@ public class PageST2A implements Handler {
                         </div>
                     </div>
                     <div class='timed-search-box'>
-                        <h3>Present Data Between 1996 and 2013</h3>
+                        <h3>Present Data</h3>
+                        <select name="period" id="period">
+                            <option value="between">Between</option>
+                            <option value="from">From</option>
+                        </select>
+                        <select name="first-year" id="first-year">
+                            <option value="1966">1966</option>
+                            <option value="1967">1967</option>
+                        </select>
+                        <h3>and</h3> 
+                        <select name="second-year" id="second-year">
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                        </select>
                     </div>
                     <div class='graph-grid'>
                         <div class='scroll-menu'>
@@ -121,27 +134,7 @@ public class PageST2A implements Handler {
                     </div>
                 </div>
                 """;
-
-        // Add header content
-        //Image Credits: https://stock.adobe.com/au/Library/urn:aaid:sc:AP:726decc2-5dcc-4f8c-9401-fc8719bcff2e?asset_id=118175173
-        html = html + """
-            <div id='header-grid' class='header-section'>
-                <div class='header'>
-                    <h1>The Road to a <br>
-                    Greener Future <br>
-                    Starts With You.</h1>
-                    <div class='header-button'>
-                        <a href='mission.html'>
-                            <button class="button">Learn More</button>
-                        </a>
-                    </div>
-                </div>
-                <div>
-                    <img src='./AdobeStock_LandingPageVeggies.jpeg' class='top-image' alt='Fresh Veggies'>
-                </div>
-            </div>
-        """;
-
+                
         // Footer
         html = html + elements.getFooter();
 
