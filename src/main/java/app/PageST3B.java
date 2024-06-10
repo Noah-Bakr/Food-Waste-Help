@@ -59,9 +59,11 @@ public class PageST3B implements Handler {
 
         // Add Div for page Content
         html = html + "<div class='content'>";
+        JDBCConnection jdbc = new JDBCConnection();
 
         html = html + "<form action='/page3B.html' method='post'>";
 
+        //Radio buttons to select what to sort by
         html = html + "<input type='radio' id='avg' name='sortby' value='avg' required>";
         html = html + "<label for='avg'>Food Loss Average </label><br>";
         html = html + "<input type='radio' id='highest' name='sortby' value='highest'>";
@@ -71,8 +73,23 @@ public class PageST3B implements Handler {
 
         html = html + "<br>";
 
+        //Text box for how many results you want
         html = html + "<input type='number' min='1' class='form-control' id='number_of_results' name='number_of_results' placeholder = 'Enter number of results' required>";
         html = html + "   <button type='submit' class='searchButton'>Search</button>";
+
+
+        //TODO: Replace Anchor with button that lets you do sql stuff
+        //Sourced from w3 schools
+        html = html +"""
+        <input type='text' id='myInput' onkeyup='myFunction()' placeholder='Search for Products..'>
+        <ul id='myUL'>""";
+
+        ArrayList<String> listSubclassNames = jdbc.getAllsubclassNames();
+
+        for (String output : listSubclassNames) {
+        html = html + "<li><a href='#'>" + output +"</a></li>";
+        }
+        html = html + "</ul>";
 
         html = html + "</form>";
       
@@ -99,8 +116,33 @@ public class PageST3B implements Handler {
             </div>
         """;
 
-        // Finish the HTML webpage
-        html = html + "</body>" + "</html>";
+        html = html + "</body>";
+
+        html = html + """
+                <script>
+function myFunction() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById('myInput');
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("myUL");
+  li = ul.getElementsByTagName('li');
+
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+</script>
+                """;
+
+        html = html + "</html>";
         
 
         // DO NOT MODIFY THIS

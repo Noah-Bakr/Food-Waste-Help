@@ -59,11 +59,23 @@ public class PageST2B implements Handler {
 
         // Add Div for page Content
         html = html + "<div class='content'>";
+        
+        JDBCConnection jdbc = new JDBCConnection();
 
         // Add HTML for the page content
         html = html + """
             <p>Subtask 2.B page content</p>
             """;
+
+        html = html + """
+                <label for="dropdownGroups">Select groups to display:</label>
+                    <select name="selectedGroups" id="dropdownGroups">
+                """;
+    ArrayList<String> listGroupNames = jdbc.getAllGroupsName();
+
+    for (String output : listGroupNames) {
+        html = html + "<option value='" + output +"'>" + output + "</option>";
+        }        
 
         // Close Content div
         html = html + "</div>";
