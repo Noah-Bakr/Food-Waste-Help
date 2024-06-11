@@ -155,8 +155,8 @@ public class PageST2A implements Handler {
                 """;
 
         html = html + """
-                <div class=''
-                
+                <div class=''>
+                </div>
                 """;
         // Footer
         html = html + elements.getFooter();

@@ -25,6 +25,7 @@ import java.sql.Statement;
 
 public class PageIndex implements Handler {
     WebsiteElementBuilder elements = new WebsiteElementBuilder();
+    JDBCConnection jdbc = new JDBCConnection();
 
     // URL of this page relative to http://localhost:7001/
     public static final String URL = "/";
