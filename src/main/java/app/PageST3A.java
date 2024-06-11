@@ -97,17 +97,41 @@ public class PageST3A implements Handler {
                     <div class='graph-grid'>
                         <div class='scroll-menu'>
                             <div class='scroll-menu-title'>
-                                <h2>Country</h2>
+                                <h2>Similarity</h2>
                             </div>
-                            <div class='scroll-menu-items'> """;
+                            <div class='similarity-menu-items'> 
+                                <div class='similarity-decision'>
+                                    <h5>Is decided on:</h5>
+                                    <div class='similarity-radio'>
+                                        <input type="radio" id="products" name="decision" value="products" checked="checked">
+                                            <label for="products">The food products</label>
+                                        <input type="radio" id="loss" name="decision" value="loss">
+                                            <label for="loss">Overall food loss/waste</label>
+                                        <input type="radio" id="both" name="decision" value="both">
+                                            <label for="both">Both</label>
+                                    </div>
+                                </div>
 
+                                <div class='similarity-determination'>
+                                    <h5>Determined by:</h5>
+                                    <div class='determination-radio'>
+                                        <input type="radio" id="absolute" name="determination" value="absolute" checked="checked">
+                                            <label for="absolute">The absolute values</label>
+                                        <input type="radio" id="overlap" name="determination" value="overlap">
+                                            <label for="overlap">The level of overlap/waste</label>
+                                    </div>
+                                </div>
 
-                            for (Country name : countryNames) {
-                                html = html + "<a><input type='checkbox' id='" + name.getM49Code() + "' name='" + name.getM49Code() + "' value='" + name.getName() + "'>";
-                                html = html + "<label for='" + name.getM49Code() + "'>" + name.getName() + "</label></a>";
-                            }
-                                
-        html = html + """
+                                <div class='similarity-dropdown'>
+                                    <h5>No. of items</h5>
+                                    <select name="items-no" id="items-no">
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="15">15</option>
+                                        <option value="20">20</option>
+                                        <option value="25">25</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class='line-graph'>
