@@ -628,6 +628,17 @@ a input[type="checkbox"] {
 
 .persona_thumbnail {}
 
+.searchResults {
+  overflow: auto;
+  white-space: normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  word-wrap: break-word;
+  width: 50%;
+  height: 350px;
+}
+
 
 
 
