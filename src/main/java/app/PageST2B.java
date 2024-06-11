@@ -66,6 +66,10 @@ public class PageST2B implements Handler {
         html = html + """
             <p>Subtask 2.B page content</p>
             """;
+// Form Start----------------------------------------------------------------------------------
+        html = html + "<form action='/page2B.html' method='post'>";
+
+        html = html + "<button type='submit' class='searchButton'>Search</button>";
 
         html = html + """
                 <label for="dropdownGroups">Select groups to display:</label>
@@ -75,8 +79,16 @@ public class PageST2B implements Handler {
 
     for (String output : listGroupNames) {
         html = html + "<option value='" + output +"'>" + output + "</option>";
-        }        
+        }  
 
+        
+
+        html = html + "</form>";
+// Form End ------------------------------------------------------------------------------------
+
+String key1 = context.formParam("selectedGroups");
+
+        html = html + "<p>" + key1 + "</p>";
         // Close Content div
         html = html + "</div>";
 
