@@ -151,18 +151,20 @@ public class PageIndex implements Handler {
                 <div class='business-item-grid'>
                     <div class='business-item'>
                         <h3>Woolworths</h3>
-                        <p>There is where I tell you what data the table is showing you</p>
+                        <p>OzHarvest distributes our surplus fresh food from our
+                                 supermarkets and Metro stores to over 1,500 charities across the nation
+                                         to help Australians in need of food relief.</p>
                         <div class='business-button'>
-                            <a href='mission.html'>
+                            <a href='https://www.woolworthsgroup.com.au/au/en/sustainability/Planet/food-waste.html#:~:text=OzHarvest%20distributes%20our%20surplus%20fresh,reach%20more%20than%202%2C400%20charities.' target=”_blank”>
                                 <button class="button">Learn More</button>
                             </a>
                         </div>
                     </div>
                     <div class='business-item'>
                         <h3>Woolworths</h3>
-                        <p>There is where I tell you what data the table is showing you</p>
+                        <p>Our first choice for unsold, edible food is to donate it to food rescue organisations such as Secondbite and Foodbank. Following that, we have other food waste solutions including donations to farmers and animal or wildlife services, organics collections and in-store food waste disposal equipment.</p>
                         <div class='business-button'>
-                            <a href='mission.html'>
+                            <a href='https://www.coles.com.au/about/sustainability/foodwaste' target=”_blank”>
                                 <button class="button">Learn More</button>
                             </a>
                         </div>
@@ -170,19 +172,19 @@ public class PageIndex implements Handler {
                 </div>
                 <div class='business-item-grid'>
                     <div class='business-item'>
-                        <h3>Woolworths</h3>
-                        <p>There is where I tell you what data the table is showing you</p>
+                        <h3>StarBucks</h3>
+                        <p>In 2016, Starbucks partners (employees) advocated for a program that would allow stores to donate unsold food and distribute it to people facing hunger in communities across the U.S. In response, Starbucks partnered with Feeding America®, and other hunger-relief organizations to create a sustainable food rescue program – FoodShare – that diverts surplus food from landfills and donate it to people facing hunger</p>
                         <div class='business-button'>
-                            <a href='mission.html'>
+                            <a href='https://stories.starbucks.com/stories/hunger-relief/' target=”_blank”>
                                 <button class="button">Learn More</button>
                             </a>
                         </div>
                     </div>
                     <div class='business-item'>
-                        <h3>Woolworths</h3>
-                        <p>There is where I tell you what data the table is showing you</p>
+                        <h3>Fruit Leather</h3>
+                        <p>Over the years we have been experimenting on how to convert wasted fruit into leather-like material. By doing so, we are able to bring an eco-friendly and animal-friendly product to the market. Fruitleather is a versatile material which can be made into footwear, fashion accessories, upholstery, furnishing, and more</p>
                         <div class='business-button'>
-                            <a href='mission.html'>
+                            <a href='https://fruitleather.nl/introduction-2/#:~:text=Over%20the%20years%20we%20have,upholstery%2C%20furnishing%2C%20and%20more' target=”_blank”>
                                 <button class="button">Learn More</button>
                             </a>
                         </div>
