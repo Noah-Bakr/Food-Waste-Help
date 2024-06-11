@@ -109,11 +109,18 @@ public class PageST2A implements Handler {
                             ArrayList<Country> countryNames = jdbc.getAllCountries();
 
                             for (Country name : countryNames) {
-                                html = html + "<a><input type='checkbox' id='" + name.getM49Code() + "' name='" + name.getM49Code() + "' value='" + name.getName() + "'>";
+                                html = html + "<a><input type='checkbox' id='" + name.getM49Code() + "' name='" + name.getM49Code() + "' value='" + name.getName() + "' onclick='generateData()'>";
                                 html = html + "<label for='" + name.getM49Code() + "'>" + name.getName() + "</label></a>";
                             }
                                 
         html = html + """
+                            <script>
+                                function generateData() {
+                                    // Get the checkbox
+                                    var vheckbox = document.getElementById()
+                                }
+                            function 
+                            </script>
                             </div>
                         </div>
                         <div class='line-graph'>
@@ -147,6 +154,10 @@ public class PageST2A implements Handler {
                 </div>
                 """;
 
+        html = html + """
+                <div class=''
+                
+                """;
         // Footer
         html = html + elements.getFooter();
 
