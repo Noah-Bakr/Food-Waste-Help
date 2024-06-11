@@ -589,6 +589,42 @@ a input[type="checkbox"] {
 	accent-color: #4F7302;
 }
 
+.similarity-menu-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: baseline;
+  padding: 0 10px;
+  height: 300px;
+  overflow: auto;
+}
+
+.similarity-menu-items h5 {
+  text-align: left;
+  font-size: 30px;
+  font-weight: 500;
+  margin: 0;
+  padding: 10px 0;
+}
+
+.similarity-radio {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: baseline;
+  padding: 10px;
+}
+
+.similarity-dropdown {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.similarity-dropdown h5 {
+  padding: 0 20px 0 0;
+}
 
 .persona_thumbnail {}
 

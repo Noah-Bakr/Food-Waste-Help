@@ -103,22 +103,32 @@ public class PageST3A implements Handler {
                                 <div class='similarity-decision'>
                                     <h5>Is decided on:</h5>
                                     <div class='similarity-radio'>
-                                        <input type="radio" id="products" name="decision" value="products" checked="checked">
-                                            <label for="products">The food products</label>
-                                        <input type="radio" id="loss" name="decision" value="loss">
-                                            <label for="loss">Overall food loss/waste</label>
-                                        <input type="radio" id="both" name="decision" value="both">
-                                            <label for="both">Both</label>
+                                        <div>
+                                            <input type="radio" id="products" name="decision" value="products" checked="checked">
+                                                <label for="products">The food products</label>
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="loss" name="decision" value="loss">
+                                                <label for="loss">Overall food loss/waste</label>
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="both" name="decision" value="both">
+                                                <label for="both">Both</label>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class='similarity-determination'>
                                     <h5>Determined by:</h5>
-                                    <div class='determination-radio'>
-                                        <input type="radio" id="absolute" name="determination" value="absolute" checked="checked">
-                                            <label for="absolute">The absolute values</label>
-                                        <input type="radio" id="overlap" name="determination" value="overlap">
-                                            <label for="overlap">The level of overlap/waste</label>
+                                    <div class='similarity-radio'>
+                                        <div>    
+                                            <input type="radio" id="absolute" name="determination" value="absolute" checked="checked">
+                                                <label for="absolute">The absolute values</label>
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="overlap" name="determination" value="overlap">
+                                                <label for="overlap">The level of overlap/waste</label>
+                                        </div>
                                     </div>
                                 </div>
 
