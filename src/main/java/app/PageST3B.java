@@ -83,14 +83,17 @@ public class PageST3B implements Handler {
         //Sourced from w3 schools
         html = html +"""
         <input type='text' id='myInput' onkeyup='myFunction()' placeholder='Search for Products..'>
+        <div class='searchResults'>
         <ul id='myUL'>""";
 
         ArrayList<String> listSubclassNames = jdbc.getAllsubclassNames();
 
+        
         for (String output : listSubclassNames) {
         html = html + "<li><a href='#'>" + output +"</a></li>";
         }
         html = html + "</ul>";
+        html = html + "</div>";
 
         // Form End-----------------------------------------
         html = html + "</form>";
