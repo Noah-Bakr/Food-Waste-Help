@@ -11,12 +11,12 @@ public class Commodity {
    private String commodity;
 
    // loss_percentage
-   private String loss_percentage;
+   private double loss_percentage;
 
    /**
     * Create a Country and set the fields
     */
-   public Commodity(String commodity, String loss_percentage) {
+   public Commodity(String commodity, double loss_percentage) {
       this.commodity = commodity;
       this.loss_percentage = loss_percentage;
    }
@@ -25,7 +25,7 @@ public class Commodity {
       return commodity;
    }
 
-   public String getLoss_Percentage() {
+   public double getLoss_Percentage() {
       return loss_percentage;
    }
 }

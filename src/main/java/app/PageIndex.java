@@ -92,23 +92,20 @@ public class PageIndex implements Handler {
                             <tr>
                                 <th>Country</th>
                                 <th>Percentage</th>
-                            </tr>
-                            <tr>
-                                <td><h3>Australia</h3></td>
-                                <td><h4 target='red'>87%</h4></td>
-                            </tr>
-                            <tr>
-                                <td><h3>America</h3></td>
-                                <td><h4>95%</h4></td>
-                            </tr>
-                            <tr>
-                                <td><h3>Italy</h3></td>
-                                <td><h4>42%</h4></td>
-                            </tr>
-                            <tr>
-                                <td><h3>Brazil</h3></td>
-                                <td><h4>76%</h4></td>
-                            </tr>
+                            </tr> """;
+                            ArrayList<Commodity> top5Commodities = jdbc.getTop5Commodities();
+
+                            for (Commodity top5 : top5Commodities) {
+                                html = html + "<tr>";
+                                html = html + "<td><h3>" + top5.getCommodity() + "</h3></td>";
+                                if (top5.getLoss_Percentage() >= 9.9) {
+                                    html = html + "<td><h4 target='red'>" + top5.getLoss_Percentage() + "</h4></td>";
+                                } else {
+                                    html = html + "<td><h4>" + top5.getLoss_Percentage() + "%</h4></td>";
+                                }
+                                html = html + "</tr>";
+                            }
+        html = html + """
                         </table>
                     </div>
                     <div class='damages-table'>
@@ -116,23 +113,21 @@ public class PageIndex implements Handler {
                             <tr>
                                 <th>Country</th>
                                 <th>Percentage</th>
-                            </tr>
-                            <tr>
-                                <td><h3>Australia</h3></td>
-                                <td><h4>87%</h4></td>
-                            </tr>
-                            <tr>
-                                <td><h3>America</h3></td>
-                                <td><h4 target='red'>95%</h4></td>
-                            </tr>
-                            <tr>
-                                <td><h3>Italy</h3></td>
-                                <td><h4>42%</h4></td>
-                            </tr>
-                            <tr>
-                                <td><h3>Brazil</h3></td>
-                                <td><h4>76%</h4></td>
-                            </tr>
+                            </tr> """;
+
+                            ArrayList<Commodity> next5Commodities = jdbc.getNext5Commodities();
+
+                            for (Commodity top5 : next5Commodities) {
+                                html = html + "<tr>";
+                                html = html + "<td><h3>" + top5.getCommodity() + "</h3></td>";
+                                if (top5.getLoss_Percentage() >= 9.9) {
+                                    html = html + "<td><h4 target='red'>" + top5.getLoss_Percentage() + "</h4></td>";
+                                } else {
+                                    html = html + "<td><h4>" + top5.getLoss_Percentage() + "%</h4></td>";
+                                }
+                                html = html + "</tr>";
+                            }
+        html = html + """
                         </table>
                     </div>
                 </div>
