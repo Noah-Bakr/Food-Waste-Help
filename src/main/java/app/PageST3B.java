@@ -61,6 +61,7 @@ public class PageST3B implements Handler {
         html = html + "<div class='content'>";
         JDBCConnection jdbc = new JDBCConnection();
 
+        // Form Start----------------------------------------------------------
         html = html + "<form action='/page3B.html' method='post'>";
 
         //Radio buttons to select what to sort by
@@ -91,6 +92,7 @@ public class PageST3B implements Handler {
         }
         html = html + "</ul>";
 
+        // Form End-----------------------------------------
         html = html + "</form>";
       
 
