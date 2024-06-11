@@ -161,7 +161,7 @@ public class PageIndex implements Handler {
                         </div>
                     </div>
                     <div class='business-item'>
-                        <h3>Woolworths</h3>
+                        <h3>Coles</h3>
                         <p>Our first choice for unsold, edible food is to donate it to food rescue organisations such as Secondbite and Foodbank. Following that, we have other food waste solutions including donations to farmers and animal or wildlife services, organics collections and in-store food waste disposal equipment.</p>
                         <div class='business-button'>
                             <a href='https://www.coles.com.au/about/sustainability/foodwaste' target=”_blank”>
