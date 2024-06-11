@@ -90,7 +90,8 @@ public class PageST3B implements Handler {
 
         
         for (String output : listSubclassNames) {
-        html = html + "<li><a href='#'>" + output +"</a></li>";
+        
+          html = html + "<li><input type='radio' id='" + output + "' name='searchList' value='"+output+"' required> <label for='"+output+"'>"+output+"</label></li>";
         }
         html = html + "</ul>";
         html = html + "</div>";
@@ -107,9 +108,11 @@ public class PageST3B implements Handler {
 
             String sort_by = context.formParam("sortby");
             String no_of_results = context.formParam("number_of_results");
+            String searchedProduct = context.formParam("searchList");
 
         html = html + "<p>" + sort_by + "</p>";
         html = html + "<p>" + no_of_results + "</p>";
+        html = html + "<p>" + searchedProduct + "</p>";
 
         // Close Content div
         html = html + "</div>";
@@ -127,7 +130,7 @@ public class PageST3B implements Handler {
                 <script>
 function myFunction() {
   // Declare variables
-  var input, filter, ul, li, a, i, txtValue;
+  var input, filter, ul, li, label, i, txtValue;
   input = document.getElementById('myInput');
   filter = input.value.toUpperCase();
   ul = document.getElementById("myUL");
@@ -135,8 +138,8 @@ function myFunction() {
 
   // Loop through all list items, and hide those who don't match the search query
   for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByTagName("a")[0];
-    txtValue = a.textContent || a.innerText;
+    label = li[i].getElementsByTagName("label")[0];
+    txtValue = label.textContent || label.innerText;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
       li[i].style.display = "";
     } else {
