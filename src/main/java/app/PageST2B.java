@@ -67,26 +67,24 @@ public class PageST2B implements Handler {
             <p>Subtask 2.B page content</p>
             """;
 // Form Start----------------------------------------------------------------------------------
-        html = html + "<form action='/page2B.html' method='post'>";
+html = html + "<form action='/page2B.html' method='post'>";
 
-        html = html + "<button type='submit' class='searchButton'>Search</button>";
+                        html = html + "<select name='selectedGroup' id='selectedGroup'>";
+                        
 
-        html = html + """
-                <label for="dropdownGroups">Select groups to display:</label>
-                    <select name="dropdownGroups" id="dropdownGroups">
-                """;
-    ArrayList<String> listGroupNames = jdbc.getAllGroupsName();
+                        ArrayList<String> groups = jdbc.getAllGroupsName();
 
-    for (String output : listGroupNames) {
-        html = html + "<option value='" + output +"'>" + output + "</option>";
-        }  
+                        for (String group : groups) {
+                            html = html + "<option value='" + group + "'>" + group + "</option>";
+                        }
+html = html + "</select>";
 
-        
+//Text box for how many results you want
+html = html + "   <button type='submit' class='searchButton'>Search</button>";
 
-        html = html + "</form>";
 // Form End ------------------------------------------------------------------------------------
 
-String key1 = context.formParam("selectedGroups");
+String key1 = context.formParam("selectedGroup");
 
         html = html + "<p>" + key1 + "</p>";
         // Close Content div
