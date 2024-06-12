@@ -640,7 +640,26 @@ a input[type="checkbox"] {
   padding: 0 20px 0 0;
 }
 
-.persona_thumbnail {}
+.personaGroup 
+{
+  display: flex;
+}
+
+.personaHeader
+{
+
+}
+
+.personaHeaderText
+{
+  
+}
+
+.personaGroup img
+{
+  width: 30px;
+  height: 30px;
+}
 
 .searchResults {
   overflow: auto;
