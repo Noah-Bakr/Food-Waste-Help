@@ -132,7 +132,9 @@ public class PageIndex implements Handler {
                     </div>
                 </div>
                 <div class='damages-button'>
-                    <button class="button">Show More</button>
+                    <a href='/page2A.html'>
+                        <button class="button">Show More</button>
+                    </a>
                 </div>
             </div>
             """;
