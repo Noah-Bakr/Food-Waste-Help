@@ -70,7 +70,10 @@ public class PageST2A implements Handler {
                             <h2>Food loss and waste changes<br>
                                 for user selected Countries</h2>
                         </div>
-                    </div>
+                    </div>      
+                    """;
+        html = html + "<form action='/page2A.html' method='post'>";
+        html = html + """
                     <div class='timed-search-box'>
                         <h3>Present Data</h3>
                         <select name="period" id="period">
@@ -109,20 +112,31 @@ public class PageST2A implements Handler {
                             ArrayList<Country> countryNames = jdbc.getAllCountries();
 
                             for (Country name : countryNames) {
-                                html = html + "<a><input type='checkbox' id='" + name.getM49Code() + "' name='" + name.getM49Code() + "' value='" + name.getName() + "' onclick='generateData()'>";
+                                html = html + "<a><input type='checkbox' id='" + name.getM49Code() + "' name='chosen-countries' value='" + name.getName() + "'>";
                                 html = html + "<label for='" + name.getM49Code() + "'>" + name.getName() + "</label></a>";
                             }
-                                
         html = html + """
-                            <script>
-                                function generateData() {
-                                    // Get the checkbox
-                                    var vheckbox = document.getElementById()
-                                }
-                            function 
-                            </script>
                             </div>
+                        </form>
+                        """;  
+        html = html + """
+                            
+                            <button type='submit' class='button'>Reload Graph</button>
                         </div>
+                                """;
+
+                        //Get either 'between' or 'from'
+                        String period = context.formParam("period");
+                        //Get first year
+                        String firstYear = context.formParam("first-year");
+                        //Get second year
+                        String second = context.formParam("second-year"); 
+                        //Get chosen countries
+                        String countries = context.formParam("chosen-countries");
+
+                        jdbc.getAllCountries();
+
+                html = html + """
                         <div class='line-graph'>
                             <canvas id="line-graph"></canvas>
                             <script>
