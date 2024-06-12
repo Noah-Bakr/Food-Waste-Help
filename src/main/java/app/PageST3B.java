@@ -118,11 +118,7 @@ public class PageST3B implements Handler {
         html = html + "</div>";
 
         // Footer
-        html = html + """
-            <div class='footer'>
-                <p>COSC2803 - Studio Project Starter Code (Apr24)</p>
-            </div>
-        """;
+        html = html + nav.getFooter();
 
         html = html + "</body>";
 

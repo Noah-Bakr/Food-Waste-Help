@@ -73,7 +73,7 @@ public class PageST2B implements Handler {
 
         html = html + """
                 <label for="dropdownGroups">Select groups to display:</label>
-                    <select name="selectedGroups" id="dropdownGroups">
+                    <select name="dropdownGroups" id="dropdownGroups">
                 """;
     ArrayList<String> listGroupNames = jdbc.getAllGroupsName();
 
@@ -93,11 +93,7 @@ String key1 = context.formParam("selectedGroups");
         html = html + "</div>";
 
         // Footer
-        html = html + """
-            <div class='footer'>
-                <p>COSC2803 - Studio Project Starter Code (Apr24)</p>
-            </div>
-        """;
+        html = html + nav.getFooter();
 
         // Finish the HTML webpage
         html = html + "</body>" + "</html>";
