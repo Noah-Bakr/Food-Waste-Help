@@ -103,17 +103,28 @@ public class PageMission implements Handler {
             //TODO Fix quotation marks breaking
         for(Persona persona : personas)
         {
-            // html = html + "<personaIntro>";
-            html = html + "<h2>"+persona.getName()+"</h2>";
-            html = html + "<p>"+ persona.getAttributes() + " " + persona.getBackground() +"</p>";
-            html = html + "<img src ='./" + persona.getImage() + "'class = 'persona_thumbnail'>";
-            // html = html + "</personaIntro>";
-            html = html + "<h3>Needs</h3>";
-            html = html + "<p>" + persona.getNeeds() + "</p>";
-            html = html + "<h3>Goals</h3>";
+            html = html + "<div class='personaGroup'>";
+                html = html + "<div class='personaHeader'>";
+                    html = html + "<div class='personaHeaderText'>";
+                    html = html + "<h2>"+persona.getName()+"</h2>";
+                    html = html + "<p>"+ persona.getAttributes() + " " + persona.getBackground() +"</p>";
+                html = html + "</div>";
+                html = html + "<img src ='./" + persona.getImage() + "'class = 'persona_thumbnail'>";
+                html = html + "</div>";
+        
+            html = html + "<div class='personaMain'>";
+                html = html + "<h3>Needs</h3>";
+                html = html + "<p>" + persona.getNeeds() + "</p>";
+            html = html + "</div>";
+                html = html + "<div class='personaMain'>";
+                html = html + "<h3>Goals</h3>";
             html = html + "<p>" + persona.getGoals() + "</p>";
+                html = html + "</div>";
+                html = html + "<div class='personaMain'>";
             html = html + "<h3>Skills and Experience</h3>";
-            html = html + "<p>" + persona.getSkills() + "</p>";
+                html = html + "<p>" + persona.getSkills() + "</p>";
+                html = html + "</div>";
+            html = html + "</div>";
         }
 
         // Finish the List HTML
@@ -124,11 +135,7 @@ public class PageMission implements Handler {
         html = html + "</div>";
 
         // Footer
-        html = html + """
-            <div class='footer'>
-                <p>COSC2803 - Studio Project Starter Code (Apr24)</p>
-            </div>
-        """;
+        html = html + nav.getFooter();
 
         // Finish the HTML webpage
         html = html + "</body>" + "</html>";
