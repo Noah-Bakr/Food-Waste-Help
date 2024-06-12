@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 
 /**
  * Class for Managing the JDBC Connection to a SQLLite Database.
@@ -364,9 +365,9 @@ public class JDBCConnection {
         return sclassNames;
     }
 
-    public ArrayList<String> getTop5Commodities() {
+    public ArrayList<Commodity> getTop5Commodities() {
         // Create the ArrayList of Country objects to return
-        ArrayList<String> commodities = new ArrayList<String>();
+        ArrayList<Commodity> commodities = new ArrayList<Commodity>();
 
         // Setup the variable for the JDBC connection
         Connection connection = null;
@@ -390,11 +391,14 @@ public class JDBCConnection {
             // Process all of the results
             while (results.next()) {
                 // Lookup the columns we need
-                String commodity     = results.getString("commodity");
-                String loss_percentage     = results.getString("loss_percentage");
+                double scale = Math.pow(10, 2);
 
+                String commodity     = results.getString("commodity");
+                double loss_percentage     = Math.round(results.getDouble("loss_percentage") * scale) / scale;
+
+                Commodity commoditiesObj = new Commodity(commodity, loss_percentage);
                 // Add the Country object to the array
-                commodities.add(commodity, loss_percentage);
+                commodities.add(commoditiesObj);
             }
 
             // Close the statement because we are done with it
@@ -415,8 +419,64 @@ public class JDBCConnection {
         }
 
         // Finally we return all of the countries
-        return years;
+        return commodities;
     }
 
+    public ArrayList<Commodity> getNext5Commodities() {
+        // Create the ArrayList of Country objects to return
+        ArrayList<Commodity> commodities = new ArrayList<Commodity>();
+
+        // Setup the variable for the JDBC connection
+        Connection connection = null;
+
+        try {
+            // Connect to JDBC data base
+            connection = DriverManager.getConnection(DATABASE);
+
+            // Prepare a new SQL Query & Set a timeout
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            // The Query
+            String query = "SELECT commodity, loss_percentage FROM completeEvents\n" + //
+                                "GROUP BY commodity HAVING MAX(loss_percentage)\n" + //
+                                "ORDER BY loss_percentage DESC LIMIT 5 OFFSET 5";
+            
+            // Get Result
+            ResultSet results = statement.executeQuery(query);
+
+            // Process all of the results
+            while (results.next()) {
+                // Lookup the columns we need
+                double scale = Math.pow(10, 2);
+
+                String commodity     = results.getString("commodity");
+                double loss_percentage     = Math.round(results.getDouble("loss_percentage") * scale) / scale;
+
+                Commodity commoditiesObj = new Commodity(commodity, loss_percentage);
+                // Add the Country object to the array
+                commodities.add(commoditiesObj);
+            }
+
+            // Close the statement because we are done with it
+            statement.close();
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        // Finally we return all of the countries
+        return commodities;
+    }
 
 }
