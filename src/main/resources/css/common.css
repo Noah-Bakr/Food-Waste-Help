@@ -670,6 +670,9 @@ a input[type="checkbox"] {
   height: 350px;
 }
 
+.searchFormatter select{
+  width: 30%;
+}
 
 
 
