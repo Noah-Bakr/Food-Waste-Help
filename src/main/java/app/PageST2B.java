@@ -77,10 +77,10 @@ html = html + "<form action='/page2B.html' method='post'>";
                         html = html + "<select name='selectedGroup' id='selectedGroup'>";
                         
 
-                        ArrayList<String> groups = jdbc.getAllGroupsName();
+                        ArrayList<Group> groups = jdbc.getAllGroupsName();
 
-                        for (String group : groups) {
-                            html = html + "<option value='" + group + "'>" + group + "</option>";
+                        for (Group group : groups) {
+                            html = html + "<option value='" + group.getGroupId() + "'>" + group.getDescriptor() + "</option>";
                         }
 html = html + "</select>";
 
