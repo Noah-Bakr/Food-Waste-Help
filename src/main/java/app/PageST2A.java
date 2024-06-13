@@ -112,7 +112,7 @@ public class PageST2A implements Handler {
                             ArrayList<Country> countryNames = jdbc.getAllCountries();
 
                             for (Country name : countryNames) {
-                                html = html + "<a><input type='checkbox' id='" + name.getM49Code() + "' name='chosen-countries' value='" + name.getName() + "'>";
+                                html = html + "<a><input type='radio' id='" + name.getM49Code() + "' name='chosen-countries' value='" + name.getName() + "'>";
                                 html = html + "<label for='" + name.getM49Code() + "'>" + name.getName() + "</label></a>";
                             }
         html = html + """
@@ -130,11 +130,11 @@ public class PageST2A implements Handler {
                         //Get first year
                         String firstYear = context.formParam("first-year");
                         //Get second year
-                        String second = context.formParam("second-year"); 
+                        String secondYear = context.formParam("second-year"); 
                         //Get chosen countries
                         String countries = context.formParam("chosen-countries");
 
-                        jdbc.getAllCountries();
+                       jdbc.parse2ADataXValues(period, firstYear, secondYear, countries);
 
                 html = html + """
                         <div class='line-graph'>
