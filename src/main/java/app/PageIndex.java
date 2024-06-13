@@ -82,7 +82,9 @@ public class PageIndex implements Handler {
                     <h2>Let us take a look at the <br>damages...</h2>
                     <div class='damages-tooltip'>
                         <h3>High Impact Data</h3>
-                        <p>There is where I tell you what data the table is showing you</p>
+                        <p>An overview of the food loss waste percentages. 
+                            Commodities on the left have a large percentage of 
+                                food waste while commodites on the right have the least</p>
                         <h4>1966 - 2002</h4>
                     </div>
                 </div>
@@ -98,8 +100,8 @@ public class PageIndex implements Handler {
                             for (Commodity top5 : top5Commodities) {
                                 html = html + "<tr>";
                                 html = html + "<td><h3>" + top5.getCommodity() + "</h3></td>";
-                                if (top5.getLoss_Percentage() >= 9.9) {
-                                    html = html + "<td><h4 target='red'>" + top5.getLoss_Percentage() + "</h4></td>";
+                                if (top5.getLoss_Percentage() >= 9.0) {
+                                    html = html + "<td><h4 target='red'>" + top5.getLoss_Percentage() + "%</h4></td>";
                                 } else {
                                     html = html + "<td><h4>" + top5.getLoss_Percentage() + "%</h4></td>";
                                 }
