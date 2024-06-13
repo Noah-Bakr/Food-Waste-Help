@@ -46,28 +46,33 @@ public class PageST2B implements Handler {
         // Add the body
         html = html + "<body>";
 
+        html = html + "<div class='two-a-content'>";
+
         // Add the topnav
         // This uses a Java v15+ Text Block
         html = html + nav.getNavBar();
 
-        // Add header content block
-        html = html + """
-            <div class='header'>
-                <h1>Subtask 2.B</h1>
-            </div>
-        """;
+        
 
-        // Add Div for page Content
-        html = html + "<div class='content'>";
+        //NOTE: IT IS BAD PRACTICE TO DO THIS, I DONT WANT TO TOUCH NOAH's FLEX STYLING BECAUSE I DONT WANT TO BREAK IT, DONT DO STYLING LIKE THIS
+        html = html + """
+                <div class='timed-data' style='padding-top:25px'>
+                    <div class='timed-data-header'>
+                        <div class='timed-data-title' style='align-items: flex-start;'>
+                            <h3>Loss Percentage</h3>
+                            <h4>1966 - 2022</h4>
+                        </div>
+                        <div class='timed-data-info'>
+                            <h2>Changes in loss percentage for selected groups</h2>
+                        </div>
+                    </div>      
+                    """;
+
         
         JDBCConnection jdbc = new JDBCConnection();
-
-        // Add HTML for the page content
-        html = html + """
-            <p>Subtask 2.B page content</p>
-            """;
 // Form Start----------------------------------------------------------------------------------
 html = html + "<form action='/page2B.html' method='post'>";
+                        html = html + "<div class='searchFormatter'>";
 
                         html = html + "<select name='selectedGroup' id='selectedGroup'>";
                         
@@ -82,12 +87,16 @@ html = html + "</select>";
 //Text box for how many results you want
 html = html + "   <button type='submit' class='searchButton'>Search</button>";
 
+html = html + "</div>";
+
+html = html + "</form>";
+
 // Form End ------------------------------------------------------------------------------------
 
 String key1 = context.formParam("selectedGroup");
 
         html = html + "<p>" + key1 + "</p>";
-        // Close Content div
+
         html = html + "</div>";
 
         // Footer
