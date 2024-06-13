@@ -84,6 +84,25 @@ html = html + "<form action='/page2B.html' method='post'>";
                         }
 html = html + "</select>";
 
+html = html + "<select name='first-year' id='first-year'>";
+
+                        ArrayList<String> years = jdbc.getAllYears();
+
+                        for (String year : years) {
+                            html = html + "<option value='" + year + "'>" + year + "</option>";
+                        }
+
+        html = html + """
+                        </select>
+                        <select name="second-year" id="second-year">
+                        """;
+
+                        for (String year : years) {
+                            html = html + "<option value='" + year + "'>" + year + "</option>";
+                        }
+        
+        html = html + "</select>";
+
 //Text box for how many results you want
 html = html + "   <button type='submit' class='searchButton'>Search</button>";
 
@@ -94,8 +113,12 @@ html = html + "</form>";
 // Form End ------------------------------------------------------------------------------------
 
 String key1 = context.formParam("selectedGroup");
+String years1 = context.formParam("first-year");
+String years2 = context.formParam("second-year");
 
         html = html + "<p>" + key1 + "</p>";
+        html = html + "<p>" + years1 + "</p>";
+        html = html + "<p>" + years2 + "</p>";
 
         html = html + "</div>";
 
