@@ -493,10 +493,23 @@ public class JDBCConnection {
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
 
+            //mixed year input error tolerance
+            if (Integer.valueOf(firstYear) > Integer.valueOf(secondYear)) {
+                String temp = secondYear;
+                secondYear = firstYear;
+                firstYear = temp;
+            }
+
+            //period choice
+            if (period.equals("Between") || period.equals("between")) {
+                period = " BETWEEN '" + firstYear + "' AND '" + secondYear + "')\n";
+            } else {
+                period = " = '" + firstYear + "' OR '" + secondYear + "')\n";
+            }
 
             // The Query
             String query = "SELECT commodity, AVG(loss_percentage), year FROM completeEvents\n" + //
-                            "WHERE countryName = '" + country + "'\n" + //
+                            "WHERE countryName = '" + country + "' AND (year" + period + //
                             "GROUP BY commodity, year HAVING AVG(loss_percentage) AND year NOT NULL\n" + //
                             "ORDER BY year ASC;";
                                 

@@ -1,6 +1,7 @@
 package app;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import org.sqlite.JDBC;
 
@@ -138,32 +139,43 @@ public class PageST2A implements Handler {
                         <div class='line-graph'>
                             <canvas id="line-graph"></canvas>
                             <script> """;
-                            ArrayList<Commodity> commodityList = jdbc.parse2ADataXValues(period, firstYear, secondYear, country);
-                            //x values (year)
-                            html = html + "const xValues = [";
-                            for (Commodity commodity : commodityList) {
-                                html = html + commodity.getYear() + ",";
-                            }
-                            html = html + "];";
-                html = html + """
-                            const yValues = [7,8,8,9,9,9,10,11,14,14,15];
 
+                            if ((Objects.nonNull(period)) && (Objects.nonNull(firstYear)) && (Objects.nonNull(secondYear)) && (Objects.nonNull(country))) {
+                                ArrayList<Commodity> commodityList = jdbc.parse2ADataXValues(period, firstYear, secondYear, country);
+                                //x values (year)
+                                html = html + "const xValues = [";
+                                for (Commodity commodity : commodityList) {
+                                    html = html + commodity.getYear() + ",";
+                                }
+                                html = html + "];";
+                                //y values (food loss percent)
+                                html = html + "const yValues = [";
+                                for (Commodity commodity : commodityList) {
+                                    html = html + Double.toString(commodity.getLoss_Percentage()) + ",";
+                                }
+                                html = html + "];";
+                            } else {
+                                html = html + "const xValues = [50,60,70,80,90,100,110,120,130,140,150];";
+                                html = html + "const yValues = [7,8,8,9,9,9,10,11,14,14,15];";
+                            }
+                            
+                html = html + """
                             new Chart("line-graph", {
                             type: "line",
                             data: {
                                 labels: xValues,
-                                datasets: [{
-                                fill: false,
-                                lineTension: 0,
-                                backgroundColor: "rgba(0,0,255,1.0)",
-                                borderColor: "rgba(0,0,255,0.1)",
-                                data: yValues
-                                }]
+                                datasets: [
+                                    {fill: false,
+                                    lineTension: 0,
+                                    backgroundColor: "rgba(0,0,255,1.0)",
+                                    borderColor: "rgba(0,0,255,0.1)",
+                                    data: yValues}
+                                ]
                             },
                             options: {
                                 legend: {display: false},
                                 scales: {
-                                yAxes: [{ticks: {min: 6, max:16}}],
+                                yAxes: [{beginAtZero: false}],
                                 }
                             }
                             });
