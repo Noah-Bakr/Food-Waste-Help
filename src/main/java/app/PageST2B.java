@@ -58,9 +58,9 @@ public class PageST2B implements Handler {
         html = html + """
                 <div class='timed-data' style='padding-top:25px'>
                     <div class='timed-data-header'>
-                        <div class='timed-data-title' style='align-items: flex-start;'>
-                            <h3>Loss Percentage</h3>
-                            <h4>1966 - 2022</h4>
+                        <div class='timed-data-title' style='align-items: flex-start; padding-bottom:10px; padding-top:10px'>
+                            <h3 style='text-align:left'>Loss Percentage</h3>
+                            <h4 style='text-align:left'>1966 - 2022</h4>
                         </div>
                         <div class='timed-data-info'>
                             <h2>Changes in loss percentage for selected groups</h2>
