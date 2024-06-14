@@ -641,23 +641,51 @@ a input[type="checkbox"] {
 .personaGroup 
 {
   display: flex;
-}
-
-.personaHeader
-{
-
-}
-
-.personaHeaderText
-{
-  
+  flex-direction: column;
+  align-content: baseline;
+  background-color:#4F7302;
+  border-radius: 1.5vw;
+  padding: 8px;
+  margin:8px;
 }
 
 .personaGroup img
 {
-  width: 30px;
-  height: 30px;
+  height: 200px;
 }
+
+.personaGroup h2
+{
+  color: white;
+}
+
+.personaGroup p
+{
+  color: white;
+}
+
+.personaGroup h3
+{
+  color: white;
+}
+
+.personaHeader
+{
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+}
+
+.personaHeaderText
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+
 
 .searchResults {
   overflow: auto;

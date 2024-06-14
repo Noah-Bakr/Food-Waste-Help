@@ -38,6 +38,10 @@ public class PageMission implements Handler {
         html = html + "<head>" + 
                "<title>Our Mission</title>";
 
+        html = html + """
+                <meta charset="UTF-8">
+                """;
+
         // Add some CSS (external file)
         html = html + "<link rel='stylesheet' type='text/css' href='common.css' />";
         html = html + nav.getExtraCSS();
@@ -105,25 +109,25 @@ public class PageMission implements Handler {
         {
             html = html + "<div class='personaGroup'>";
                 html = html + "<div class='personaHeader'>";
+                html = html + "<img src ='./" + persona.getImage() + "'class = 'persona_thumbnail'>";
                     html = html + "<div class='personaHeaderText'>";
                     html = html + "<h2>"+persona.getName()+"</h2>";
                     html = html + "<p>"+ persona.getAttributes() + " " + persona.getBackground() +"</p>";
-                html = html + "</div>";
-                html = html + "<img src ='./" + persona.getImage() + "'class = 'persona_thumbnail'>";
+                    html = html + "</div>";
                 html = html + "</div>";
         
-            html = html + "<div class='personaMain'>";
-                html = html + "<h3>Needs</h3>";
-                html = html + "<p>" + persona.getNeeds() + "</p>";
-            html = html + "</div>";
-                html = html + "<div class='personaMain'>";
-                html = html + "<h3>Goals</h3>";
-            html = html + "<p>" + persona.getGoals() + "</p>";
-                html = html + "</div>";
-                html = html + "<div class='personaMain'>";
-            html = html + "<h3>Skills and Experience</h3>";
-                html = html + "<p>" + persona.getSkills() + "</p>";
-                html = html + "</div>";
+                    html = html + "<div class='personaMain'>";
+                        html = html + "<h3>Needs</h3>";
+                        html = html + "<p>" + persona.getNeeds() + "</p>";
+                    html = html + "</div>";
+                    html = html + "<div class='personaMain'>";
+                        html = html + "<h3>Goals</h3>";
+                        html = html + "<p>" + persona.getGoals() + "</p>";
+                    html = html + "</div>";
+                    html = html + "<div class='personaMain'>";
+                        html = html + "<h3>Skills and Experience</h3>";
+                        html = html + "<p>" + persona.getSkills() + "</p>";
+                    html = html + "</div>";
             html = html + "</div>";
         }
 
