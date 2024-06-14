@@ -86,9 +86,9 @@ html = html + "</select>";
 
 html = html + "<select name='first-year' id='first-year'>";
 
-                        ArrayList<String> years = jdbc.getAllYears();
+                        ArrayList<String> firstYear = jdbc.getAllYears();
 
-                        for (String year : years) {
+                        for (String year : firstYear) {
                             html = html + "<option value='" + year + "'>" + year + "</option>";
                         }
 
@@ -97,7 +97,8 @@ html = html + "<select name='first-year' id='first-year'>";
                         <select name="second-year" id="second-year">
                         """;
 
-                        for (String year : years) {
+                        ArrayList<String> secondYear = jdbc.getAllYearsInverted();
+                        for (String year : secondYear) {
                             html = html + "<option value='" + year + "'>" + year + "</option>";
                         }
         
