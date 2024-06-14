@@ -38,6 +38,8 @@ public class PageIndex implements Handler {
         // Add some Header information
         html = html + "<head>" + 
                "<title>Homepage</title>";
+        html = html + "<meta charset='UTF-8'>";
+               
 
         // Add some CSS (external file)
         html = html + "<link rel='stylesheet' type='text/css' href='common.css' />";
