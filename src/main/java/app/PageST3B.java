@@ -74,15 +74,17 @@ public class PageST3B implements Handler {
 
         html = html + "<br>";
 
+        String maximum = jdbc.getNoOfEvents();
+
         //Text box for how many results you want
-        html = html + "<input type='number' min='1' class='form-control' id='number_of_results' name='number_of_results' placeholder = 'Enter number of results' required>";
+        html = html + "<input type='number' min='1' max='" + maximum + "' class='form-control' id='number_of_results' name='number_of_results' placeholder = 'Enter number of results' autocomplete='off' required>";
         html = html + "   <button type='submit' class='searchButton'>Search</button>";
 
 
         //TODO: Replace Anchor with button that lets you do sql stuff
         //Sourced from w3 schools
         html = html +"""
-        <input type='text' id='myInput' onkeyup='myFunction()' placeholder='Search for Products..'>
+        <input type='text' id='myInput' onkeyup='myFunction()' placeholder='Search for Products..' autocomplete='off'>
         <div class='searchResults'>
         <ul id='myUL'>""";
 
