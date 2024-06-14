@@ -117,11 +117,11 @@ public class PageST2A implements Handler {
                             }
         html = html + """
                             </div>
-                        </form>
                         """;  
         html = html + """
                             
                             <button type='submit' class='button'>Reload Graph</button>
+                            </form>
                         </div>
                                 """;
 
@@ -132,15 +132,20 @@ public class PageST2A implements Handler {
                         //Get second year
                         String secondYear = context.formParam("second-year"); 
                         //Get chosen countries
-                        String countries = context.formParam("chosen-countries");
-
-                       jdbc.parse2ADataXValues(period, firstYear, secondYear, countries);
+                        String country = context.formParam("chosen-countries");
 
                 html = html + """
                         <div class='line-graph'>
                             <canvas id="line-graph"></canvas>
-                            <script>
-                            const xValues = [50,60,70,80,90,100,110,120,130,140,150];
+                            <script> """;
+                            ArrayList<Commodity> commodityList = jdbc.parse2ADataXValues(period, firstYear, secondYear, country);
+                            //x values (year)
+                            html = html + "const xValues = [";
+                            for (Commodity commodity : commodityList) {
+                                html = html + commodity.getYear() + ",";
+                            }
+                            html = html + "];";
+                html = html + """
                             const yValues = [7,8,8,9,9,9,10,11,14,14,15];
 
                             new Chart("line-graph", {

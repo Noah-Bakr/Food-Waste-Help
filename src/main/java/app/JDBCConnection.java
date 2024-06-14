@@ -327,7 +327,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT commodity, loss_percentage, year FROM completeEvents\n" + //
+            String query = "SELECT commodity, MAX(loss_percentage), year FROM completeEvents\n" + //
                             "GROUP BY commodity HAVING MAX(loss_percentage)\n" + //
                             "ORDER BY loss_percentage DESC LIMIT 5 OFFSET 5";
             
@@ -340,7 +340,7 @@ public class JDBCConnection {
                 double scale = Math.pow(10, 2);
 
                 String commodity     = results.getString("commodity");
-                double loss_percentage     = Math.round(results.getDouble("loss_percentage") * scale) / scale;
+                double loss_percentage     = Math.round(results.getDouble("MAX(loss_percentage)") * scale) / scale;
 
                 Commodity commoditiesObj = new Commodity(commodity, loss_percentage);
                 // Add the Country object to the array
@@ -384,7 +384,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT commodity, loss_percentage, year FROM completeEvents\n" + //
+            String query = "SELECT commodity, MAX(loss_percentage), year FROM completeEvents\n" + //
             "GROUP BY commodity HAVING MAX(loss_percentage)\n" + //
             "ORDER BY loss_percentage ASC LIMIT 5";
 
@@ -398,7 +398,7 @@ public class JDBCConnection {
                 double scale = Math.pow(10, 2);
 
                 String commodity     = results.getString("commodity");
-                double loss_percentage     = Math.round(results.getDouble("loss_percentage") * scale) / scale;
+                double loss_percentage     = Math.round(results.getDouble("MAX(loss_percentage)") * scale) / scale;
 
                 Commodity commoditiesObj = new Commodity(commodity, loss_percentage);
                 // Add the Country object to the array
@@ -427,7 +427,7 @@ public class JDBCConnection {
     }
 
     //Task 2A line graph X values generator
-    public ArrayList<Commodity> parse2ADataXValues(String period, String firstYear, String secondYear, String countries) {
+    public ArrayList<Commodity> parse2ADataXValues(String period, String firstYear, String secondYear, String country) {
         // Create the ArrayList of Country objects to return
         ArrayList<Commodity> commodities = new ArrayList<Commodity>();
 
@@ -444,10 +444,11 @@ public class JDBCConnection {
 
 
             // The Query
-            String query = "SELECT commodity, loss_percentage, year FROM completeEvents\n" + //
-                                "GROUP BY commodity HAVING MAX(loss_percentage)\n" + //
-                                "ORDER BY loss_percentage DESC LIMIT 5 OFFSET 5";
-            
+            String query = "SELECT commodity, AVG(loss_percentage), year FROM completeEvents\n" + //
+                            "WHERE countryName = '" + country + "'\n" + //
+                            "GROUP BY commodity, year HAVING AVG(loss_percentage) AND year NOT NULL\n" + //
+                            "ORDER BY year ASC;";
+                                
             // Get Result
             ResultSet results = statement.executeQuery(query);
 
@@ -456,11 +457,11 @@ public class JDBCConnection {
                 // Lookup the columns we need
                 double scale = Math.pow(10, 2);
 
-                String commodity     = results.getString("commodity");
-                double loss_percentage     = Math.round(results.getDouble("loss_percentage") * scale) / scale;
-                String year = results.getString("year");
+                String commodity              = results.getString("commodity");
+                double AVGloss_percentage     = Math.round(results.getDouble("AVG(loss_percentage)") * scale) / scale;
+                String year                   = results.getString("year");
 
-                Commodity commoditiesObj = new Commodity(commodity, loss_percentage);
+                Commodity commoditiesObj = new Commodity(commodity, AVGloss_percentage, year);
                 // Add the Country object to the array
                 commodities.add(commoditiesObj);
             }
