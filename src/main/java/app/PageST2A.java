@@ -120,8 +120,6 @@ public class PageST2A implements Handler {
                             </div>
                         """;  
         html = html + """
-                            
-                            <button type='submit' class='button'>Reload Graph</button>
                             </form>
                         </div>
                                 """;
@@ -138,6 +136,7 @@ public class PageST2A implements Handler {
                 html = html + """
                         <div class='line-graph'>
                             <canvas id="line-graph"></canvas>
+                            <button type='submit' class='button'>Reload Graph</button>
                             <script> """;
 
                             if ((Objects.nonNull(period)) && (Objects.nonNull(firstYear)) && (Objects.nonNull(secondYear)) && (Objects.nonNull(country))) {
