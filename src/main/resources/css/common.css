@@ -561,12 +561,20 @@ img.top-image {
 
 }
 
+.scroll-menus {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .scroll-menu {
   background-color: #CFE3A3;
   border: 2px solid #CFE3A3;
   border-radius: 25px;
-  width: 30%;
-  height: 450px;
+  width: 450px;
+  height: 300px;
+  margin: 0 10px 10px 0;
 }
 
 .scroll-menu-items {
@@ -577,11 +585,12 @@ img.top-image {
   justify-content: flex-start;
   word-wrap: break-word;
   width: 100%;
-  height: 350px;
+  height: 250px;
 }
 
 .scroll-menu-title h2 {
   padding: 0 10px;
+  margin: 10px 0 0 0;
   font-weight: 300px;
   font-size: 30px;
   color: #000000;

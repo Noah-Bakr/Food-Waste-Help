@@ -19,6 +19,11 @@ public class Commodity {
    /**
     * Create a Country and set the fields
     */
+
+    public Commodity(String commodity) {
+      this.commodity = commodity;
+   }
+
    public Commodity(String commodity, double loss_percentage) {
       this.commodity = commodity;
       this.loss_percentage = loss_percentage;

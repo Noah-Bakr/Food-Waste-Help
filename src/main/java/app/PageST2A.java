@@ -104,25 +104,40 @@ public class PageST2A implements Handler {
                         </select>
                     </div>
                     <div class='graph-grid'>
-                        <div class='scroll-menu'>
-                            <div class='scroll-menu-title'>
-                                <h2>Country</h2>
-                            </div>
-                            <div class='scroll-menu-items'> """;
+                        <div class='scroll-menus'>
+                            <div class='scroll-menu'>
+                                <div class='scroll-menu-title'>
+                                    <h2>Country</h2>
+                                </div>
+                                <div class='scroll-menu-items'> """;
 
-                            ArrayList<Country> countryNames = jdbc.getAllCountries();
+                                ArrayList<Country> countryNames = jdbc.getAllCountries();
 
-                            for (Country name : countryNames) {
-                                html = html + "<a><input type='radio' id='" + name.getM49Code() + "' name='chosen-countries' value='" + name.getName() + "'>";
-                                html = html + "<label for='" + name.getM49Code() + "'>" + name.getName() + "</label></a>";
-                            }
-        html = html + """
+                                for (Country name : countryNames) {
+                                    html = html + "<a><input type='radio' id='" + name.getM49Code() + "' name='chosen-countries' value='" + name.getName() + "'>";
+                                    html = html + "<label for='" + name.getM49Code() + "'>" + name.getName() + "</label></a>";
+                                }
+            html = html + """
+                                </div>
                             </div>
-                        """;  
-        html = html + """
-                            </form>
+                            <div class='scroll-menu'>
+                                <div class='scroll-menu-title'>
+                                    <h2>Filter</h2>
+                                </div>
+                                <div class='scroll-menu-items'>
+                                    <a><input type='radio' id='commodity' name='chosen-filter' value='commodity' checked='checked'>
+                                        <label for='commodity'>Commodity</label></a>
+                                    <a><input type='radio' id='activity' name='chosen-filter' value='activity'>
+                                        <label for='activity'>Activity</label></a>
+                                    <a><input type='radio' id='food-supply-stage' name='chosen-filter' value='food-supply-stage'>
+                                        <label for='food-supply-stage'>Food Supply Stage</label></a>
+                                    <a><input type='radio' id='cause-of-loss' name='chosen-filter' value='cause-of-loss'>
+                                        <label for='cause-of-loss'>Cause Of Loss</label></a>
+                                </div>
+                            </div>
                         </div>
-                                """;
+                        </form>
+                                    """;
 
                         //Get either 'between' or 'from'
                         String period = context.formParam("period");
@@ -132,6 +147,8 @@ public class PageST2A implements Handler {
                         String secondYear = context.formParam("second-year"); 
                         //Get chosen countries
                         String country = context.formParam("chosen-countries");
+                        //Get chosen countries
+                        String filter = context.formParam("chosen-filter");
 
                 html = html + """
                         <div class='line-graph'>
@@ -143,14 +160,14 @@ public class PageST2A implements Handler {
                                 ArrayList<Commodity> commodityList = jdbc.parse2ADataXValues(period, firstYear, secondYear, country);
                                 //x values (year)
                                 html = html + "const xValues = [";
-                                for (Commodity commodity : commodityList) {
-                                    html = html + commodity.getYear() + ",";
+                                for (Commodity commodityX : commodityList) {
+                                    html = html + commodityX.getYear() + ",";
                                 }
                                 html = html + "];";
                                 //y values (food loss percent)
                                 html = html + "const yValues = [";
-                                for (Commodity commodity : commodityList) {
-                                    html = html + Double.toString(commodity.getLoss_Percentage()) + ",";
+                                for (Commodity commodityY : commodityList) {
+                                    html = html + Double.toString(commodityY.getLoss_Percentage()) + ",";
                                 }
                                 html = html + "];";
                             } else {
