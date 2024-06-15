@@ -670,13 +670,14 @@ a input[type="checkbox"] {
   align-content: baseline;
   background-color:#4F7302;
   border-radius: 1.5vw;
-  padding: 8px;
+  padding: 20px;
   margin:8px;
 }
 
 .personaGroup img
 {
   height: 200px;
+  padding-right: 20px;
 }
 
 .personaGroup h2
