@@ -582,6 +582,17 @@ img.top-image {
   margin: 0 10px 10px 0;
 }
 
+#similarity-menu {
+  height: fit-content;
+  padding: 0 0 20px 0;
+}
+
+.similarity-button {
+  text-align: left;
+  padding: 15px 0 0 15px;
+  margin-top: 5;
+}
+
 .scroll-menu-items {
   overflow: auto;
   white-space: normal;
@@ -637,7 +648,7 @@ a input[type="checkbox"] {
   justify-content: space-around;
   align-items: baseline;
   padding: 0 10px;
-  height: 300px;
+  height: fit-content;
   overflow: auto;
 }
 

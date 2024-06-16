@@ -69,6 +69,7 @@ public class PageST3A implements Handler {
                                 loss/waste percentages</h2>
                         </div>
                     </div>
+                    <form action='/page3A.html' method='post'>
                     <div class='timed-search-box'>
                         <h3>Countries Similiar to</h3>
                         <select name="country" id="country">""";
@@ -95,7 +96,7 @@ public class PageST3A implements Handler {
                         </select>
                     </div>
                     <div class='graph-grid'>
-                        <div class='scroll-menu'>
+                        <div class='scroll-menu' id='similarity-menu'>
                             <div class='scroll-menu-title'>
                                 <h2>Similarity</h2>
                             </div>
@@ -142,8 +143,12 @@ public class PageST3A implements Handler {
                                         <option value="25">25</option>
                                     </select>
                                 </div>
+                                <div class='similarity-button'>
+                                    <button type='submit' class='button'>Reload List</button>
+                                </div>
                             </div>
                         </div>
+                    </form>
                         <div class='line-graph'>
                             <canvas id="line-graph"></canvas>
                             <script>
