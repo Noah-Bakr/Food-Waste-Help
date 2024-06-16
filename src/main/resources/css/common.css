@@ -733,6 +733,34 @@ align-items: center;
   width: 30%;
 }
 
+.switcher
+{
+  margin-left: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.switcher div
+{
+  background-color: #4f7302;
+  margin-top: 5px;
+  margin-right: 5px;
+  font-size: 30px;
+  padding: 3px 10px 3px 10px;
+  display: flex;
+  border-radius: 8px;
+}
+
+.switcher input
+{
+  align-items: center;
+}
+
+.switcher label
+{
+  color: white;
+}
+
 
 
 /* TEMPORARY CSS SUBJECT TO CHANGE */

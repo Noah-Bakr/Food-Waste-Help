@@ -40,6 +40,7 @@ public class PageST2B implements Handler {
 
         // Add some CSS (external file)
         html = html + "<link rel='stylesheet' type='text/css' href='common.css' />";
+        html = html + "<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js'></script>";
         html = html + nav.getExtraCSS();
         html = html + "</head>";
 
@@ -111,17 +112,69 @@ html = html + "   <button type='submit' class='Button' style='padding:1% 3% 1% 3
 
 html = html + "</div>";
 
+html = html + """
+        <div class='switcher'>
+            <div>
+                <input type="radio" id="Activity" name="additionalSelector" value="Act" Required>
+                <label for="Activity">Activity</label><br>
+            </div>
+            <div>    
+                <input type="radio" id="FoodSupplyStage" name="additionalSelector" value="Fss" Required>
+                <label for="FoodSupplyStage">Food Supply Stage</label><br>
+            </div>
+            <div>    
+                <input type="radio" id="CauseOfLoss" name="additionalSelector" value="Col" Required>
+                <label for="CauseOfLoss">Cause Of Loss</label> 
+            </div>
+        </div>
+        """;
+
 html = html + "</form>";
 
 // Form End ------------------------------------------------------------------------------------
+
+html = html + """
+                        <div class='line-graph' style='width:40%'>
+                            <canvas id="line-graph"></canvas>
+                            <script> """;
+
+                                html = html + "const xValues = [50,60,70,80,90,100,110,120,130,140,150];";
+                                html = html + "const yValues = [7,8,8,9,9,9,10,11,14,14,15];";
+                            
+                html = html + """
+                            new Chart("line-graph", {
+                            type: "line",
+                            data: {
+                                labels: xValues,
+                                datasets: [
+                                    {fill: false,
+                                    lineTension: 0,
+                                    backgroundColor: "rgba(0,0,255,1.0)",
+                                    borderColor: "rgba(0,0,255,0.1)",
+                                    data: yValues}
+                                ]
+                            },
+                            options: {
+                                legend: {display: false},
+                                scales: {
+                                yAxes: [{beginAtZero: false}],
+                                }
+                            }
+                            });
+                            </script>
+                        </div>""";
+
+
+
 
 String key1 = context.formParam("selectedGroup");
 String years1 = context.formParam("first-year");
 String years2 = context.formParam("second-year");
 
-        html = html + "<p>" + key1 + "</p>";
-        html = html + "<p>" + years1 + "</p>";
-        html = html + "<p>" + years2 + "</p>";
+        //Debug
+        // html = html + "<p>" + key1 + "</p>";
+        // html = html + "<p>" + years1 + "</p>";
+        // html = html + "<p>" + years2 + "</p>";
 
         html = html + "</div>";
 
