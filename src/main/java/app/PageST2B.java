@@ -108,7 +108,7 @@ html = html + "<select name='first-year' id='first-year'> <optgroup>";
         html = html + "</optgroup></select>";
 
 //Text box for how many results you want
-html = html + "   <button type='submit' class='Button' style='padding:1% 3% 1% 3%; border-radius:20px; font-size:40px;'>Generate</button>";
+
 
 html = html + "</div>";
 
@@ -126,6 +126,9 @@ html = html + """
                 <input type="radio" id="CauseOfLoss" name="additionalSelector" value="Col" Required>
                 <label for="CauseOfLoss">Cause Of Loss</label> 
             </div>
+            
+                <button type='submit' class='Button' style='padding:1% 3% 1% 3%; border-radius:20px; font-size:30px; margin-top: 5px;'>Generate</button>
+            
         </div>
         """;
 
