@@ -72,9 +72,9 @@ public class PageST2B implements Handler {
         JDBCConnection jdbc = new JDBCConnection();
 // Form Start----------------------------------------------------------------------------------
 html = html + "<form action='/page2B.html' method='post'>";
-                        html = html + "<div class='searchFormatter'>";
+                        html = html + "<div class='timed-search-box'>";
 
-                        html = html + "<select name='selectedGroup' id='selectedGroup'>";
+                        html = html + "<select name='selectedGroup' id='selectedGroup'> <optgroup>";
                         
 
                         ArrayList<Group> groups = jdbc.getAllGroupsName();
@@ -82,9 +82,10 @@ html = html + "<form action='/page2B.html' method='post'>";
                         for (Group group : groups) {
                             html = html + "<option value='" + group.getGroupId() + "'>" + group.getDescriptor() + "</option>";
                         }
-html = html + "</select>";
+html = html + "</optgroup> </select>";
+html = html + "<h3>Between</h3>";
 
-html = html + "<select name='first-year' id='first-year'>";
+html = html + "<select name='first-year' id='first-year'> <optgroup>";
 
                         ArrayList<String> firstYear = jdbc.getAllYears();
 
@@ -93,8 +94,9 @@ html = html + "<select name='first-year' id='first-year'>";
                         }
 
         html = html + """
-                        </select>
-                        <select name="second-year" id="second-year">
+                        </optgroup> </select> 
+                        <h3>And</h3>
+                        <select name="second-year" id="second-year"> <optgroup>
                         """;
 
                         ArrayList<String> secondYear = jdbc.getAllYearsInverted();
@@ -102,10 +104,10 @@ html = html + "<select name='first-year' id='first-year'>";
                             html = html + "<option value='" + year + "'>" + year + "</option>";
                         }
         
-        html = html + "</select>";
+        html = html + "</optgroup></select>";
 
 //Text box for how many results you want
-html = html + "   <button type='submit' class='searchButton'>Search</button>";
+html = html + "   <button type='submit' class='Button' style='padding:1% 3% 1% 3%; border-radius:20px; font-size:40px;'>Generate</button>";
 
 html = html + "</div>";
 

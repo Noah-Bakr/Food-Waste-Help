@@ -510,6 +510,11 @@ img.top-image {
   margin: 0px 10px;
 }
 
+.timed-search-box select optgroup
+{
+  font-size: 20px;
+}
+
 #first-year, #second-year {
   width: fit-content;
 }

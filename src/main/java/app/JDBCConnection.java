@@ -620,7 +620,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT * FROM FoodGroup";
+            String query = "SELECT * FROM FoodGroup ORDER BY descriptor ASC";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
