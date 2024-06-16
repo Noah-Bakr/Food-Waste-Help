@@ -45,6 +45,7 @@ public class PageST3B implements Handler {
 
         // Add the body
         html = html + "<body>";
+        html = html + "<div class='two-a-content'>";
 
         // Add the topnav
         // This uses a Java v15+ Text Block
@@ -52,39 +53,54 @@ public class PageST3B implements Handler {
 
         // Add header content block
         html = html + """
-            <div class='header'>
-                <h1>Commodity code and statistic lookup</h1>
-            </div>
-        """;
+                <div class='timed-data' style='padding-top:25px'>
+                    <div class='timed-data-header'>
+                        <div class='timed-data-title' style='align-items: flex-start; padding-bottom:10px; padding-top:10px'>
+                            <h3 style='text-align:left'>Commodity Code and Statistics Lookup</h3>
+                        </div>
+                    </div>     
+                    """;
 
         // Add Div for page Content
-        html = html + "<div class='content'>";
+        
         JDBCConnection jdbc = new JDBCConnection();
 
         // Form Start----------------------------------------------------------
         html = html + "<form action='/page3B.html' method='post'>";
 
         //Radio buttons to select what to sort by
-        html = html + "<input type='radio' id='avg' name='sortby' value='avg' required>";
-        html = html + "<label for='avg'>Food Loss Average </label><br>";
-        html = html + "<input type='radio' id='highest' name='sortby' value='highest'>";
-        html = html + "<label for='highest'>Highest Percentage of Food Loss</label><br>";
-        html = html + "<input type='radio' id='lowest' name='sortby' value='lowest'>";
-        html = html + "<label for='lowest'>Lowest Percentage or Food Loss</label>";
+        html = html + "<div class='switcher'>";
+          html = html + "<div>";
+            html = html + "<input type='radio' id='avg' name='sortby' value='avg' required>";
+            html = html + "<label for='avg'>Food Loss Average </label><br>";
+          html = html + "</div>";
+          html = html + "<div>";
+            html = html + "<input type='radio' id='highest' name='sortby' value='highest'>";
+            html = html + "<label for='highest'>Highest Percentage of Food Loss</label><br>";
+           html = html + "</div>";
+          html = html + "<div>";
+            html = html + "<input type='radio' id='lowest' name='sortby' value='lowest'>";
+            html = html + "<label for='lowest'>Lowest Percentage or Food Loss</label>";
+          html = html + "</div>";
+
+          String maximum = jdbc.getNoOfEvents();
+
+          //Text box for how many results you want
+          html = html + "<input type='number' min='1' max='" + maximum + "' class='form-control' id='number_of_results' name='number_of_results' placeholder = 'Enter number of results' autocomplete='off' required style='width:15%; margin-left:10px'>";
+          html = html + "   <button type='submit' class='searchButton'>Search</button>";
+
+
+
+        html = html + "</div>"; //Class Switcher End Div
 
         html = html + "<br>";
 
-        String maximum = jdbc.getNoOfEvents();
-
-        //Text box for how many results you want
-        html = html + "<input type='number' min='1' max='" + maximum + "' class='form-control' id='number_of_results' name='number_of_results' placeholder = 'Enter number of results' autocomplete='off' required>";
-        html = html + "   <button type='submit' class='searchButton'>Search</button>";
+        
 
 
-        //TODO: Replace Anchor with button that lets you do sql stuff
         //Sourced from w3 schools
         html = html +"""
-        <input type='text' id='myInput' onkeyup='myFunction()' placeholder='Search for Products..' autocomplete='off'>
+        <input type='text' id='myInput' onkeyup='myFunction()' placeholder='Search for Products...' autocomplete='off'>
         <div class='searchResults'>
         <ul id='myUL'>""";
 
@@ -100,12 +116,6 @@ public class PageST3B implements Handler {
 
         // Form End-----------------------------------------
         html = html + "</form>";
-      
-
-        // Add HTML for the page content
-        html = html + """
-            <p>Subtask 3.B page content</p>
-            """;
 
 
             String sort_by = context.formParam("sortby");
@@ -115,9 +125,9 @@ public class PageST3B implements Handler {
         html = html + "<p>" + sort_by + "</p>";
         html = html + "<p>" + no_of_results + "</p>";
         html = html + "<p>" + searchedProduct + "</p>";
-
-        // Close Content div
         html = html + "</div>";
+        html = html + "</div>";
+
 
         // Footer
         html = html + nav.getFooter();
