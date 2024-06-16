@@ -125,13 +125,13 @@ public class PageST2A implements Handler {
                                     <h2>Filter</h2>
                                 </div>
                                 <div class='scroll-menu-items'>
-                                    <a><input type='radio' id='commodity' name='chosen-filter' value='commodity' checked='checked'>
+                                    <a><input type='checkbox' id='commodity' name='chosen-filter' value='commodity' checked='checked'>
                                         <label for='commodity'>Commodity</label></a>
-                                    <a><input type='radio' id='activity' name='chosen-filter' value='activity'>
+                                    <a><input type='checkbox' id='activity' name='chosen-filter' value='activity'>
                                         <label for='activity'>Activity</label></a>
-                                    <a><input type='radio' id='food-supply-stage' name='chosen-filter' value='food-supply-stage'>
+                                    <a><input type='checkbox' id='food-supply-stage' name='chosen-filter' value='food-supply-stage'>
                                         <label for='food-supply-stage'>Food Supply Stage</label></a>
-                                    <a><input type='radio' id='cause-of-loss' name='chosen-filter' value='cause-of-loss'>
+                                    <a><input type='checkbox' id='cause-of-loss' name='chosen-filter' value='cause-of-loss'>
                                         <label for='cause-of-loss'>Cause Of Loss</label></a>
                                 </div>
                             </div>
