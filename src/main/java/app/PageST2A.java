@@ -95,8 +95,9 @@ public class PageST2A implements Handler {
                         <h3>and</h3> 
                         <select name="second-year" id="second-year">
                         """;
+                        ArrayList<String> yearsInv = jdbc.getAllYearsInverted();
 
-                        for (String year : years) {
+                        for (String year : yearsInv) {
                             html = html + "<option value='" + year + "'>" + year + "</option>";
                         }
         
