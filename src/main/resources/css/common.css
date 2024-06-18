@@ -576,6 +576,7 @@ img.top-image {
 .twoA-table {
   width: 900px;
   height: 500px;
+  overflow: scroll;
   top: 0;
   margin: 10px 0 0 0;
   padding: 10px;
@@ -615,7 +616,7 @@ img.top-image {
   color: #000000;
   text-align: left;
   margin: 0px 10px;
-  /* padding: 5px 5px; */
+  padding: 5px 0px;
   width: fit-content;
   height: fit-content;
 }
