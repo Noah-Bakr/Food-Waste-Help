@@ -884,7 +884,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT year, loss_percentage, countryName, commodity, activity, food_supply_stage, cause_of_loss FROM completeevents WHERE GroupId = '011' ORDER BY year DESC;";
+            String query = "SELECT year, loss_percentage, countryName, commodity, activity, food_supply_stage, cause_of_loss FROM completeevents WHERE GroupId = '" + GroupId + "' AND year BETWEEN " + FirstYearValue + " AND " + SecondYearValue + " ORDER BY year DESC;";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -928,6 +928,7 @@ public class JDBCConnection {
         return Data;
     }
 
+    //Temporary data in order to make java not freak out
     public ArrayList<GraphData> createTemp()
     {
         ArrayList<GraphData> Data = new ArrayList<GraphData>();

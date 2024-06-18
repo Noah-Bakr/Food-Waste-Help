@@ -36,4 +36,24 @@ public class LossPercentageData {
    public String getPercentageLoss() {
       return PercentageLoss;
    }
+
+   public String getCountryName() {
+      return CountryName;
+   }
+
+   public String getCommodity() {
+      return Commodity;
+   }
+
+   public String getActivity() {
+      return Activity;
+   }
+
+   public String getFoodSupplyStage() {
+      return Food_supply_stage;
+   }
+
+   public String getCauseOfLoss() {
+      return Cause_of_loss;
+   }
 }
