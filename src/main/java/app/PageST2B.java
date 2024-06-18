@@ -33,6 +33,8 @@ public class PageST2B implements Handler {
     public void handle(Context context) throws Exception {
         // Create a simple HTML webpage in a String
         String html = "<html>";
+        int globalCounter1 = 0;
+        int globalCounter2 = 0;
 
         // Add some Head information
         html = html + "<head>" + 
@@ -69,6 +71,10 @@ public class PageST2B implements Handler {
                     </div>      
                     """;
 
+
+                    String key1 = context.formParam("selectedGroup");
+                    String years1 = context.formParam("first-year");
+                    String years2 = context.formParam("second-year");
         
         JDBCConnection jdbc = new JDBCConnection();
 // Form Start----------------------------------------------------------------------------------
@@ -135,14 +141,65 @@ html = html + """
 html = html + "</form>";
 
 // Form End ------------------------------------------------------------------------------------
+ArrayList<GraphData> ReturnedGraphData = jdbc.createTemp();
+if(key1 != null){
+ReturnedGraphData = jdbc.getGraphResults(years1,years2,key1);
+};
+
+
 
 html = html + """
                         <div class='line-graph' style='width:40%'>
                             <canvas id="line-graph"></canvas>
                             <script> """;
 
-                                html = html + "const xValues = [50,60,70,80,90,100,110,120,130,140,150];";
-                                html = html + "const yValues = [7,8,8,9,9,9,10,11,14,14,15];";
+                                html = html + "const xValues = [";
+                                
+//Makes the website not break when there is not data selected
+                                if(key1 != null)
+                                {
+
+                                    for (GraphData years : ReturnedGraphData) {
+                                        if(globalCounter1 < ReturnedGraphData.size()-1)
+                                        {
+                                            html = html + years.getYear() + ",";
+                                        }
+                                        else
+                                        {
+                                            html = html + years.getYear();
+                                        }
+                                        
+                                        globalCounter1 = globalCounter1 + 1;
+                                    }
+                                }
+                                else
+                                {
+                                    html = html + "50,60,70,80,90,100,110,120,130,140,150";
+                                }
+                                html = html + "];";
+
+//Same thing for Y value
+                                html = html + "const yValues = [";
+                                if(key1 != null)
+                                {
+                                    for (GraphData percentages : ReturnedGraphData) {
+                                        if(globalCounter2 < ReturnedGraphData.size()-1)
+                                        {
+                                            html = html + percentages.getPercentageLoss() + ",";
+                                        }
+                                        else
+                                        {
+                                            html = html + percentages.getPercentageLoss();
+                                        }
+                                        
+                                        globalCounter2 = globalCounter2 + 1;
+                                    }
+                                }
+                                else
+                                {
+                                    html = html + "7,8,8,9,9,9,10,11,14,14,15";
+                                }
+                                html = html + "];";
                             
                 html = html + """
                             new Chart("line-graph", {
@@ -170,9 +227,7 @@ html = html + """
 
 
 
-String key1 = context.formParam("selectedGroup");
-String years1 = context.formParam("first-year");
-String years2 = context.formParam("second-year");
+
 
         //Debug
         // html = html + "<p>" + key1 + "</p>";

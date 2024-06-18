@@ -820,7 +820,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT yearRange.year, IFNULL(returnTable.avgLossPercentage,0) AS lossPercentage FROM date as yearRange LEFT JOIN(SELECT EventTable.year, AVG(loss_percentage) AS avgLossPercentage FROM completeEvents as EventTable WHERE GroupId = '"+ GroupId +"' GROUP BY EventTable.Year) as returnTable ON yearRange.year = returnTable.year WHERE yearRange.year BETWEEN " + FirstYearValue +  " AND " + SecondYearValue + "ORDER BY yearRange.year ASC;";
+            String query = "SELECT yearRange.year, IFNULL(returnTable.avgLossPercentage,0) AS lossPercentage FROM date as yearRange LEFT JOIN(SELECT EventTable.year, AVG(loss_percentage) AS avgLossPercentage FROM completeEvents as EventTable WHERE GroupId = '"+ GroupId +"' GROUP BY EventTable.Year) as returnTable ON yearRange.year = returnTable.year WHERE yearRange.year BETWEEN " + FirstYearValue +  " AND " + SecondYearValue + " ORDER BY yearRange.year ASC;";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -856,6 +856,14 @@ public class JDBCConnection {
         }
 
         // Finally we return all of the countries
+        return Data;
+    }
+
+    public ArrayList<GraphData> createTemp()
+    {
+        ArrayList<GraphData> Data = new ArrayList<GraphData>();
+        GraphData datas = new GraphData("Thingy","Thonger");
+        Data.add(datas);
         return Data;
     }
 
