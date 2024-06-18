@@ -53,11 +53,6 @@ public class PageST2B implements Handler {
         // This uses a Java v15+ Text Block
         html = html + nav.getNavBar();
 
-        String key1 = context.formParam("selectedGroup");
-        String years1 = context.formParam("first-year");
-        String years2 = context.formParam("second-year");
-        
-
         
 
         //NOTE: IT IS BAD PRACTICE TO DO THIS, I DONT WANT TO TOUCH NOAH's FLEX STYLING BECAUSE I DONT WANT TO BREAK IT, DONT DO STYLING LIKE THIS
@@ -141,8 +136,6 @@ html = html + "</form>";
 
 // Form End ------------------------------------------------------------------------------------
 
-ArrayList<GraphData> ConfigureData = jdbc.getGraphResults(years1,years2,key1);
-
 html = html + """
                         <div class='line-graph' style='width:40%'>
                             <canvas id="line-graph"></canvas>
@@ -177,7 +170,9 @@ html = html + """
 
 
 
-
+String key1 = context.formParam("selectedGroup");
+String years1 = context.formParam("first-year");
+String years2 = context.formParam("second-year");
 
         //Debug
         // html = html + "<p>" + key1 + "</p>";
