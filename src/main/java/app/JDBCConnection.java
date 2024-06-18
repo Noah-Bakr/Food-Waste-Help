@@ -859,6 +859,75 @@ public class JDBCConnection {
         return Data;
     }
 
+    public ArrayList<LossPercentageData> getGraphTable(String Year1, String Year2, String GroupId) {
+        // Create the ArrayList of Country objects to return
+        ArrayList<LossPercentageData> Data = new ArrayList<LossPercentageData>();
+        int FirstYearValue = Integer.parseInt(Year1);
+        int SecondYearValue = Integer.parseInt(Year2);
+
+        if(FirstYearValue > SecondYearValue)
+        {
+            int temp = FirstYearValue;
+            FirstYearValue = SecondYearValue;
+            SecondYearValue = temp;
+        }
+
+        // Setup the variable for the JDBC connection
+        Connection connection = null;
+
+        try {
+            // Connect to JDBC data base
+            connection = DriverManager.getConnection(DATABASE);
+
+            // Prepare a new SQL Query & Set a timeout
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            // The Query
+            String query = "SELECT year, loss_percentage, countryName, commodity, activity, food_supply_stage, cause_of_loss FROM completeevents WHERE GroupId = '011' ORDER BY year DESC;";
+            
+            // Get Result
+            ResultSet results = statement.executeQuery(query);
+
+            // Process all of the results
+            while (results.next()) {
+                // Lookup the columns we need
+                String YearResult = results.getString("year");
+                String LossResult = results.getString("lossPercentage");
+                String countryName = results.getString("countryName");
+                String commodity = results.getString("commodity");
+                String activity = results.getString("activity");
+                String foodSupplyStage = results.getString("food_supply_stage");
+                String causeOfLoss = results.getString("cause_of_loss");
+
+                // Create a Country Object
+                LossPercentageData datas = new LossPercentageData(YearResult,LossResult,countryName,commodity,activity,foodSupplyStage,causeOfLoss);
+
+                // Add the Country object to the array
+                Data.add(datas);
+            }
+
+            // Close the statement because we are done with it
+            statement.close();
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        // Finally we return all of the countries
+        return Data;
+    }
+
     public ArrayList<GraphData> createTemp()
     {
         ArrayList<GraphData> Data = new ArrayList<GraphData>();
