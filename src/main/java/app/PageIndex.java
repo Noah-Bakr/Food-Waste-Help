@@ -87,7 +87,7 @@ public class PageIndex implements Handler {
                         <p>An overview of the food loss waste percentages. 
                             Commodities on the left have a large percentage of 
                                 food waste while commodites on the right have the least</p>
-                        <h4>1966 - 2002</h4>
+                        <h4>1966 - 2022</h4>
                     </div>
                 </div>
                 <div class='damages-tables-grid'>
