@@ -557,13 +557,73 @@ img.top-image {
 /* .graph-buttons {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justifay-content: flex-start;
   align-items: center;
 } */
 
 .line-graph button {
   margin: 0 20px 20px 20px;
 
+}
+
+.data-rep2A {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.twoA-table {
+  padding: 0;
+  width: fit-content;
+  top: 0;
+  margin: 10px 0 0 0;
+}
+
+.twoA-table table, .twoA-table th, .twoA-table td {
+  border-top: 5px solid #4F7302;
+  border-bottom: 5px solid #4F7302;
+  border-collapse: collapse;
+}
+
+.twoA-table th, .twoA-table td {
+  width: fit-content;
+  height: fit-content;
+  overflow: scroll;
+  text-align: center;
+}
+
+.twoA-table tr {
+  width: fit-content;
+  height: fit-content;
+  overflow: scroll;
+  text-align: center;
+}
+
+
+.twoA-table h3 {
+  font-weight: bold;
+  font-size: 25px;
+  color: #000000;
+  text-align: left;
+  margin: 0px 10px;
+  /* padding: 5px 5px; */
+  width: 270px;
+  height: fit-content;
+}
+
+.twoA-table h4 {
+  font-weight: bold;
+  font-size: 25px;
+  color: #4F7302;
+  margin: 0;
+  text-align: center;
+  margin: 0px 20px;
+  padding: 5px 5px;
+}
+
+.twoA-table h4[target="red"] {
+  color: #C84747;
 }
 
 .scroll-menus {

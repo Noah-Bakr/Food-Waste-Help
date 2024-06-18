@@ -8,7 +8,6 @@ import org.sqlite.JDBC;
 import helper.WebsiteElementBuilder;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -130,9 +129,9 @@ public class PageST2A implements Handler {
                                         <label for='commodity'>Commodity</label></a>
                                     <a><input type='checkbox' id='activity' name='chosen-filter' value='activity'>
                                         <label for='activity'>Activity</label></a>
-                                    <a><input type='checkbox' id='food-supply-stage' name='chosen-filter' value='food-supply-stage'>
+                                    <a><input type='checkbox' id='food-supply-stage' name='chosen-filter' value='food_supply_stage'>
                                         <label for='food-supply-stage'>Food Supply Stage</label></a>
-                                    <a><input type='checkbox' id='cause-of-loss' name='chosen-filter' value='cause-of-loss'>
+                                    <a><input type='checkbox' id='cause-of-loss' name='chosen-filter' value='cause_of_loss'>
                                         <label for='cause-of-loss'>Cause Of Loss</label></a>
                                 </div>
                             </div>
@@ -149,54 +148,110 @@ public class PageST2A implements Handler {
                         //Get chosen countries
                         String country = context.formParam("chosen-countries");
                         //Get chosen countries
-                        String filter = context.formParam("chosen-filter");
+                        java.util.List<String> filter = context.formParams("chosen-filter");
+                        
 
                 html = html + """
-                        <div class='line-graph'>
-                            <canvas id="line-graph"></canvas>
-                            <button type='submit' class='button'>Reload Graph</button>
-                            <script> """;
+                        <div class='data-rep2A'>
+                            <div class='line-graph'>
+                                <canvas id="line-graph"></canvas>
+                                <button type='submit' class='button'>Reload Graph</button>
+                                <script> """;
 
-                            if ((Objects.nonNull(period)) && (Objects.nonNull(firstYear)) && (Objects.nonNull(secondYear)) && (Objects.nonNull(country))) {
-                                ArrayList<Commodity> commodityList = jdbc.parse2ADataXValues(period, firstYear, secondYear, country);
-                                //x values (year)
-                                html = html + "const xValues = [";
-                                for (Commodity commodityX : commodityList) {
-                                    html = html + commodityX.getYear() + ",";
+                                if ((Objects.nonNull(period)) && (Objects.nonNull(firstYear)) && (Objects.nonNull(secondYear)) && (Objects.nonNull(country))) {
+                                    ArrayList<Commodity> commodityList = jdbc.parse2ADataXValues(period, firstYear, secondYear, country, filter);
+                                    //x values (year)
+                                    html = html + "const xValues = [";
+                                    for (Commodity commodityX : commodityList) {
+                                        html = html + commodityX.getYear() + ",";
+                                    }
+                                    html = html + "];";
+                                    //y values (food loss percent)
+                                    html = html + "const yValues = [";
+                                    for (Commodity commodityY : commodityList) {
+                                        html = html + Double.toString(commodityY.getLoss_Percentage()) + ",";
+                                    }
+                                    html = html + "];";
+                                } else {
+                                    html = html + "const xValues = [50,60,70,80,90,100,110,120,130,140,150];";
+                                    html = html + "const yValues = [7,8,8,9,9,9,10,11,14,14,15];";
                                 }
-                                html = html + "];";
-                                //y values (food loss percent)
-                                html = html + "const yValues = [";
-                                for (Commodity commodityY : commodityList) {
-                                    html = html + Double.toString(commodityY.getLoss_Percentage()) + ",";
+                                
+                    html = html + """
+                                new Chart("line-graph", {
+                                type: "line",
+                                data: {
+                                    labels: xValues,
+                                    datasets: [
+                                        {fill: false,
+                                        lineTension: 0,
+                                        backgroundColor: "rgba(0,0,255,1.0)",
+                                        borderColor: "rgba(0,0,255,0.1)",
+                                        data: yValues}
+                                    ]
+                                },
+                                options: {
+                                    legend: {display: false},
+                                    scales: {
+                                    yAxes: [{beginAtZero: false}],
+                                    }
                                 }
-                                html = html + "];";
-                            } else {
-                                html = html + "const xValues = [50,60,70,80,90,100,110,120,130,140,150];";
-                                html = html + "const yValues = [7,8,8,9,9,9,10,11,14,14,15];";
-                            }
-                            
+                                });
+                                </script>
+                            </div>
+
+                            <div class='twoA-table'>
+                                <table> """;
+
+                                    if ((Objects.nonNull(period)) && (Objects.nonNull(firstYear)) && (Objects.nonNull(secondYear)) && (Objects.nonNull(country)) && (Objects.nonNull(filter))) {
+                                        ArrayList<Commodity> cl = jdbc.parse2ADataTable(period, firstYear, secondYear, country, filter); 
+                                        html = html + "<tr>";
+                                        for (int i = 0; i < filter.size(); i++) {
+                                            String str = null;
+                                            if (filter.get(i).equals("commodity")) {
+                                                str = "Commodity";
+                                            } else if (filter.get(i).equals("activity")) {
+                                                str = "Activity";
+                                            } else if (filter.get(i).equals("food_supply_stage")) {
+                                                str = "Food Supply Stage";
+                                            } else if (filter.get(i).equals("cause_of_loss")) {
+                                                str = "Cause of Loss";
+                                            }
+                                            
+                                            html = html + "<th><h3>" + str + "<h3></th>";
+                                        }
+                                        
+                                        html = html + "</tr>";
+
+                                        for (Commodity entry : cl) {
+                                            html = html + "<tr>";
+                                            for (int j = 0; j < filter.size(); j++) {
+                                                if (filter.get(j).equals("commodity")) {
+                                                    html = html + "<td><h3>" + entry.getCommodity() + "</h3></td>";
+                                                }
+                                            }
+                                            for (int j = 0; j < filter.size(); j++) {
+                                                if (filter.get(j).equals("activity")) {
+                                                    html = html + "<td><h3>" + entry.getActivity() + "</h3></td>";
+                                                }
+                                            }
+                                            for (int j = 0; j < filter.size(); j++) {
+                                                if (filter.get(j).equals("food_supply_stage")) {
+                                                    html = html + "<td><h3>" + entry.getFSS() + "</h3></td>";
+                                                }
+                                            }
+                                            for (int j = 0; j < filter.size(); j++) {
+                                                if (filter.get(j).equals("cause_of_loss")) {
+                                                    html = html + "<td><h3>" + entry.getCOL() + "</h3></td>";
+                                                }
+                                            }
+                                        
+                                            html = html + "</tr>";
+                                        }
+                                    } 
                 html = html + """
-                            new Chart("line-graph", {
-                            type: "line",
-                            data: {
-                                labels: xValues,
-                                datasets: [
-                                    {fill: false,
-                                    lineTension: 0,
-                                    backgroundColor: "rgba(0,0,255,1.0)",
-                                    borderColor: "rgba(0,0,255,0.1)",
-                                    data: yValues}
-                                ]
-                            },
-                            options: {
-                                legend: {display: false},
-                                scales: {
-                                yAxes: [{beginAtZero: false}],
-                                }
-                            }
-                            });
-                            </script>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

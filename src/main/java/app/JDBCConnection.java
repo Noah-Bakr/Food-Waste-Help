@@ -1,6 +1,7 @@
 package app;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.jar.Attributes.Name;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -478,9 +479,11 @@ public class JDBCConnection {
     }
 
     //Task 2A line graph X values generator
-    public ArrayList<Commodity> parse2ADataXValues(String period, String firstYear, String secondYear, String country) {
+    public ArrayList<Commodity> parse2ADataXValues(String period, String firstYear, String secondYear, String country, List<String> filter) {
         // Create the ArrayList of Country objects to return
         ArrayList<Commodity> commodities = new ArrayList<Commodity>();
+
+        
 
         // Setup the variable for the JDBC connection
         Connection connection = null;
@@ -502,14 +505,19 @@ public class JDBCConnection {
 
             //period choice
             if (period.equals("Between") || period.equals("between")) {
-                period = " BETWEEN '" + firstYear + "' AND '" + secondYear + "')\n";
+                period = " BETWEEN '" + firstYear + "' AND '" + secondYear + "'))\n";
             } else {
-                period = " = '" + firstYear + "' OR '" + secondYear + "')\n";
+                period = " = '" + firstYear + "' OR '" + secondYear + "'))\n";
             }
+
+            //checkbox column items
+            String selected = String.join(", ", filter);
+
+            
 
             // The Query
             String query = "SELECT commodity, AVG(loss_percentage), year FROM completeEvents\n" + //
-                            "WHERE (countryName = '" + country + "') AND (year" + period + //
+                            "WHERE ((countryName = '" + country + "') AND (year" + period + //
                             "GROUP BY commodity, year HAVING AVG(loss_percentage) AND year NOT NULL\n" + //
                             "ORDER BY commodity, year ASC;";
                                 
@@ -526,6 +534,91 @@ public class JDBCConnection {
                 String year                   = results.getString("year");
 
                 Commodity commoditiesObj = new Commodity(commodityName, AVGloss_percentage, year);
+                // Add the Country object to the array
+                commodities.add(commoditiesObj);
+            }
+
+            // Close the statement because we are done with it
+            statement.close();
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        // Finally we return all of the countries
+        return commodities;
+    }
+
+    //Task 2A table values generator
+    public ArrayList<Commodity> parse2ADataTable(String period, String firstYear, String secondYear, String country, List<String> filter) {
+        // Create the ArrayList of Country objects to return
+        ArrayList<Commodity> commodities = new ArrayList<Commodity>();
+
+        
+
+        // Setup the variable for the JDBC connection
+        Connection connection = null;
+
+        try {
+            // Connect to JDBC data base
+            connection = DriverManager.getConnection(DATABASE);
+
+            // Prepare a new SQL Query & Set a timeout
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            //mixed year input error tolerance
+            if (Integer.valueOf(firstYear) > Integer.valueOf(secondYear)) {
+                String temp = secondYear;
+                secondYear = firstYear;
+                firstYear = temp;
+            }
+
+            //period choice
+            if (period.equals("Between") || period.equals("between")) {
+                period = " BETWEEN '" + firstYear + "' AND '" + secondYear + "'))\n";
+            } else {
+                period = " = '" + firstYear + "' OR '" + secondYear + "'))\n";
+            }
+
+            //checkbox column items
+            String selected = String.join(", ", filter);
+
+            
+
+            // The Query
+            String query = "SELECT " + selected + " AVG(loss_percentage), year FROM completeEvents\n" + //
+                            "WHERE ((countryName = '" + country + "') AND (year" + period + //
+                            "GROUP BY commodity, year HAVING AVG(loss_percentage) AND year NOT NULL\n" + //
+                            "ORDER BY commodity, year ASC;";
+                                
+            // Get Result
+            ResultSet results = statement.executeQuery(query);
+
+            // Process all of the results
+            while (results.next()) {
+                // Lookup the columns we need
+                double scale = Math.pow(10, 2);
+
+                String commodityName          = results.getString("commodity");
+                String activityName           = results.getString("activity");
+                String fss                    = results.getString("food_supply_stage");
+                String col                    = results.getString("cause_of_loss");
+
+                double AVGloss_percentage     = Math.round(results.getDouble("AVG(loss_percentage)") * scale) / scale;
+                String year                   = results.getString("year");
+
+                Commodity commoditiesObj = new Commodity(commodityName, AVGloss_percentage, year, activityName, fss, col);
                 // Add the Country object to the array
                 commodities.add(commoditiesObj);
             }
