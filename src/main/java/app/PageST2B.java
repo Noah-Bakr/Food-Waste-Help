@@ -36,6 +36,17 @@ public class PageST2B implements Handler {
         int globalCounter1 = 0;
         int globalCounter2 = 0;
 
+        boolean hasinput = false;
+
+        String key1 = context.formParam("selectedGroup");
+        String years1 = context.formParam("first-year");
+        String years2 = context.formParam("second-year");
+        String actSelect = context.formParam("actSelector");
+        String fssSelect = context.formParam("fssSelector");
+        String colSelect = context.formParam("colSelector");
+
+        // if(key1 != null)
+
         // Add some Head information
         html = html + "<head>" + 
                "<title>Subtask 2.2</title>";
@@ -72,9 +83,7 @@ public class PageST2B implements Handler {
                     """;
 
 
-                    String key1 = context.formParam("selectedGroup");
-                    String years1 = context.formParam("first-year");
-                    String years2 = context.formParam("second-year");
+                    
         
         JDBCConnection jdbc = new JDBCConnection();
 // Form Start----------------------------------------------------------------------------------
@@ -120,25 +129,59 @@ html = html + "</div>";
 
 html = html + """
         <div class='switcher'>
-            <div>
-                <input type="radio" id="Activity" name="additionalSelector" value="Act" Required>
+            <div>""";
+                    
+                html = html + "<input type='checkbox' id='Activity' name='actSelector' value='Act'";
+
+                        if(actSelect != null)
+                        {
+                            html = html + "checked";
+                        }
+
+                html = html + """
+                        
+                        >
                 <label for="Activity">Activity</label><br>
             </div>
             <div>    
-                <input type="radio" id="FoodSupplyStage" name="additionalSelector" value="Fss" Required>
-                <label for="FoodSupplyStage">Food Supply Stage</label><br>
-            </div>
+            """;
+            html = html + "<input type='checkbox' id='FoodSupplyStage' name='fssSelector' value='Fss'";
+            
+            if(fssSelect != null)
+            {
+                html = html + "checked";
+            }
+
+            html = html + """
+                    ;>
+            <label for="FoodSupplyStage">Food Supply Stage</label><br>
+                </div>
             <div>    
-                <input type="radio" id="CauseOfLoss" name="additionalSelector" value="Col" Required>
-                <label for="CauseOfLoss">Cause Of Loss</label> 
+                <input type="checkbox" id="CauseOfLoss" name="colSelector" value="Col"
+                    """;
+                
+                    if(colSelect != null)
+                    {
+                        html = html + "checked";
+                    }
+                
+                    html = html + """
+                            >
+<label for="CauseOfLoss">Cause Of Loss</label> 
             </div>
             
                 <button type='submit' class='Button' style='padding:1% 3% 1% 3%; border-radius:20px; font-size:30px; margin-top: 5px;'>Generate</button>
             
         </div>
-        """;
-
+                            """;
+                
+                
+    
 html = html + "</form>";
+
+html = html + "<p>"+actSelect+"</p>";
+html = html + "<p>"+fssSelect+"</p>";
+html = html + "<p>"+colSelect+"</p>";
 
 // Form End ------------------------------------------------------------------------------------
 ArrayList<GraphData> ReturnedGraphData = jdbc.createTemp();
