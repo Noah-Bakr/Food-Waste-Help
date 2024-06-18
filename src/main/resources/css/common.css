@@ -574,7 +574,7 @@ img.top-image {
 }
 
 .twoA-table {
-  width: 900px;
+  width: 920px;
   height: 500px;
   overflow: scroll;
   top: 0;
@@ -610,8 +610,19 @@ img.top-image {
 }
 
 
-.twoA-table h3 {
+.twoA-table h2 {
   font-weight: bold;
+  font-size: 25px;
+  color: #000000;
+  text-align: left;
+  margin: 0px 10px;
+  padding: 5px 0px;
+  width: fit-content;
+  height: fit-content;
+}
+
+.twoA-table h3 {
+  font-weight: normal;
   font-size: 25px;
   color: #000000;
   text-align: left;
@@ -639,7 +650,11 @@ img.top-image {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-end;
+}
+
+.scroll-menus button {
+  margin-right: 15px;
 }
 
 .scroll-menu {

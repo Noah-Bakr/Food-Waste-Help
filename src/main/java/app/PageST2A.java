@@ -136,6 +136,7 @@ public class PageST2A implements Handler {
                                         <label for='cause-of-loss'>Cause Of Loss</label></a>
                                 </div>
                             </div>
+                            <button type='submit' class='button'>Reload Data</button>
                         </div>
                         </form>
                                     """;
@@ -156,7 +157,6 @@ public class PageST2A implements Handler {
                         <div class='data-rep2A'>
                             <div class='line-graph'>
                                 <canvas id="line-graph"></canvas>
-                                <button type='submit' class='button'>Reload Graph</button>
                                 <script> """;
 
                                 if ((Objects.nonNull(period)) && (Objects.nonNull(firstYear)) && (Objects.nonNull(secondYear)) && (Objects.nonNull(country))) {
@@ -219,9 +219,11 @@ public class PageST2A implements Handler {
                                                 str = "Cause of Loss";
                                             }
                                             
-                                            html = html + "<th><h3>" + str + "<h3></th>";
+                                            html = html + "<th><h2>" + str + "<h2></th>";
                                         }
-                                        
+
+                                        html = html + "<th><h2>Loss Percentage<h2></th>";
+                                        html = html + "<th><h2>Year<h2></th>";
                                         html = html + "</tr>";
 
                                         for (Commodity entry : cl) {
@@ -237,7 +239,8 @@ public class PageST2A implements Handler {
                                                     html = html + "<td><h3>" + entry.getCOL() + "</h3></td>";
                                                 }
                                             }
-                                            
+                                            html = html + "<td><h3>" + entry.getLoss_Percentage() + "</h3></td>";
+                                            html = html + "<td><h3>" + entry.getYear() + "</h3></td>";
                                         }
                                         
                                             html = html + "</tr>";
