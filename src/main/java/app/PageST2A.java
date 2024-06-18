@@ -105,20 +105,21 @@ public class PageST2A implements Handler {
                     </div>
                     <div class='graph-grid'>
                         <div class='scroll-menus'>
-                            <div class='scroll-menu'>
+                            <div class='country-menu'>
                                 <div class='scroll-menu-title'>
                                     <h2>Country</h2>
                                 </div>
-                                <div class='scroll-menu-items'> """;
+                                
+                                <select name="chosen-countries" id="country"> """;
 
                                 ArrayList<Country> countryNames = jdbc.getAllCountries();
 
                                 for (Country name : countryNames) {
-                                    html = html + "<a><input type='radio' id='" + name.getM49Code() + "' name='chosen-countries' value='" + name.getName() + "'>";
-                                    html = html + "<label for='" + name.getM49Code() + "'>" + name.getName() + "</label></a>";
+                                    html = html + "<option value='" + name.getName() + "'>" + name.getName() + "</option>";
                                 }
             html = html + """
-                                </div>
+                                </select>
+                                
                             </div>
                             <div class='scroll-menu'>
                                 <div class='scroll-menu-title'>
@@ -228,27 +229,20 @@ public class PageST2A implements Handler {
                                             for (int j = 0; j < filter.size(); j++) {
                                                 if (filter.get(j).equals("commodity")) {
                                                     html = html + "<td><h3>" + entry.getCommodity() + "</h3></td>";
-                                                }
-                                            }
-                                            for (int j = 0; j < filter.size(); j++) {
-                                                if (filter.get(j).equals("activity")) {
+                                                } else if (filter.get(j).equals("activity")) {
                                                     html = html + "<td><h3>" + entry.getActivity() + "</h3></td>";
-                                                }
-                                            }
-                                            for (int j = 0; j < filter.size(); j++) {
-                                                if (filter.get(j).equals("food_supply_stage")) {
+                                                } else if (filter.get(j).equals("food_supply_stage")) {
                                                     html = html + "<td><h3>" + entry.getFSS() + "</h3></td>";
-                                                }
-                                            }
-                                            for (int j = 0; j < filter.size(); j++) {
-                                                if (filter.get(j).equals("cause_of_loss")) {
+                                                } else if (filter.get(j).equals("cause_of_loss")) {
                                                     html = html + "<td><h3>" + entry.getCOL() + "</h3></td>";
                                                 }
                                             }
+                                            
+                                        }
                                         
                                             html = html + "</tr>";
-                                        }
-                                    } 
+                                    }
+                                    
                 html = html + """
                                 </table>
                             </div>

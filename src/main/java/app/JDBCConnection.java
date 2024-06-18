@@ -591,13 +591,8 @@ public class JDBCConnection {
                 period = " = '" + firstYear + "' OR '" + secondYear + "'))\n";
             }
 
-            //checkbox column items
-            String selected = String.join(", ", filter);
-
-            
-
             // The Query
-            String query = "SELECT " + selected + " AVG(loss_percentage), year FROM completeEvents\n" + //
+            String query = "SELECT commodity, activity, food_supply_stage, cause_of_loss, AVG(loss_percentage), year FROM completeEvents\n" + //
                             "WHERE ((countryName = '" + country + "') AND (year" + period + //
                             "GROUP BY commodity, year HAVING AVG(loss_percentage) AND year NOT NULL\n" + //
                             "ORDER BY commodity, year ASC;";
