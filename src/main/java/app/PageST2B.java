@@ -90,7 +90,18 @@ public class PageST2B implements Handler {
 html = html + "<form action='/page2B.html' method='post'>";
                         html = html + "<div class='timed-search-box'>";
 
-                        html = html + "<select name='selectedGroup' id='selectedGroup'> <optgroup>";
+                        html = html + "<select selected='";
+
+                        if(key1 != null)
+                        {
+                            html = html + key1;
+                        }
+                        else
+                        {
+                            html = html + "215";
+                        }
+                        
+                        html = html + "' name='selectedGroup' id='selectedGroup'> <optgroup>";
                         
 
                         ArrayList<Group> groups = jdbc.getAllGroupsName();
@@ -190,6 +201,7 @@ ReturnedGraphData = jdbc.getGraphResults(years1,years2,key1);
 };
 
 
+html = html + "<div class='twobGraphTable'>";
 
 html = html + """
                         <div class='line-graph' style='width:40%'>
@@ -266,6 +278,13 @@ html = html + """
                             });
                             </script>
                         </div>""";
+
+                        //Table Generator
+                        html = html + "<div>";
+                                html = html + "<p> Haha Testing Grandpa pfffffffff</p>";
+                        html = html + "</div>";
+
+                        html = html + "</div>";
 
 
 

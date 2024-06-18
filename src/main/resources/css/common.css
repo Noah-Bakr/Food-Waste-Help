@@ -914,6 +914,11 @@ align-items: center;
   align-content: center;
 }
 
+.twobGraphTable
+{
+  display: flex;
+}
+
 
 
 /* TEMPORARY CSS SUBJECT TO CHANGE */
