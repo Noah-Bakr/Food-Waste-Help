@@ -639,6 +639,69 @@ public class JDBCConnection {
         return commodities;
     }
 
+    //Task 3A table values generator
+    public ArrayList<Commodity> parse3ADataTable(String country, String firstYear, String decision, String determination, String itemsN, String orderBy) {
+        // Create the ArrayList of Country objects to return
+        ArrayList<Commodity> commodities = new ArrayList<Commodity>();
+
+        
+
+        // Setup the variable for the JDBC connection
+        Connection connection = null;
+
+        try {
+            // Connect to JDBC data base
+            connection = DriverManager.getConnection(DATABASE);
+
+            // Prepare a new SQL Query & Set a timeout
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            // The Query
+            String query = "SELECT countryName, commodity, AVG(loss_percentage), year FROM completeEvents\n" + //
+                            "WHERE (countryName = '" + country + "') AND year = '" + firstYear + "'\n" + //
+                            "GROUP BY commodity, year HAVING AVG(loss_percentage) AND year NOT NULL\n" + //
+                            "ORDER BY year " + orderBy + ";";
+                                
+            // Get Result
+            ResultSet results = statement.executeQuery(query);
+
+            // Process all of the results
+            while (results.next()) {
+                // Lookup the columns we need
+                double scale = Math.pow(10, 2);
+
+                String commodityName          = results.getString("commodity");
+
+                double AVGloss_percentage     = Math.round(results.getDouble("AVG(loss_percentage)") * scale) / scale;
+                String year                   = results.getString("year");
+
+                Commodity commoditiesObj = new Commodity(commodityName, AVGloss_percentage, year);
+                // Add the Country object to the array
+                commodities.add(commoditiesObj);
+            }
+
+            // Close the statement because we are done with it
+            statement.close();
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        // Finally we return all of the countries
+        return commodities;
+    }
+
     public ArrayList<Commodity> getAllCommodities() {
         // Create the ArrayList of Country objects to return
         ArrayList<Commodity> commodities = new ArrayList<Commodity>();

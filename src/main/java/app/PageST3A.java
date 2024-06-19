@@ -77,8 +77,15 @@ public class PageST3A implements Handler {
 
                         ArrayList<Country> countryNames = jdbc.getAllCountries();
 
+                        String country = context.formParam("chosen-countries");
+
                         for (Country name : countryNames) {
-                            html = html + "<option value='" + name.getName() + "'>" + name.getName() + "</option>";
+                            if (name.getName().equals(country)) {
+                                html = html + "<option value='" + name.getName() + "'selected='selected'>" + name.getName() + "</option>";
+
+                            } else {
+                                html = html + "<option value='" + name.getName() + "'>" + name.getName() + "</option>";
+                            }
                         }
                     
         html = html + """
@@ -89,8 +96,14 @@ public class PageST3A implements Handler {
 
                         ArrayList<String> years = jdbc.getAllYears();
 
+                        String firstYear = context.formParam("first-year");
+
                         for (String year : years) {
-                            html = html + "<option value='" + year + "'>" + year + "</option>";
+                            if (year.equals(firstYear)) {
+                                html = html + "<option value='" + year + "'selected='selected'>" + year + "</option>";
+                            } else {
+                                html = html + "<option value='" + year + "'>" + year + "</option>";
+                            }
                         }
 
         html = html + """
@@ -104,25 +117,107 @@ public class PageST3A implements Handler {
                             <div class='similarity-menu-items'> 
                                 <div class='similarity-decision'>
                                     <h5>Is decided on:</h5>
-                                    <div class='similarity-radio'>
-                                        <div>
+                                    <div class='similarity-radio'>""";
+
+                                    String decision = context.formParam("decision");
+
+                                    if (Objects.isNull(decision)) {
+                                        html = html + """
+                                            <div>
                                             <input type="radio" id="products" name="decision" value="products" checked="checked">
                                                 <label for="products">The food products</label>
-                                        </div>
-                                        <div>
-                                            <input type="radio" id="loss" name="decision" value="loss">
-                                                <label for="loss">Overall food loss/waste</label>
-                                        </div>
-                                        <div>
-                                            <input type="radio" id="both" name="decision" value="both">
-                                                <label for="both">Both</label>
-                                        </div>
+                                            </div>
+                                            <div>
+                                                <input type="radio" id="loss" name="decision" value="loss">
+                                                    <label for="loss">Overall food loss/waste</label>
+                                            </div>
+                                            <div>
+                                                <input type="radio" id="both" name="decision" value="both">
+                                                    <label for="both">Both</label>
+                                            </div>
+                                                """;
+                                    } else {
+                                        if (decision.equals("products")) {
+                                            html = html + """
+                                                <div>
+                                                <input type="radio" id="products" name="decision" value="products" checked="checked">
+                                                    <label for="products">The food products</label>
+                                                </div>
+                                                <div>
+                                                    <input type="radio" id="loss" name="decision" value="loss">
+                                                        <label for="loss">Overall food loss/waste</label>
+                                                </div>
+                                                <div>
+                                                    <input type="radio" id="both" name="decision" value="both">
+                                                        <label for="both">Both</label>
+                                                </div>
+                                                    """;
+                                        } else if (decision.equals("loss")) {
+                                            html = html + """
+                                                <div>
+                                                <input type="radio" id="products" name="decision" value="products">
+                                                    <label for="products">The food products</label>
+                                                </div>
+                                                <div>
+                                                    <input type="radio" id="loss" name="decision" value="loss" checked="checked">
+                                                        <label for="loss">Overall food loss/waste</label>
+                                                </div>
+                                                <div>
+                                                    <input type="radio" id="both" name="decision" value="both">
+                                                        <label for="both">Both</label>
+                                                </div>
+                                                    """;
+                                        } else if (decision.equals("both")) {
+                                            html = html + """
+                                                <div>
+                                                <input type="radio" id="products" name="decision" value="products">
+                                                    <label for="products">The food products</label>
+                                                </div>
+                                                <div>
+                                                    <input type="radio" id="loss" name="decision" value="loss">
+                                                        <label for="loss">Overall food loss/waste</label>
+                                                </div>
+                                                <div>
+                                                    <input type="radio" id="both" name="decision" value="both" checked="checked">
+                                                        <label for="both">Both</label>
+                                                </div>
+                                                    """;
+                                        }
+                                    }
+        html = html + """
                                     </div>
                                 </div>
 
                                 <div class='similarity-determination'>
                                     <h5>Determined by:</h5>
-                                    <div class='similarity-radio'>
+                                    <div class='similarity-radio'>""";
+
+                                    String determination = context.formParam("determination");
+
+                                    if (Objects.nonNull(determination)) {
+                                        if (determination.equals("absolute")) {
+                                            html = html + """
+                                            <div>    
+                                                <input type="radio" id="absolute" name="determination" value="absolute" checked="checked">
+                                                    <label for="absolute">The absolute values</label>
+                                            </div>
+                                            <div>
+                                                <input type="radio" id="overlap" name="determination" value="overlap">
+                                                    <label for="overlap">The level of overlap/waste</label>
+                                            </div>""";
+                                        } else if (determination.equals("overlap")) {
+                                            html = html + """
+                                            <div>    
+                                                <input type="radio" id="absolute" name="determination" value="absolute">
+                                                    <label for="absolute">The absolute values</label>
+                                            </div>
+                                            <div>
+                                                <input type="radio" id="overlap" name="determination" value="overlap" checked="checked">
+                                                    <label for="overlap">The level of overlap/waste</label>
+                                            </div>""";
+                                        }
+                                    } else {
+                                        html = html + """
                                         <div>    
                                             <input type="radio" id="absolute" name="determination" value="absolute" checked="checked">
                                                 <label for="absolute">The absolute values</label>
@@ -130,18 +225,70 @@ public class PageST3A implements Handler {
                                         <div>
                                             <input type="radio" id="overlap" name="determination" value="overlap">
                                                 <label for="overlap">The level of overlap/waste</label>
-                                        </div>
+                                        </div>""";
+                                    }
+        html = html + """
                                     </div>
                                 </div>
 
                                 <div class='similarity-dropdown'>
                                     <h5>No. of items</h5>
-                                    <select name="items-no" id="items-no">
-                                        <option value="5">5</option>
-                                        <option value="10">10</option>
-                                        <option value="15">15</option>
-                                        <option value="20">20</option>
-                                        <option value="25">25</option>
+                                    <select name="items-no" id="items-no">""";
+
+                                    String itemsNo = context.formParam("items-no");
+
+                                    if (Objects.nonNull(itemsNo)) {
+                                        if (itemsNo.equals("5")) {
+                                            html = html + """
+                                                <option value="5" selected='selected'>5</option>
+                                                <option value="10">10</option>
+                                                <option value="15">15</option>
+                                                <option value="20">20</option>
+                                                <option value="25">25</option>
+                                                    """;
+                                        } else if (itemsNo.equals("10")) {
+                                            html = html + """
+                                                <option value="5">5</option>
+                                                <option value="10" selected='selected'>10</option>
+                                                <option value="15">15</option>
+                                                <option value="20">20</option>
+                                                <option value="25">25</option>
+                                                    """;
+                                        } else if (itemsNo.equals("15")) {
+                                            html = html + """
+                                                <option value="5">5</option>
+                                                <option value="10">10</option>
+                                                <option value="15" selected='selected'>15</option>
+                                                <option value="20">20</option>
+                                                <option value="25">25</option>
+                                                    """;
+                                        } else if (itemsNo.equals("20")) {
+                                            html = html + """
+                                                <option value="5">5</option>
+                                                <option value="10">10</option>
+                                                <option value="15">15</option>
+                                                <option value="20" selected='selected'>20</option>
+                                                <option value="25">25</option>
+                                                    """;
+                                        } else if (itemsNo.equals("25")) {
+                                            html = html + """
+                                                <option value="5">5</option>
+                                                <option value="10">10</option>
+                                                <option value="15">15</option>
+                                                <option value="20">20</option>
+                                                <option value="25" selected='selected'>25</option>
+                                                    """;
+                                        }
+                                    } else {
+                                        html = html + """
+                                            <option value="5" selected='selected'>5</option>
+                                            <option value="10">10</option>
+                                            <option value="15">15</option>
+                                            <option value="20">20</option>
+                                            <option value="25">25</option>
+                                                """;
+                                    } 
+        html = html + """                                
                                     </select>
                                 </div>
                                 <div class='similarity-button'>
@@ -152,63 +299,62 @@ public class PageST3A implements Handler {
                     </form>""";
 
                     //Get selected country
-                    String period = context.formParam("country");
+                    country = context.formParam("country");
                     //Get year
-                    String firstYear = context.formParam("first-year");
+                    firstYear = context.formParam("first-year");
                     //Get Decision
-                    String secondYear = context.formParam("decision"); 
+                    decision = context.formParam("decision"); 
                     //Get determination selection
-                    String country = context.formParam("determination");
+                    determination = context.formParam("determination");
                     //Get No of items to return
-                    String itemsNo = context.formParam("items-no");
-                    //Get chosen countries
-                    java.util.List<String> filter = context.formParams("chosen-filter");
-
+                    itemsNo = context.formParam("items-no");
+                    //ASC or DESC
+                    String orderBy = context.formParam("order-by");
                     html = html + """
                         <div class='twoA-table'>
                                 <table> """;
 
-                                    if ((Objects.nonNull(period)) && (Objects.nonNull(firstYear)) && (Objects.nonNull(secondYear)) && (Objects.nonNull(country)) && (Objects.nonNull(filter))) {
-                                        ArrayList<Commodity> cl = jdbc.parse2ADataTable(period, firstYear, secondYear, country, filter); 
-                                        html = html + "<tr>";
-                                        for (int i = 0; i < filter.size(); i++) {
-                                            String str = null;
-                                            if (filter.get(i).equals("commodity")) {
-                                                str = "Commodity";
-                                            } else if (filter.get(i).equals("activity")) {
-                                                str = "Activity";
-                                            } else if (filter.get(i).equals("food_supply_stage")) {
-                                                str = "Food Supply Stage";
-                                            } else if (filter.get(i).equals("cause_of_loss")) {
-                                                str = "Cause of Loss";
-                                            }
+                                    // if ((Objects.nonNull(country)) && (Objects.nonNull(firstYear)) && (Objects.nonNull(decision)) && (Objects.nonNull(determination)) && (Objects.nonNull(itemsNo)) && (Objects.nonNull(orderBy))) {
+                                    //     ArrayList<Commodity> cl = jdbc.parse3ADataTable(country, firstYear, decision, determination, itemsNo, orderBy); 
+                                    //     html = html + "<tr>";
+                                    //     for (int i = 0; i < filter.size(); i++) {
+                                    //         String str = null;
+                                    //         if (filter.get(i).equals("commodity")) {
+                                    //             str = "Commodity";
+                                    //         } else if (filter.get(i).equals("activity")) {
+                                    //             str = "Activity";
+                                    //         } else if (filter.get(i).equals("food_supply_stage")) {
+                                    //             str = "Food Supply Stage";
+                                    //         } else if (filter.get(i).equals("cause_of_loss")) {
+                                    //             str = "Cause of Loss";
+                                    //         }
                                             
-                                            html = html + "<th><h2>" + str + "<h2></th>";
-                                        }
+                                    //         html = html + "<th><h2>" + str + "<h2></th>";
+                                    //     }
 
-                                        html = html + "<th><h2>Loss Percentage<h2></th>";
-                                        html = html + "<th><h2>Year<h2></th>";
-                                        html = html + "</tr>";
+                                    //     html = html + "<th><h2>Loss Percentage<h2></th>";
+                                    //     html = html + "<th><h2>Year<h2></th>";
+                                    //     html = html + "</tr>";
 
-                                        for (Commodity entry : cl) {
-                                            html = html + "<tr>";
-                                            for (int j = 0; j < filter.size(); j++) {
-                                                if (filter.get(j).equals("commodity")) {
-                                                    html = html + "<td><h3>" + entry.getCommodity() + "</h3></td>";
-                                                } else if (filter.get(j).equals("activity")) {
-                                                    html = html + "<td><h3>" + entry.getActivity() + "</h3></td>";
-                                                } else if (filter.get(j).equals("food_supply_stage")) {
-                                                    html = html + "<td><h3>" + entry.getFSS() + "</h3></td>";
-                                                } else if (filter.get(j).equals("cause_of_loss")) {
-                                                    html = html + "<td><h3>" + entry.getCOL() + "</h3></td>";
-                                                }
-                                            }
-                                            html = html + "<td><h3>" + entry.getLoss_Percentage() + "</h3></td>";
-                                            html = html + "<td><h3>" + entry.getYear() + "</h3></td>";
-                                        }
+                                    //     for (Commodity entry : cl) {
+                                    //         html = html + "<tr>";
+                                    //         for (int j = 0; j < filter.size(); j++) {
+                                    //             if (filter.get(j).equals("commodity")) {
+                                    //                 html = html + "<td><h3>" + entry.getCommodity() + "</h3></td>";
+                                    //             } else if (filter.get(j).equals("activity")) {
+                                    //                 html = html + "<td><h3>" + entry.getActivity() + "</h3></td>";
+                                    //             } else if (filter.get(j).equals("food_supply_stage")) {
+                                    //                 html = html + "<td><h3>" + entry.getFSS() + "</h3></td>";
+                                    //             } else if (filter.get(j).equals("cause_of_loss")) {
+                                    //                 html = html + "<td><h3>" + entry.getCOL() + "</h3></td>";
+                                    //             }
+                                    //         }
+                                    //         html = html + "<td><h3>" + entry.getLoss_Percentage() + "</h3></td>";
+                                    //         html = html + "<td><h3>" + entry.getYear() + "</h3></td>";
+                                    //     }
                                         
-                                            html = html + "</tr>";
-                                    }
+                                    //         html = html + "</tr>";
+                                    // }
                     html = html + """
                             </table>
                         </div>

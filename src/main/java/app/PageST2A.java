@@ -79,12 +79,14 @@ public class PageST2A implements Handler {
                         <h3>Present Data</h3>
                         <select name="period" id="period">""";
 
-                        if (period.equals("between")) {
-                            html = html + "<option value='between' selected='selected'>Between</option>";
-                            html = html + "<option value='from'>From</option>";
-                        } else if (period.equals("from")) {
-                            html = html + "<option value='between'>Between</option>";
-                            html = html + "<option value='from' selected='selected'>From</option>";
+                        if (Objects.nonNull(period)) {
+                            if (period.equals("between")) {
+                                html = html + "<option value='between' selected='selected'>Between</option>";
+                                html = html + "<option value='from'>From</option>";
+                            } else if (period.equals("from")) {
+                                html = html + "<option value='between'>Between</option>";
+                                html = html + "<option value='from' selected='selected'>From</option>";
+                            }
                         } else {
                             html = html + "<option value='between' selected='selected'>Between</option>";
                             html = html + "<option value='from'>From</option>";
