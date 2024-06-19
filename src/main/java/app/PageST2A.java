@@ -326,9 +326,10 @@ public class PageST2A implements Handler {
                                             }
                                             html = html + "<td><h3>" + entry.getLoss_Percentage() + "</h3></td>";
                                             html = html + "<td><h3>" + entry.getYear() + "</h3></td>";
+                                            html = html + "</tr>";
                                         }
                                         
-                                            html = html + "</tr>";
+                                            
                                     }
                                     
                 html = html + """
