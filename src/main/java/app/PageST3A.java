@@ -314,14 +314,7 @@ public class PageST3A implements Handler {
                     html = html + """
                         <div class='twoA-table' id='threeA-table'>
                                     <div class="order-by">
-                                        <div>
-                                            <div class='sort-icon'>
-                                                <label>
-                                                    <span>
-                                                        <img img src='./icons/SortIcon.png'>
-                                                    </span>
-                                                </label>
-                                            </div>""";
+                                        <div>""";
                                             
                                             if (orderBy.equals("asc")) {
                                                 html = html + """
