@@ -90,24 +90,22 @@ public class PageST2B implements Handler {
 html = html + "<form action='/page2B.html' method='post'>";
                         html = html + "<div class='timed-search-box'>";
 
-                        html = html + "<select selected='";
-
-                        if(key1 != null)
-                        {
-                            html = html + key1;
-                        }
-                        else
-                        {
-                            html = html + "215";
-                        }
-                        
-                        html = html + "' name='selectedGroup' id='selectedGroup'> <optgroup>";
+                        html = html + "<select name='selectedGroup' id='selectedGroup'> <optgroup>";
                         
 
                         ArrayList<Group> groups = jdbc.getAllGroupsName();
 
                         for (Group group : groups) {
-                            html = html + "<option value='" + group.getGroupId() + "'>" + group.getDescriptor() + "</option>";
+                            String groupIdValue = group.getGroupId();
+                            html = html + "<option value='" + groupIdValue + "' ";
+                            if(key1 != null)
+                            {
+                            if(key1.equals(groupIdValue))
+                            {
+                                html = html + "selected = 'selected'";
+                            }
+                            }
+                            html = html + ">" + group.getDescriptor() + "</option>";
                         }
 html = html + "</optgroup> </select>";
 html = html + "<h3>Between</h3>";
@@ -117,7 +115,16 @@ html = html + "<select name='first-year' id='first-year'> <optgroup>";
                         ArrayList<String> firstYear = jdbc.getAllYears();
 
                         for (String year : firstYear) {
-                            html = html + "<option value='" + year + "'>" + year + "</option>";
+                            
+                            html = html + "<option value='" + year + "' ";
+                            if(years1 != null)
+                            {
+                                if(years1.equals(year))
+                                {
+                                    html = html + "selected = selected";
+                                }
+                            }
+                            html = html +">" + year + "</option>";
                         }
 
         html = html + """
@@ -128,7 +135,15 @@ html = html + "<select name='first-year' id='first-year'> <optgroup>";
 
                         ArrayList<String> secondYear = jdbc.getAllYearsInverted();
                         for (String year : secondYear) {
-                            html = html + "<option value='" + year + "'>" + year + "</option>";
+                            html = html + "<option value='" + year + "' ";
+                            if(years2 != null)
+                            {
+                                if(years2.equals(year))
+                                {
+                                    html = html + "selected = selected";
+                                }
+                            }
+                            html = html +">" + year + "</option>";
                         }
         
         html = html + "</optgroup></select>";
@@ -189,7 +204,7 @@ html = html + """
             String numberOfEvents = "No Group Selected";
             if(key1 != null)
             {
-                numberOfEvents = jdbc.getNoOfGroupsCat(key1);
+                numberOfEvents = jdbc.getNoOfGroupsCat(key1,years1,years2);
                 html = html + "<p style='color:#4F7302; font-size:30px; text-align:center;'> Number of results: " + numberOfEvents + "</p>";
             }
             else
