@@ -184,10 +184,17 @@ html = html + """
                 <button type='submit' class='Button' style='padding:1% 3% 1% 3%; border-radius:20px; font-size:30px; margin-top: 5px;'>Generate</button>
                 """;
 
-            html = html + "<div>";
+            html = html + "<div style='width:40%; padding-left:2%; border: 2px solid #4F7302; background-color:white' id='numberOfResults'>";
+
+            String numberOfEvents = "No Group Selected";
             if(key1 != null)
             {
-                html = html + "<p>" +  + "</p>";
+                numberOfEvents = jdbc.getNoOfGroupsCat(key1);
+                html = html + "<p style='color:#4F7302; font-size:30px; text-align:center;'> Number of results: " + numberOfEvents + "</p>";
+            }
+            else
+            {
+                html = html + "<p style='color:#4F7302; font-size:30px; text-align:center;'>" + numberOfEvents + "</p>";
             }
                     
             html = html + "</div>";
@@ -302,78 +309,78 @@ html = html + """
                                             //001
                                             if((actSelect==null)&&(fssSelect == null)&&(colSelect != null))
                                             {
-                                                html = html +"<th><h2 style='23px'>Year</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Loss Percentage</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Commodity</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Country</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Cause Of Loss</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Year</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Loss Percentage</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Commodity</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Country</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Cause Of Loss</h2></th>";
                                             }
                                             //010
                                             else if((actSelect==null)&&(fssSelect != null)&&(colSelect == null))
                                             {
-                                                html = html +"<th><h2 style='23px'>Year</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Loss Percentage</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Commodity</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Country</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Food Supply Stage</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Year</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Loss Percentage</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Commodity</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Country</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Food Supply Stage</h2></th>";
                                             }
                                             //011
                                             else if((actSelect==null)&&(fssSelect != null)&&(colSelect != null))
                                             {
-                                                html = html +"<th><h2 style='23px'>Year</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Loss Percentage</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Commodity</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Country</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Food Supply Stage</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Cause Of Loss</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Year</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Loss Percentage</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Commodity</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Country</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Food Supply Stage</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Cause Of Loss</h2></th>";
                                             }
                                             //100
                                             else if((actSelect!=null)&&(fssSelect == null)&&(colSelect == null))
                                             {
-                                                html = html +"<th><h2 style='23px'>Year</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Loss Percentage</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Commodity</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Country</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Activity</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Year</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Loss Percentage</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Commodity</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Country</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Activity</h2></th>";
                                             }
                                             //101
                                             else if((actSelect!=null)&&(fssSelect == null)&&(colSelect != null))
                                             {
-                                                html = html +"<th><h2 style='23px'>Year</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Loss Percentage</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Commodity</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Country</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Activity</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Cause Of Loss</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Year</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Loss Percentage</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Commodity</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Country</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Activity</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Cause Of Loss</h2></th>";
                                             }
                                             //110
                                             else if((actSelect!=null)&&(fssSelect != null)&&(colSelect == null))
                                             {
-                                                html = html +"<th><h2 style='23px'>Year</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Loss Percentage</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Commodity</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Country</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Activity</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Food Supply Stage</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Year</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Loss Percentage</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Commodity</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Country</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Activity</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Food Supply Stage</h2></th>";
                                             }
                                             //111
                                             else if((actSelect!=null)&&(fssSelect != null)&&(colSelect != null))
                                             {
-                                                html = html +"<th><h2 style='23px'>Year</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Loss Percentage</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Commodity</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Country</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Activity</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Food Supply Stage</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Cause Of Loss</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Year</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Loss Percentage</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Commodity</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Country</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Activity</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Food Supply Stage</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Cause Of Loss</h2></th>";
                                             }
                                             //000
                                             else
                                             {
-                                                html = html +"<th><h2 style='23px'>Year</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Loss Percentage</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Commodity</h2></th>";
-                                                html = html +"<th><h2 style='23px'>Country</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Year</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Loss Percentage</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Commodity</h2></th>";
+                                                html = html +"<th><h2 style='20px'>Country</h2></th>";
                                             }
                                             
                                             
