@@ -310,7 +310,6 @@ public class PageST3A implements Handler {
                     itemsNo = context.formParam("items-no");
                     //ASC or DESC
                     String orderBy = context.formParam("order-by");
-                    orderBy = "ASC";
 
                     html = html + """
                         <div class='twoA-table' id='threeA-table'>
@@ -321,7 +320,7 @@ public class PageST3A implements Handler {
                                             <span>Ascending</span>
                                         </label>
                                         <label>
-                                            <input type="radio" id='asc' name="order-by" value='asc' checked="checked">
+                                            <input type="radio" id='desc' name="order-by" value='desc' checked="checked">
                                             <span>Descending</span>
                                         </label>
                                     </div>
