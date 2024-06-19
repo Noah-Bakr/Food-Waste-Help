@@ -13,6 +13,10 @@ public class Country {
    // country Name
    private String name;
 
+   private double AVGloss_percentage;
+   private String year;
+   private double similarityPercentage;
+
    /**
     * Create a Country and set the fields
     */
@@ -21,11 +25,30 @@ public class Country {
       this.name = name;
    }
 
+   public Country(String countryName, double AVGloss_percentage, String year, double similarityPercentage) {
+      name = countryName;
+      this.AVGloss_percentage = AVGloss_percentage;
+      this.year = year;
+      this.similarityPercentage = similarityPercentage;
+   }
+
    public String getM49Code() {
       return m49Code;
    }
 
    public String getName() {
       return name;
+   }
+
+   public double getLossPercentage() {
+      return AVGloss_percentage;
+   }
+
+   public String getYear() {
+      return year;
+   }
+
+   public double getSimilarityPercentage() {
+      return similarityPercentage;
    }
 }

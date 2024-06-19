@@ -640,11 +640,16 @@ public class JDBCConnection {
     }
 
     //Task 3A table values generator
-    public ArrayList<Commodity> parse3ADataTable(String country, String firstYear, String decision, String determination, String itemsN, String orderBy) {
+    public ArrayList<Country> parse3ADataTable(String country, String firstYear, String decision, String determination, String itemsNo, String orderBy) {
         // Create the ArrayList of Country objects to return
-        ArrayList<Commodity> commodities = new ArrayList<Commodity>();
+        ArrayList<Country> simCountries = new ArrayList<Country>();
 
-        
+        ArrayList<Country> compCountry = parse3ADataTableHELPER(country, firstYear, decision, determination, itemsNo, orderBy);
+
+        double comparingCountry = 0.0;
+        for (Country comp : compCountry) {
+            comparingCountry = comp.getLossPercentage();
+        }
 
         // Setup the variable for the JDBC connection
         Connection connection = null;
@@ -658,10 +663,17 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT countryName, commodity, AVG(loss_percentage), year FROM completeEvents\n" + //
+            String query = "SELECT countryName, AVG(loss_percentage), year, 100 - (ABS(AVG(loss_percentage) - " + String.valueOf(comparingCountry) + ") / 25 * 100) AS 'similarity_percentage' FROM completeEvents\n" + //
                             "WHERE (countryName = '" + country + "') AND year = '" + firstYear + "'\n" + //
-                            "GROUP BY commodity, year HAVING AVG(loss_percentage) AND year NOT NULL\n" + //
-                            "ORDER BY year " + orderBy + ";";
+                            "GROUP BY countryName HAVING AVG(loss_percentage)\n" + //
+                            
+                            "UNION\n" + //
+                            
+                            "SELECT countryName, AVG(loss_percentage), year, 100 - (ABS(AVG(loss_percentage) - " + String.valueOf(comparingCountry) + ") / 25 * 100) AS 'similarity_percentage' FROM completeEvents\n" + //
+                            "WHERE (countryName != '" + country + "') AND year = '" + firstYear + "'\n" + //
+                            "GROUP BY countryName HAVING AVG(loss_percentage)\n" + //
+                            "ORDER BY similarity_percentage " + orderBy + ", countryName\n" + //
+                            "LIMIT " + itemsNo + ";";
                                 
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -671,14 +683,14 @@ public class JDBCConnection {
                 // Lookup the columns we need
                 double scale = Math.pow(10, 2);
 
-                String commodityName          = results.getString("commodity");
-
+                String countryName          = results.getString("countryName");
                 double AVGloss_percentage     = Math.round(results.getDouble("AVG(loss_percentage)") * scale) / scale;
                 String year                   = results.getString("year");
+                double similarityPercentage     = Math.round(results.getDouble("similarity_percentage") * scale) / scale;
 
-                Commodity commoditiesObj = new Commodity(commodityName, AVGloss_percentage, year);
+                Country countryObj = new Country(countryName, AVGloss_percentage, year, similarityPercentage);
                 // Add the Country object to the array
-                commodities.add(commoditiesObj);
+                simCountries.add(countryObj);
             }
 
             // Close the statement because we are done with it
@@ -699,7 +711,68 @@ public class JDBCConnection {
         }
 
         // Finally we return all of the countries
-        return commodities;
+        return simCountries;
+    }
+
+    public ArrayList<Country> parse3ADataTableHELPER(String country, String firstYear, String decision, String determination, String itemsNo, String orderBy) {
+        // Create the ArrayList of Country objects to return
+        ArrayList<Country> simCountries = new ArrayList<Country>();
+
+        
+
+        // Setup the variable for the JDBC connection
+        Connection connection = null;
+
+        try {
+            // Connect to JDBC data base
+            connection = DriverManager.getConnection(DATABASE);
+
+            // Prepare a new SQL Query & Set a timeout
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            // The Query
+            String query = "SELECT countryName, AVG(loss_percentage), year, 100 - (ABS(AVG(loss_percentage) - 16) / 25 * 100) AS 'similarity_percentage' FROM completeEvents\n" + //
+                            "WHERE (countryName = '" + country + "') AND year = '" + firstYear + "'\n" + //
+                            "GROUP BY countryName HAVING AVG(loss_percentage)";
+                                
+            // Get Result
+            ResultSet results = statement.executeQuery(query);
+
+            // Process all of the results
+            while (results.next()) {
+                // Lookup the columns we need
+                double scale = Math.pow(10, 2);
+
+                String countryName          = results.getString("countryName");
+                double AVGloss_percentage     = results.getDouble("AVG(loss_percentage)");
+                String year                   = results.getString("year");
+                double similarityPercentage     = Math.round(results.getDouble("similarity_percentage") * scale) / scale;
+
+                Country countryObj = new Country(countryName, AVGloss_percentage, year, similarityPercentage);
+                // Add the Country object to the array
+                simCountries.add(countryObj);
+            }
+
+            // Close the statement because we are done with it
+            statement.close();
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        // Finally we return all of the countries
+        return simCountries;
     }
 
     public ArrayList<Commodity> getAllCommodities() {

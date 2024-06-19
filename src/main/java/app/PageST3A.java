@@ -73,7 +73,7 @@ public class PageST3A implements Handler {
                     <form action='/page3A.html' method='post'>
                     <div class='timed-search-box'>
                         <h3>Countries Similiar to</h3>
-                        <select name="country" id="country">""";
+                        <select name="chosen-countries" id="country">""";
 
                         ArrayList<Country> countryNames = jdbc.getAllCountries();
 
@@ -299,7 +299,7 @@ public class PageST3A implements Handler {
                     </form>""";
 
                     //Get selected country
-                    country = context.formParam("country");
+                    country = context.formParam("chosen-countries");
                     //Get year
                     firstYear = context.formParam("first-year");
                     //Get Decision
@@ -314,21 +314,57 @@ public class PageST3A implements Handler {
                     html = html + """
                         <div class='twoA-table' id='threeA-table'>
                                     <div class="order-by">
-                                    <div>
-                                        <label>
-                                            <input type="radio" id='asc' name="order-by" value='asc' checked="">
-                                            <span>Ascending</span>
-                                        </label>
-                                        <label>
-                                            <input type="radio" id='desc' name="order-by" value='desc' checked="checked">
-                                            <span>Descending</span>
-                                        </label>
+                                        <div>
+                                            <div class='sort-icon'>
+                                                <label>
+                                                    <span>
+                                                        <img img src='./icons/SortIcon.png'>
+                                                    </span>
+                                                </label>
+                                            </div>""";
+                                            
+                                            if (orderBy.equals("asc")) {
+                                                html = html + """
+                                                    <label>
+                                                        <input type="radio" id='asc' name="order-by" value='asc' checked="checked">
+                                                        <span>Ascending</span>
+                                                    </label>
+                                                    <label>
+                                                        <input type="radio" id='desc' name="order-by" value='desc'>
+                                                        <span>Descending</span>
+                                                    </label>
+                                                        """;
+                                            } else if (orderBy.equals("desc")) {
+                                                html = html + """
+                                                    <label>
+                                                        <input type="radio" id='asc' name="order-by" value='asc'>
+                                                        <span>Ascending</span>
+                                                    </label>
+                                                    <label>
+                                                        <input type="radio" id='desc' name="order-by" value='desc' checked="checked">
+                                                        <span>Descending</span>
+                                                    </label>
+                                                        """;
+                                            } else {
+                                                html = html + """
+                                                    <label>
+                                                        <input type="radio" id='asc' name="order-by" value='asc'>
+                                                        <span>Ascending</span>
+                                                    </label>
+                                                    <label>
+                                                        <input type="radio" id='desc' name="order-by" value='desc' checked="checked">
+                                                        <span>Descending</span>
+                                                    </label>
+                                                        """;
+                                            }
+                                            
+                    html = html + """
+                                        </div>
                                     </div>
-                                </div>
                                 <table> """;
 
                                     if ((Objects.nonNull(country)) && (Objects.nonNull(firstYear)) && (Objects.nonNull(decision)) && (Objects.nonNull(determination)) && (Objects.nonNull(itemsNo)) && (Objects.nonNull(orderBy))) {
-                                        ArrayList<Commodity> data = jdbc.parse3ADataTable(country, firstYear, decision, determination, itemsNo, orderBy); 
+                                        ArrayList<Country> data = jdbc.parse3ADataTable(country, firstYear, decision, determination, itemsNo, orderBy); 
                                         html = html + "<tr>";
                                         if (decision.equals("loss")) {
                                             
@@ -340,15 +376,15 @@ public class PageST3A implements Handler {
                                         html = html + "<th><h2>Similarity Score<h2></th>";
                                         html = html + "</tr>";
 
-                                        for (Commodity entry : data) {
+                                        for (Country entry : data) {
                                             html = html + "<tr>";
                                             
-                                            html = html + "<td><h3>" + entry.getCommodity() + "</h3></td>";
-                                            html = html + "<td><h3>" + entry.getLoss_Percentage() + "</h3></td>";
+                                            html = html + "<td><h3>" + entry.getName() + "</h3></td>";
+                                            html = html + "<td><h3>" + entry.getLossPercentage() + "</h3></td>";
                                             html = html + "<td><h3>" + entry.getYear() + "</h3></td>";
-                                        }
-                                        
+                                            html = html + "<td><h3>" + entry.getSimilarityPercentage() + "</h3></td>";
                                             html = html + "</tr>";
+                                        }
                                     }
                     html = html + """
                             </table>

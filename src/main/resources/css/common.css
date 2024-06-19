@@ -610,6 +610,19 @@ img.top-image {
   align-items: baseline;
 }
 
+.order-by {
+  margin: 0 0 20px 0;
+}
+
+.sort-icon {
+  width: 30px;
+
+}
+
+.sort-icon img {
+  width: 28px;
+}
+
 .order-by:focus {
   outline: 0;
   border-color: #9FC847;
@@ -647,7 +660,7 @@ label span {
   padding: 0.375em .75em;
   position: relative;
   margin-left: .0625em;
-  box-shadow: 0 0 0 0.0625em #b5bfd9;
+  box-shadow: 0 0 0 0.0625em #9FC847;
   letter-spacing: .05em;
   color: #000;
   text-align: center;
