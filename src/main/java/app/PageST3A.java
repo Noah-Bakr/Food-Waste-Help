@@ -1,6 +1,7 @@
 package app;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import helper.WebsiteElementBuilder;
 import io.javalin.http.Context;
@@ -148,33 +149,68 @@ public class PageST3A implements Handler {
                                 </div>
                             </div>
                         </div>
-                    </form>
-                        <div class='line-graph'>
-                            <canvas id="line-graph"></canvas>
-                            <script>
-                            const xValues = [50,60,70,80,90,100,110,120,130,140,150];
-                            const yValues = [7,8,8,9,9,9,10,11,14,14,15];
+                    </form>""";
 
-                            new Chart("line-graph", {
-                            type: "line",
-                            data: {
-                                labels: xValues,
-                                datasets: [{
-                                fill: false,
-                                lineTension: 0,
-                                backgroundColor: "rgba(0,0,255,1.0)",
-                                borderColor: "rgba(0,0,255,0.1)",
-                                data: yValues
-                                }]
-                            },
-                            options: {
-                                legend: {display: false},
-                                scales: {
-                                yAxes: [{ticks: {min: 6, max:16}}],
-                                }
-                            }
-                            });
-                            </script>
+                    //Get selected country
+                    String period = context.formParam("country");
+                    //Get year
+                    String firstYear = context.formParam("first-year");
+                    //Get Decision
+                    String secondYear = context.formParam("decision"); 
+                    //Get determination selection
+                    String country = context.formParam("determination");
+                    //Get No of items to return
+                    String itemsNo = context.formParam("items-no");
+                    //Get chosen countries
+                    java.util.List<String> filter = context.formParams("chosen-filter");
+
+                    html = html + """
+                        <div class='twoA-table'>
+                                <table> """;
+
+                                    if ((Objects.nonNull(period)) && (Objects.nonNull(firstYear)) && (Objects.nonNull(secondYear)) && (Objects.nonNull(country)) && (Objects.nonNull(filter))) {
+                                        ArrayList<Commodity> cl = jdbc.parse2ADataTable(period, firstYear, secondYear, country, filter); 
+                                        html = html + "<tr>";
+                                        for (int i = 0; i < filter.size(); i++) {
+                                            String str = null;
+                                            if (filter.get(i).equals("commodity")) {
+                                                str = "Commodity";
+                                            } else if (filter.get(i).equals("activity")) {
+                                                str = "Activity";
+                                            } else if (filter.get(i).equals("food_supply_stage")) {
+                                                str = "Food Supply Stage";
+                                            } else if (filter.get(i).equals("cause_of_loss")) {
+                                                str = "Cause of Loss";
+                                            }
+                                            
+                                            html = html + "<th><h2>" + str + "<h2></th>";
+                                        }
+
+                                        html = html + "<th><h2>Loss Percentage<h2></th>";
+                                        html = html + "<th><h2>Year<h2></th>";
+                                        html = html + "</tr>";
+
+                                        for (Commodity entry : cl) {
+                                            html = html + "<tr>";
+                                            for (int j = 0; j < filter.size(); j++) {
+                                                if (filter.get(j).equals("commodity")) {
+                                                    html = html + "<td><h3>" + entry.getCommodity() + "</h3></td>";
+                                                } else if (filter.get(j).equals("activity")) {
+                                                    html = html + "<td><h3>" + entry.getActivity() + "</h3></td>";
+                                                } else if (filter.get(j).equals("food_supply_stage")) {
+                                                    html = html + "<td><h3>" + entry.getFSS() + "</h3></td>";
+                                                } else if (filter.get(j).equals("cause_of_loss")) {
+                                                    html = html + "<td><h3>" + entry.getCOL() + "</h3></td>";
+                                                }
+                                            }
+                                            html = html + "<td><h3>" + entry.getLoss_Percentage() + "</h3></td>";
+                                            html = html + "<td><h3>" + entry.getYear() + "</h3></td>";
+                                        }
+                                        
+                                            html = html + "</tr>";
+                                    }
+                    html = html + """
+                            </table>
                         </div>
                     </div>
                 </div>

@@ -11,6 +11,16 @@ body {
   background: #f1f1f1;
 }
 
+p {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-font-smoothing: antialiased !important;
+  text-rendering: optimizelegibility !important;
+  letter-spacing: .03em;
+  font-size: large;
+  font-weight: 450;
+}
+
 /* Style the content */
 .content {
   background-image: url("Background.jpg");
