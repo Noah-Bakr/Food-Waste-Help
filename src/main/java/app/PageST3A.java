@@ -310,51 +310,46 @@ public class PageST3A implements Handler {
                     itemsNo = context.formParam("items-no");
                     //ASC or DESC
                     String orderBy = context.formParam("order-by");
+
                     html = html + """
-                        <div class='twoA-table'>
+                        <div class='twoA-table' id='threeA-table'>
+                                    <div class="order-by">
+                                    <div>
+                                        <label>
+                                            <input type="radio" id='asc' name="order-by" value='asc' checked="">
+                                            <span>Ascending</span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" id='desc' name="order-by" value='desc' checked="checked">
+                                            <span>Descending</span>
+                                        </label>
+                                    </div>
+                                </div>
                                 <table> """;
 
-                                    // if ((Objects.nonNull(country)) && (Objects.nonNull(firstYear)) && (Objects.nonNull(decision)) && (Objects.nonNull(determination)) && (Objects.nonNull(itemsNo)) && (Objects.nonNull(orderBy))) {
-                                    //     ArrayList<Commodity> cl = jdbc.parse3ADataTable(country, firstYear, decision, determination, itemsNo, orderBy); 
-                                    //     html = html + "<tr>";
-                                    //     for (int i = 0; i < filter.size(); i++) {
-                                    //         String str = null;
-                                    //         if (filter.get(i).equals("commodity")) {
-                                    //             str = "Commodity";
-                                    //         } else if (filter.get(i).equals("activity")) {
-                                    //             str = "Activity";
-                                    //         } else if (filter.get(i).equals("food_supply_stage")) {
-                                    //             str = "Food Supply Stage";
-                                    //         } else if (filter.get(i).equals("cause_of_loss")) {
-                                    //             str = "Cause of Loss";
-                                    //         }
+                                    if ((Objects.nonNull(country)) && (Objects.nonNull(firstYear)) && (Objects.nonNull(decision)) && (Objects.nonNull(determination)) && (Objects.nonNull(itemsNo)) && (Objects.nonNull(orderBy))) {
+                                        ArrayList<Commodity> data = jdbc.parse3ADataTable(country, firstYear, decision, determination, itemsNo, orderBy); 
+                                        html = html + "<tr>";
+                                        if (decision.equals("loss")) {
                                             
-                                    //         html = html + "<th><h2>" + str + "<h2></th>";
-                                    //     }
+                                            html = html + "<th><h2>Country<h2></th>";
+                                        }
 
-                                    //     html = html + "<th><h2>Loss Percentage<h2></th>";
-                                    //     html = html + "<th><h2>Year<h2></th>";
-                                    //     html = html + "</tr>";
+                                        html = html + "<th><h2>Loss Percentage<h2></th>";
+                                        html = html + "<th><h2>Year<h2></th>";
+                                        html = html + "<th><h2>Similarity Score<h2></th>";
+                                        html = html + "</tr>";
 
-                                    //     for (Commodity entry : cl) {
-                                    //         html = html + "<tr>";
-                                    //         for (int j = 0; j < filter.size(); j++) {
-                                    //             if (filter.get(j).equals("commodity")) {
-                                    //                 html = html + "<td><h3>" + entry.getCommodity() + "</h3></td>";
-                                    //             } else if (filter.get(j).equals("activity")) {
-                                    //                 html = html + "<td><h3>" + entry.getActivity() + "</h3></td>";
-                                    //             } else if (filter.get(j).equals("food_supply_stage")) {
-                                    //                 html = html + "<td><h3>" + entry.getFSS() + "</h3></td>";
-                                    //             } else if (filter.get(j).equals("cause_of_loss")) {
-                                    //                 html = html + "<td><h3>" + entry.getCOL() + "</h3></td>";
-                                    //             }
-                                    //         }
-                                    //         html = html + "<td><h3>" + entry.getLoss_Percentage() + "</h3></td>";
-                                    //         html = html + "<td><h3>" + entry.getYear() + "</h3></td>";
-                                    //     }
+                                        for (Commodity entry : data) {
+                                            html = html + "<tr>";
+                                            
+                                            html = html + "<td><h3>" + entry.getCommodity() + "</h3></td>";
+                                            html = html + "<td><h3>" + entry.getLoss_Percentage() + "</h3></td>";
+                                            html = html + "<td><h3>" + entry.getYear() + "</h3></td>";
+                                        }
                                         
-                                    //         html = html + "</tr>";
-                                    // }
+                                            html = html + "</tr>";
+                                    }
                     html = html + """
                             </table>
                         </div>

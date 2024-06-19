@@ -184,7 +184,7 @@ public class PageST2A implements Handler {
                                     <label for='commodity'>Commodity</label></a>""";
                                 } else {
                                         html = html + """
-                                        <a><input type='checkbox' id='commodity' name='chosen-filter' value='commodity'>
+                                        <a><input type='checkbox' id='commodity' name='chosen-filter' value='commodity' checked='checked'>
                                     <label for='commodity'>Commodity</label></a>""";
                                 } 
                                 //Acitivity
@@ -326,9 +326,10 @@ public class PageST2A implements Handler {
                                             }
                                             html = html + "<td><h3>" + entry.getLoss_Percentage() + "</h3></td>";
                                             html = html + "<td><h3>" + entry.getYear() + "</h3></td>";
+                                            html = html + "</tr>";
                                         }
                                         
-                                            html = html + "</tr>";
+                                            
                                     }
                                     
                 html = html + """
