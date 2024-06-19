@@ -184,7 +184,7 @@ public class PageST2A implements Handler {
                                     <label for='commodity'>Commodity</label></a>""";
                                 } else {
                                         html = html + """
-                                        <a><input type='checkbox' id='commodity' name='chosen-filter' value='commodity'>
+                                        <a><input type='checkbox' id='commodity' name='chosen-filter' value='commodity' checked='checked'>
                                     <label for='commodity'>Commodity</label></a>""";
                                 } 
                                 //Acitivity
