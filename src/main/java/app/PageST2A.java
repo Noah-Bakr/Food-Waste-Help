@@ -73,20 +73,38 @@ public class PageST2A implements Handler {
                     </div>      
                     """;
         html = html + "<form action='/page2A.html' method='post'>";
+                        String period = context.formParam("period");
         html = html + """
                     <div class='timed-search-box'>
                         <h3>Present Data</h3>
-                        <select name="period" id="period">
-                            <option value="between">Between</option>
-                            <option value="from">From</option>
+                        <select name="period" id="period">""";
+
+                        if (period.equals("between")) {
+                            html = html + "<option value='between' selected='selected'>Between</option>";
+                            html = html + "<option value='from'>From</option>";
+                        } else if (period.equals("from")) {
+                            html = html + "<option value='between'>Between</option>";
+                            html = html + "<option value='from' selected='selected'>From</option>";
+                        } else {
+                            html = html + "<option value='between' selected='selected'>Between</option>";
+                            html = html + "<option value='from'>From</option>";
+                        }
+                            
+        html = html + """
                         </select>
                         <select name="first-year" id="first-year">
                         """;
 
                         ArrayList<String> years = jdbc.getAllYears();
 
+                        String firstYear = context.formParam("first-year");
+
                         for (String year : years) {
-                            html = html + "<option value='" + year + "'>" + year + "</option>";
+                            if (year.equals(firstYear)) {
+                                html = html + "<option value='" + year + "'selected='selected'>" + year + "</option>";
+                            } else {
+                                html = html + "<option value='" + year + "'>" + year + "</option>";
+                            }
                         }
 
         html = html + """
@@ -96,8 +114,13 @@ public class PageST2A implements Handler {
                         """;
                         ArrayList<String> yearsInv = jdbc.getAllYearsInverted();
 
+                        String secondYear = context.formParam("second-year"); 
                         for (String year : yearsInv) {
-                            html = html + "<option value='" + year + "'>" + year + "</option>";
+                            if (year.equals(secondYear)) {
+                                html = html + "<option value='" + year + "'selected='selected'>" + year + "</option>";
+                            } else {
+                                html = html + "<option value='" + year + "'>" + year + "</option>";
+                            }
                         }
         
         html = html + """
@@ -114,8 +137,15 @@ public class PageST2A implements Handler {
 
                                 ArrayList<Country> countryNames = jdbc.getAllCountries();
 
+                                String country = context.formParam("chosen-countries");
+
                                 for (Country name : countryNames) {
-                                    html = html + "<option value='" + name.getName() + "'>" + name.getName() + "</option>";
+                                    if (name.getName().equals(country)) {
+                                        html = html + "<option value='" + name.getName() + "'selected='selected'>" + name.getName() + "</option>";
+
+                                    } else {
+                                        html = html + "<option value='" + name.getName() + "'>" + name.getName() + "</option>";
+                                    }
                                 }
             html = html + """
                                 </select>
@@ -125,15 +155,68 @@ public class PageST2A implements Handler {
                                 <div class='scroll-menu-title'>
                                     <h2>Filter</h2>
                                 </div>
-                                <div class='scroll-menu-items'>
-                                    <a><input type='checkbox' id='commodity' name='chosen-filter' value='commodity' checked='checked'>
-                                        <label for='commodity'>Commodity</label></a>
-                                    <a><input type='checkbox' id='activity' name='chosen-filter' value='activity'>
-                                        <label for='activity'>Activity</label></a>
-                                    <a><input type='checkbox' id='food-supply-stage' name='chosen-filter' value='food_supply_stage'>
-                                        <label for='food-supply-stage'>Food Supply Stage</label></a>
-                                    <a><input type='checkbox' id='cause-of-loss' name='chosen-filter' value='cause_of_loss'>
-                                        <label for='cause-of-loss'>Cause Of Loss</label></a>
+                                <div class='scroll-menu-items'>""";
+
+                                java.util.List<String> filter = context.formParams("chosen-filter");
+
+                                int commodity = 0;
+                                int activity = 0;
+                                int fss = 0;
+                                int col = 0;
+
+                                for (int i = 0; i < filter.size(); i++) {
+                                    if (filter.get(i).equals("commodity")) {
+                                        commodity++;
+                                    } else if (filter.get(i).equals("activity")) {
+                                        activity++;
+                                    } else if (filter.get(i).equals("food_supply_stage")) {
+                                        fss++;
+                                    } else if (filter.get(i).equals("cause_of_loss")) {
+                                        col++;
+                                    }
+                                }
+                                //Commodity
+                                if (commodity == 1) {
+                                    html = html + """
+                                        <a><input type='checkbox' id='commodity' name='chosen-filter' value='commodity' checked='checked'>
+                                    <label for='commodity'>Commodity</label></a>""";
+                                } else {
+                                        html = html + """
+                                        <a><input type='checkbox' id='commodity' name='chosen-filter' value='commodity'>
+                                    <label for='commodity'>Commodity</label></a>""";
+                                } 
+                                //Acitivity
+                                if (activity == 1) {
+                                    html = html + """
+                                        <a><input type='checkbox' id='activity' name='chosen-filter' value='activity' checked='checked'>
+                                        <label for='activity'>Activity</label></a>""";
+                                } else {
+                                    html = html + """
+                                        <a><input type='checkbox' id='activity' name='chosen-filter' value='activity'>
+                                        <label for='activity'>Activity</label></a>""";
+                                }
+                                //Food Supply Stage
+                                if (fss == 1) {
+                                    html = html + """
+                                        <a><input type='checkbox' id='food-supply-stage' name='chosen-filter' value='food_supply_stage' checked='checked'>
+                                        <label for='food-supply-stage'>Food Supply Stage</label></a>""";
+                                } else {
+                                    html = html + """
+                                        <a><input type='checkbox' id='food-supply-stage' name='chosen-filter' value='food_supply_stage'>
+                                        <label for='food-supply-stage'>Food Supply Stage</label></a>""";
+                                }
+                                //Cause of Loss
+                                if (col == 1) {
+                                    html = html + """
+                                        <a><input type='checkbox' id='cause-of-loss' name='chosen-filter' value='cause_of_loss' checked='checked'>
+                                        <label for='cause-of-loss'>Cause Of Loss</label></a>""";
+                                } else {
+                                    html = html + """
+                                        <a><input type='checkbox' id='cause-of-loss' name='chosen-filter' value='cause_of_loss'>
+                                        <label for='cause-of-loss'>Cause Of Loss</label></a>""";
+                                }
+                                    
+            html = html + """
                                 </div>
                             </div>
                             <button type='submit' class='button'>Reload Data</button>
@@ -141,16 +224,16 @@ public class PageST2A implements Handler {
                         </form>
                                     """;
 
-                        //Get either 'between' or 'from'
-                        String period = context.formParam("period");
-                        //Get first year
-                        String firstYear = context.formParam("first-year");
-                        //Get second year
-                        String secondYear = context.formParam("second-year"); 
-                        //Get chosen countries
-                        String country = context.formParam("chosen-countries");
-                        //Get chosen countries
-                        java.util.List<String> filter = context.formParams("chosen-filter");
+                        //Get either 'between' or 'from' (previously defined)
+                        period = context.formParam("period");
+                        //Get first year (previously defined)
+                        firstYear = context.formParam("first-year");
+                        //Get second year (previously defined)
+                        secondYear = context.formParam("second-year"); 
+                        //Get chosen countries (previously defined)
+                        country = context.formParam("chosen-countries");
+                        //Get chosen filters (previously defined)
+                        filter = context.formParams("chosen-filter");
                         
 
                 html = html + """
