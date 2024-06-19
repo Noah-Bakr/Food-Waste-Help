@@ -36,7 +36,6 @@ public class PageST2B implements Handler {
         int globalCounter1 = 0;
         int globalCounter2 = 0;
 
-        boolean hasinput = false;
 
         String key1 = context.formParam("selectedGroup");
         String years1 = context.formParam("first-year");
@@ -79,7 +78,8 @@ public class PageST2B implements Handler {
                         <div class='timed-data-info'>
                             <h2>Changes in loss percentage for selected groups</h2>
                         </div>
-                    </div>      
+                    </div>    
+                      
                     """;
 
 
@@ -182,17 +182,22 @@ html = html + """
             </div>
             
                 <button type='submit' class='Button' style='padding:1% 3% 1% 3%; border-radius:20px; font-size:30px; margin-top: 5px;'>Generate</button>
+                """;
+
+            html = html + "<div>";
+            if(key1 != null)
+            {
+                html = html + "<p>" +  + "</p>";
+            }
+                    
+            html = html + "</div>";
             
-        </div>
-                            """;
+        html = html + "</div>";
+                            
                 
                 
     
 html = html + "</form>";
-
-html = html + "<p>"+actSelect+"</p>";
-html = html + "<p>"+fssSelect+"</p>";
-html = html + "<p>"+colSelect+"</p>";
 
 // Form End ------------------------------------------------------------------------------------
 ArrayList<GraphData> ReturnedGraphData = jdbc.createTemp();
@@ -204,7 +209,7 @@ ReturnedGraphData = jdbc.getGraphResults(years1,years2,key1);
 html = html + "<div class='twobGraphTable'>";
 
 html = html + """
-                        <div class='line-graph' style='width:40%'>
+                        <div class='line-graph' style='width:40%; display:flex; align-items:center;'>
                             <canvas id="line-graph"></canvas>
                             <script> """;
 
@@ -279,12 +284,222 @@ html = html + """
                             </script>
                         </div>""";
 
-                        //Table Generator
-                        html = html + "<div>";
-                                html = html + "<p> Haha Testing Grandpa pfffffffff</p>";
-                        html = html + "</div>";
+                        ArrayList<LossPercentageData> TableData = jdbc.createTempTable();
 
-                        html = html + "</div>";
+                        if(key1!=null){
+                        TableData = jdbc.getGraphTable(years1,years2,key1);
+                        }
+                        
+                        
+
+                        //Table Generator
+                        html = html + "<div class='twoA-table' style='margin-top:0px; margin-left:5px; width:70%;'>";
+                        //Creates Table
+                                html = html +"<table>";
+                                //Generates table headings
+                                            html = html +"<tr>";
+
+                                            //001
+                                            if((actSelect==null)&&(fssSelect == null)&&(colSelect != null))
+                                            {
+                                                html = html +"<th><h2 style='23px'>Year</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Loss Percentage</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Commodity</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Country</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Cause Of Loss</h2></th>";
+                                            }
+                                            //010
+                                            else if((actSelect==null)&&(fssSelect != null)&&(colSelect == null))
+                                            {
+                                                html = html +"<th><h2 style='23px'>Year</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Loss Percentage</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Commodity</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Country</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Food Supply Stage</h2></th>";
+                                            }
+                                            //011
+                                            else if((actSelect==null)&&(fssSelect != null)&&(colSelect != null))
+                                            {
+                                                html = html +"<th><h2 style='23px'>Year</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Loss Percentage</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Commodity</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Country</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Food Supply Stage</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Cause Of Loss</h2></th>";
+                                            }
+                                            //100
+                                            else if((actSelect!=null)&&(fssSelect == null)&&(colSelect == null))
+                                            {
+                                                html = html +"<th><h2 style='23px'>Year</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Loss Percentage</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Commodity</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Country</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Activity</h2></th>";
+                                            }
+                                            //101
+                                            else if((actSelect!=null)&&(fssSelect == null)&&(colSelect != null))
+                                            {
+                                                html = html +"<th><h2 style='23px'>Year</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Loss Percentage</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Commodity</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Country</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Activity</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Cause Of Loss</h2></th>";
+                                            }
+                                            //110
+                                            else if((actSelect!=null)&&(fssSelect != null)&&(colSelect == null))
+                                            {
+                                                html = html +"<th><h2 style='23px'>Year</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Loss Percentage</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Commodity</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Country</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Activity</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Food Supply Stage</h2></th>";
+                                            }
+                                            //111
+                                            else if((actSelect!=null)&&(fssSelect != null)&&(colSelect != null))
+                                            {
+                                                html = html +"<th><h2 style='23px'>Year</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Loss Percentage</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Commodity</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Country</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Activity</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Food Supply Stage</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Cause Of Loss</h2></th>";
+                                            }
+                                            //000
+                                            else
+                                            {
+                                                html = html +"<th><h2 style='23px'>Year</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Loss Percentage</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Commodity</h2></th>";
+                                                html = html +"<th><h2 style='23px'>Country</h2></th>";
+                                            }
+                                            
+                                            
+                                            html = html +"</tr>";
+
+                                            //Generates the contents of the table depending on the multi select
+
+                                           //001
+                                           if((actSelect==null)&&(fssSelect == null)&&(colSelect != null))
+                                           {
+                                               
+                                               for (LossPercentageData entry : TableData) {
+                                                html = html + "<tr>";
+                                                html = html + "<td> <h3>" + entry.getYear() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getPercentageLoss() + "%</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getCommodity() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getCountryName() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getCauseOfLoss() + "</h3> </td>";
+                                                html = html + "</tr>";
+                                            }
+                                               
+                                           }
+                                           //010
+                                           else if((actSelect==null)&&(fssSelect != null)&&(colSelect == null))
+                                           {
+                                            
+                                               for (LossPercentageData entry : TableData) {
+                                                html = html + "<tr>";
+                                                html = html + "<td> <h3>" + entry.getYear() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getPercentageLoss() + "%</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getCommodity() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getCountryName() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getFoodSupplyStage() + "</h3> </td>";
+                                                html = html + "</tr>";
+                                            }
+                                               
+                                           }
+                                           //011
+                                           else if((actSelect==null)&&(fssSelect != null)&&(colSelect != null))
+                                           {
+                                            for (LossPercentageData entry : TableData) {
+                                                html = html + "<tr>";
+                                                html = html + "<td> <h3>" + entry.getYear() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getPercentageLoss() + "%</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getCommodity() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getCountryName() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getFoodSupplyStage() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getCauseOfLoss() + "</h3> </td>";
+                                                html = html + "</tr>";
+                                            }
+                                           }
+                                           //100
+                                           else if((actSelect!=null)&&(fssSelect == null)&&(colSelect == null))
+                                           {
+                                            for (LossPercentageData entry : TableData) {
+                                                html = html + "<tr>";
+                                                html = html + "<td> <h3>" + entry.getYear() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getPercentageLoss() + "%</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getCommodity() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getCountryName() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getActivity() + "</h3> </td>";
+                                                html = html + "</tr>";
+                                            }
+                                           }
+                                           //101
+                                           else if((actSelect!=null)&&(fssSelect == null)&&(colSelect != null))
+                                           {
+                                            for (LossPercentageData entry : TableData) {
+                                                html = html + "<tr>";
+                                                html = html + "<td> <h3>" + entry.getYear() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getPercentageLoss() + "%</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getCommodity() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getCountryName() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getActivity() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getCauseOfLoss() + "</h3> </td>";
+                                                html = html + "</tr>";
+                                            }
+                                           }
+                                           //110
+                                           else if((actSelect!=null)&&(fssSelect != null)&&(colSelect == null))
+                                           {
+                                            for (LossPercentageData entry : TableData) {
+                                                html = html + "<tr>";
+                                                html = html + "<td> <h3>" + entry.getYear() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getPercentageLoss() + "%</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getCommodity() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getCountryName() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getActivity() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getFoodSupplyStage() + "</h3> </td>";
+                                                html = html + "</tr>";
+                                            }
+                                           }
+                                           //111
+                                           else if((actSelect!=null)&&(fssSelect != null)&&(colSelect != null))
+                                           {
+                                            for (LossPercentageData entry : TableData) {
+                                                html = html + "<tr>";
+                                                html = html + "<td> <h3>" + entry.getYear() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getPercentageLoss() + "%</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getCommodity() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getCountryName() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getActivity() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getFoodSupplyStage() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getCauseOfLoss() + "</h3> </td>";
+                                                html = html + "</tr>";
+                                            }
+                                           }
+                                           //000
+                                           else
+                                           {
+                                            html = html + "<tr>";
+                                            for (LossPercentageData entry : TableData) {
+                                                html = html + "<tr>";
+                                                html = html + "<td> <h3>" + entry.getYear() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getPercentageLoss() + "%</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getCommodity() + "</h3> </td>";
+                                                html = html + "<td> <h3>" + entry.getCountryName() + "</h3> </td>";
+                                                html = html + "</tr>";
+                                            }
+                                           }
+                                html = html + "</table>";
+                                
+                                
+                                // html = html + "<p>Test Text Trust Me</p>";
+                        // html = html + "</div>";
+
 
 
 
@@ -296,8 +511,14 @@ html = html + """
         // html = html + "<p>" + years1 + "</p>";
         // html = html + "<p>" + years2 + "</p>";
 
+        //Close 2bGraphtable
         html = html + "</div>";
-
+        //Close Timed Data
+        html = html + "</div>";
+        //Close two-a-Content
+        html = html + "</div>";
+        
+        
         // Footer
         html = html + nav.getFooter();
 

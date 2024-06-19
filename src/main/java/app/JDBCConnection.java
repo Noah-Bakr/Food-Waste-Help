@@ -893,7 +893,7 @@ public class JDBCConnection {
             while (results.next()) {
                 // Lookup the columns we need
                 String YearResult = results.getString("year");
-                String LossResult = results.getString("lossPercentage");
+                String LossResult = results.getString("loss_Percentage");
                 String countryName = results.getString("countryName");
                 String commodity = results.getString("commodity");
                 String activity = results.getString("activity");
@@ -934,6 +934,16 @@ public class JDBCConnection {
         ArrayList<GraphData> Data = new ArrayList<GraphData>();
         GraphData datas = new GraphData("Thingy","Thonger");
         Data.add(datas);
+        return Data;
+    }
+
+    public ArrayList<LossPercentageData> createTempTable()
+    {
+        ArrayList<LossPercentageData> Data = new ArrayList<LossPercentageData>();
+        LossPercentageData datas = new LossPercentageData("No Data","No Data","No Data","No Data","No Data","No Data","No Data");
+
+                // Add the Country object to the array
+                Data.add(datas);
         return Data;
     }
 
