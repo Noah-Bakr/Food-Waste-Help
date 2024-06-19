@@ -1010,9 +1010,18 @@ public class JDBCConnection {
         return Data;
     }
 
-    public String getNoOfGroupsCat(String categoryGroup) {
+    public String getNoOfGroupsCat(String categoryGroup, String Year1, String Year2) {
         // Create the ArrayList of Country objects to return
         String result = "0";
+        int FirstYearValue = Integer.parseInt(Year1);
+        int SecondYearValue = Integer.parseInt(Year2);
+
+        if(FirstYearValue > SecondYearValue)
+        {
+            int temp = FirstYearValue;
+            FirstYearValue = SecondYearValue;
+            SecondYearValue = temp;
+        }
 
         // Setup the variable for the JDBC connection
         Connection connection = null;
@@ -1026,7 +1035,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT COUNT(year) as countNumber FROM completeevents where Groupid = '" + categoryGroup + "';";
+            String query = "SELECT COUNT(year) as countNumber FROM completeevents where Groupid = '" + categoryGroup + "' AND year BETWEEN " + FirstYearValue + " AND " + SecondYearValue + ";";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
