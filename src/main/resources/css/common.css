@@ -889,6 +889,7 @@ align-items: center;
   padding-left: 5px;
   border-radius: 15px;
   font-size: 25px;
+  border: 2px solid darkgreen;
 }
 
 .searchFormatter select{
@@ -908,9 +909,10 @@ align-items: center;
   margin-top: 5px;
   margin-right: 5px;
   font-size: 30px;
-  padding: 3px 10px 3px 10px;
+  padding: 10px 10px 10px 10px;
   display: flex;
   border-radius: 8px;
+  border: 2px solid #003e00;
 }
 
 .switcher input
@@ -929,6 +931,15 @@ align-items: center;
   display: flex;
 }
 
+.form-control
+{
+  border-radius: 5px;
+  font-size: 20px;
+  border-style: solid;
+  border-color: black;
+  margin-right: 5px;
+}
+
 #numberOfResults
 {
   margin-left: 5px;
@@ -944,7 +955,7 @@ align-items: center;
   width: 100%; /* Full-width */
   font-size: 16px; /* Increase font-size */
   padding: 12px 20px 12px 40px; /* Add some padding */
-  border: 1px solid #ddd; /* Add a grey border */
+  border: 2px solid black; /* Add a grey border */
   margin-bottom: 12px; /* Add some space below the input */
   border-radius: 8px;
 }

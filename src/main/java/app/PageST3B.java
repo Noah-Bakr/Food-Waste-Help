@@ -109,7 +109,7 @@ public class PageST3B implements Handler {
         
         for (String output : listSubclassNames) {
         
-          html = html + "<li><input type='radio' id='" + output + "' name='searchList' value='"+output+"' required> <label for='"+output+"'>"+output+"</label></li>";
+          html = html + "<li style='display:flex'><input style='display: flex; flex-direction: row; align-items: center;' type='radio' id='" + output + "' name='searchList' value='"+output+"' required> <label for='"+output+"'>"+output+"</label></li>";
         }
         html = html + "</ul>";
         html = html + "</div>";
