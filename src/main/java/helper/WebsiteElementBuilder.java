@@ -55,7 +55,8 @@ public class WebsiteElementBuilder {
                         <li><a href='mission.html'>Our Mission</a></li>
                     </div>
                     <div class='copyright'>
-                        <p>&copy; Food Waste Help. 2024</p>
+                        <p>&copy; Food Waste Help. 2024<br>
+                            Noah Bakr, Connor Orders</p>
                     </div>
                 </ul>
             </div>
