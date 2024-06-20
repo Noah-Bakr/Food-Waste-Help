@@ -677,7 +677,18 @@ public class JDBCConnection {
                         "ORDER BY similarity_percentage " + orderBy + ", countryName\n" + //
                         "LIMIT " + itemsNo + ";";
             } else if (decision.equals("products")) {
-                
+                // The Query
+                query = "SELECT countryName, AVG(loss_percentage), year, 100 - (ABS(AVG(loss_percentage) - " + String.valueOf(comparingCountry) + ") / 25 * 100) AS 'similarity_percentage' FROM completeEvents\n" + //
+                        "WHERE (countryName = '" + country + "') AND year = '" + firstYear + "'\n" + //
+                        "GROUP BY countryName HAVING AVG(loss_percentage)\n" + //
+                        
+                        "UNION\n" + //
+                        
+                        "SELECT countryName, AVG(loss_percentage), year, 100 - (ABS(AVG(loss_percentage) - " + String.valueOf(comparingCountry) + ") / 25 * 100) AS 'similarity_percentage' FROM completeEvents\n" + //
+                        "WHERE (countryName != '" + country + "') AND year = '" + firstYear + "'\n" + //
+                        "GROUP BY countryName HAVING AVG(loss_percentage)\n" + //
+                        "ORDER BY similarity_percentage " + orderBy + ", countryName\n" + //
+                        "LIMIT " + itemsNo + ";";
             }
             
                                 

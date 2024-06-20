@@ -309,6 +309,7 @@ img.top-image {
   top: 0;
   width: 100%;
   height: fit-content;
+  z-index:1;
 }
 
 .nav-logo {
@@ -913,14 +914,17 @@ a input[type="checkbox"] {
   align-content: baseline;
   background-color:#4F7302;
   border-radius: 1.5vw;
-  padding: 20px;
-  margin:8px;
+  padding: 10px 50px 50px 50px;
+  margin: 8px;
+  width: fit-content;
+  height: fit-content;
 }
 
 .personaGroup img
 {
   height: 200px;
   padding-right: 20px;
+  padding-top: 20px;
 }
 
 .personaGroup h2
@@ -954,6 +958,56 @@ align-items: center;
 
 }
 
+.carousel-inner{
+  width: fit-content;
+  height: fit-content;
+  max-height: 1000px;
+  margin: 0;
+}
+
+#container {
+  margin: 0;
+  width: fit-content;
+  padding: 0;
+}
+
+.item {
+  padding: 0 0 6px 0;
+}
+
+#left, #right {
+  width: 60px;
+  background: none;
+}
+
+.mission {
+  padding-top: 20px;
+}
+
+.functions-text {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: baseline;
+}
+
+.functions-text .left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: baseline;
+  padding: 0 20px 0 0;
+  text-align: left;
+}
+
+.functions-text .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: baseline;
+  padding: 0 0 0 20px;
+  text-align: left;
+}
 
 
 .searchResults {
