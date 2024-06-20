@@ -914,7 +914,7 @@ a input[type="checkbox"] {
   align-content: baseline;
   background-color:#4F7302;
   border-radius: 1.5vw;
-  padding: 20px 20px 50px 20px;
+  padding: 10px 50px 50px 50px;
   margin: 8px;
   width: fit-content;
   height: fit-content;
@@ -967,10 +967,16 @@ align-items: center;
 #container {
   margin: 0;
   width: fit-content;
+  padding: 0;
 }
 
 .item {
   padding: 0 0 6px 0;
+}
+
+#left, #right {
+  width: 60px;
+  background: none;
 }
 
 
