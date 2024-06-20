@@ -34,6 +34,10 @@ public class PageST3B implements Handler {
         // Create a simple HTML webpage in a String
         String html = "<html>";
 
+          String sort_by = context.formParam("sortby");
+          String no_of_results = context.formParam("number_of_results");
+          String searchedProduct = context.formParam("searchList");
+
         // Add some Head information
         html = html + "<head>" + 
                "<title>Subtask 3.2</title>";
@@ -71,15 +75,15 @@ public class PageST3B implements Handler {
         //Radio buttons to select what to sort by
         html = html + "<div class='switcher'>";
           html = html + "<div>";
-            html = html + "<input type='radio' id='avg' name='sortby' value='avg' required>";
+            html = html + "<input type='radio' id='avg' name='sortby' value='AVG' required>";
             html = html + "<label for='avg'>Food Loss Average </label><br>";
           html = html + "</div>";
           html = html + "<div>";
-            html = html + "<input type='radio' id='highest' name='sortby' value='highest'>";
+            html = html + "<input type='radio' id='highest' name='sortby' value='MAX'>";
             html = html + "<label for='highest'>Highest Percentage of Food Loss</label><br>";
            html = html + "</div>";
           html = html + "<div>";
-            html = html + "<input type='radio' id='lowest' name='sortby' value='lowest'>";
+            html = html + "<input type='radio' id='lowest' name='sortby' value='MIN'>";
             html = html + "<label for='lowest'>Lowest Percentage or Food Loss</label>";
           html = html + "</div>";
 
@@ -101,31 +105,31 @@ public class PageST3B implements Handler {
         //Sourced from w3 schools
         html = html +"""
         <input type='text' id='myInput' onkeyup='myFunction()' placeholder='Search for Products...' autocomplete='off'>
+        <div class='partThreeFlex'>
         <div class='searchResults'>
         <ul id='myUL'>""";
 
-        ArrayList<String> listSubclassNames = jdbc.getAllsubclassNames();
+        ArrayList<CommodityLookup> listSubclassNames = jdbc.getAllAvailableCpcCommodities();
 
         
-        for (String output : listSubclassNames) {
+        for (CommodityLookup output : listSubclassNames) {
         
-          html = html + "<li style='display:flex'><input style='display: flex; flex-direction: row; align-items: center;' type='radio' id='" + output + "' class='beans' name='searchList' value='"+output+"'  onclick='heheha()' required> <label for='"+output+"'>"+output+"</label></li>";
+          html = html + "<li style='display:flex'><input style='display: flex; flex-direction: row; align-items: center;' type='radio' id='" + output.getDescriptor() + "' class='beans' name='searchList' value='"+output.getCpcCode()+"'  onclick='textChange(" + '"' + output.getDescriptor() + '"' + ")' required> <label for='"+output.getDescriptor()+"'>"+output.getDescriptor()+"</label></li>";
         }
         html = html + "</ul>";
+        html = html + "</div>";
+        html = html + "<div><p id='testP'>No Commodity Selected</p></div>";
         html = html + "</div>";
 
         // Form End-----------------------------------------
         html = html + "</form>";
 
 
-            String sort_by = context.formParam("sortby");
-            String no_of_results = context.formParam("number_of_results");
-            String searchedProduct = context.formParam("searchList");
+            
 
         html = html + "<p>" + sort_by + "</p>";
         html = html + "<p>" + no_of_results + "</p>";
         html = html + "<p>" + searchedProduct + "</p>";
-        html = html + "<div><p id='testP'>Before</p></div>";
         html = html + "</div>";
         html = html + "</div>";
 
@@ -158,12 +162,12 @@ function myFunction() {
 }
 
 
-function heheha()
+function textChange(newText)
 {
         alert(2);
         const elem = document.getElementById("testP");
         elem.style.color = 'red';
-        document.getElementById("testP").innerHTML = "After";
+        document.getElementById("testP").innerHTML = newText;
 }
 </script>
                 """;
