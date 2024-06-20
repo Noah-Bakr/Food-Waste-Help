@@ -1081,6 +1081,11 @@ padding-top: 20px;
   margin-right: 5px;
 }
 
+.partThreeFlex
+{
+  display: flex;
+}
+
 #numberOfResults
 {
   margin-left: 5px;
