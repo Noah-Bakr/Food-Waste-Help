@@ -109,7 +109,7 @@ public class PageST3B implements Handler {
         
         for (String output : listSubclassNames) {
         
-          html = html + "<li style='display:flex'><input style='display: flex; flex-direction: row; align-items: center;' type='radio' id='" + output + "' class='beans' name='searchList' value='"+output+"' required> <label for='"+output+"'>"+output+"</label></li>";
+          html = html + "<li style='display:flex'><input style='display: flex; flex-direction: row; align-items: center;' type='radio' id='" + output + "' class='beans' name='searchList' value='"+output+"'  onclick='heheha()' required> <label for='"+output+"'>"+output+"</label></li>";
         }
         html = html + "</ul>";
         html = html + "</div>";
@@ -125,6 +125,7 @@ public class PageST3B implements Handler {
         html = html + "<p>" + sort_by + "</p>";
         html = html + "<p>" + no_of_results + "</p>";
         html = html + "<p>" + searchedProduct + "</p>";
+        html = html + "<div><p id='testP'>Before</p></div>";
         html = html + "</div>";
         html = html + "</div>";
 
@@ -154,6 +155,15 @@ function myFunction() {
       li[i].style.display = "none";
     }
   }
+}
+
+
+function heheha()
+{
+        alert(2);
+        const elem = document.getElementById("testP");
+        elem.style.color = 'red';
+        document.getElementById("testP").innerHTML = "After";
 }
 </script>
                 """;
