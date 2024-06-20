@@ -197,6 +197,7 @@ html = html + """
         html = html + "</div>";
         // Close Content div
         html = html + "</div>";
+        html = html + "</div>";
 
         // Footer
         html = html + nav.getFooter();
