@@ -309,7 +309,12 @@ public class PageST3A implements Handler {
                     //Get No of items to return
                     itemsNo = context.formParam("items-no");
                     //ASC or DESC
+                    
                     String orderBy = context.formParam("order-by");
+
+                    if (Objects.isNull(orderBy)) {
+                        orderBy = "desc";
+                    }
 
                     html = html + """
                         <div class='twoA-table' id='threeA-table'>
@@ -361,9 +366,9 @@ public class PageST3A implements Handler {
                                         html = html + "<tr>";
                                         if (decision.equals("loss")) {
                                             
-                                            html = html + "<th><h2>Country<h2></th>";
                                         }
 
+                                        html = html + "<th><h2>Country<h2></th>";
                                         html = html + "<th><h2>Loss Percentage<h2></th>";
                                         html = html + "<th><h2>Year<h2></th>";
                                         html = html + "<th><h2>Similarity Score<h2></th>";

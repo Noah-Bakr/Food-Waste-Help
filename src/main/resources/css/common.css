@@ -23,7 +23,7 @@ p {
 
 /* Style the content */
 .content {
-  background-image: url("Background.jpg");
+  background-image: url("Background-Blurred.jpg");
   background-size:cover;
   background-repeat: no-repeat;
   background-color: #ddd;
@@ -32,7 +32,7 @@ p {
 }
 
 .two-a-content {
-  background-image: url("Background-2A.jpg");
+  background-image: url("Background-2A-Blurred.jpg");
   background-color: #ddd;
   background-size: cover;
   background-repeat: no-repeat;
