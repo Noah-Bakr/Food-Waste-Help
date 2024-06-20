@@ -309,6 +309,7 @@ img.top-image {
   top: 0;
   width: 100%;
   height: fit-content;
+  z-index:1;
 }
 
 .nav-logo {
@@ -913,8 +914,10 @@ a input[type="checkbox"] {
   align-content: baseline;
   background-color:#4F7302;
   border-radius: 1.5vw;
-  padding: 20px;
-  margin:8px;
+  padding: 20px 20px 50px 20px;
+  margin: 8px;
+  width: fit-content;
+  height: fit-content;
 }
 
 .personaGroup img
@@ -954,6 +957,21 @@ align-items: center;
 
 }
 
+.carousel-inner{
+  width: fit-content;
+  height: fit-content;
+  max-height: 1000px;
+  margin: 0;
+}
+
+#container {
+  margin: 0;
+  width: fit-content;
+}
+
+.item {
+  padding: 0 0 6px 0;
+}
 
 
 .searchResults {
