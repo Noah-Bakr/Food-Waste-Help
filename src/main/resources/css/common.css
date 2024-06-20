@@ -1064,6 +1064,11 @@ align-items: center;
   display: block; /* Make it into a block element to fill the whole list */
 }
 
+#myUL li
+{
+  display:flex;
+}
+
 #myUL li input label:hover:not(.header) {
   background-color: #eee; /* Add a hover effect to all links, except for headers */
 }
