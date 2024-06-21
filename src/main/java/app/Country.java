@@ -17,6 +17,8 @@ public class Country {
    private String year;
    private double similarityPercentage;
 
+   private int similarCommodities;
+
    /**
     * Create a Country and set the fields
     */
@@ -30,6 +32,13 @@ public class Country {
       this.AVGloss_percentage = AVGloss_percentage;
       this.year = year;
       this.similarityPercentage = similarityPercentage;
+   }
+
+   public Country(String countryName, int similarCommodities, double similarityPercentage, String year) {
+      name = countryName;
+      this.similarCommodities = similarCommodities;
+      this.similarityPercentage = similarityPercentage;
+      this.year = year;
    }
 
    public String getM49Code() {
@@ -50,5 +59,9 @@ public class Country {
 
    public double getSimilarityPercentage() {
       return similarityPercentage;
+   }
+
+   public int getSimilarCommoditiesNo() {
+      return similarCommodities;
    }
 }
