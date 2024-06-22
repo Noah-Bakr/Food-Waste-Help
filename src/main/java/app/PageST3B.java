@@ -156,7 +156,7 @@ public class PageST3B implements Handler {
         
         if(searchedProduct != null)
         {
-          html = html + "<p style='color:black' id='testP'>" + searchedProduct + "</p>";
+          html = html + "<p style='color:black' id='testP'>" + jdbc.convertCommodtyToString(searchedProduct) + "</p>";
         }
         else
         {
