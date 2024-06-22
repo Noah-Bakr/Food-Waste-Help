@@ -367,10 +367,10 @@ public class PageST3A implements Handler {
                                         if (decision.equals("loss")) {
                                             html = html + "<tr>";
 
-                                            html = html + "<th><h2>Country<h2></th>";
-                                            html = html + "<th><h2>Loss Percentage<h2></th>";
-                                            html = html + "<th><h2>Year<h2></th>";
-                                            html = html + "<th><h2>Similarity Score<h2></th>";
+                                            html = html + "<th><h2>Country</h2></th>";
+                                            html = html + "<th><h2>Loss Percentage</h2></th>";
+                                            html = html + "<th><h2>Similarity Score</h2></th>";
+                                            html = html + "<th><h2>Year</h2></th>";
                                             html = html + "</tr>";
 
                                         for (Country entry : data) {
@@ -378,17 +378,17 @@ public class PageST3A implements Handler {
                                             
                                             html = html + "<td><h3>" + entry.getName() + "</h3></td>";
                                             html = html + "<td><h3>" + entry.getLossPercentage() + "</h3></td>";
-                                            html = html + "<td><h3>" + entry.getYear() + "</h3></td>";
                                             html = html + "<td><h3>" + entry.getSimilarityPercentage() + "</h3></td>";
+                                            html = html + "<td><h3>" + entry.getYear() + "</h3></td>";
                                             html = html + "</tr>";
                                             }
                                         } else if (decision.equals("products")) {
                                             html = html + "<tr>";
 
-                                            html = html + "<th><h2>Country<h2></th>";
-                                            html = html + "<th><h2>No. of Similar Commodities<h2></th>";
-                                            html = html + "<th><h2>Similarity Score<h2></th>";
-                                            html = html + "<th><h2>Year<h2></th>";
+                                            html = html + "<th><h2>Country</h2></th>";
+                                            html = html + "<th><h2>No. of Similar Commodities</h2></th>";
+                                            html = html + "<th><h2>Similarity Score</h2></th>";
+                                            html = html + "<th><h2>Year</h2></th>";
                                             html = html + "</tr>";
 
                                         for (Country entry : data) {
@@ -403,13 +403,13 @@ public class PageST3A implements Handler {
                                         } else if (decision.equals("both")) {
                                             html = html + "<tr>";
 
-                                            html = html + "<th><h2>Country<h2></th>";
-                                            html = html + "<th><h2>No. of Similar Commodities<h2></th>";
-                                            html = html + "<th><h2>Similarity Score (COM)<h2></th>";
-                                            html = html + "<th><h2>Loss Percentage<h2></th>";
-                                            html = html + "<th><h2>Similarity Score (FL)<h2></th>";
-                                            html = html + "<th><h2>Similarity Total<h2></th>";
-                                            html = html + "<th><h2>Year<h2></th>";
+                                            html = html + "<th><h2>Country</h2></th>";
+                                            html = html + "<th><h2>No. of Similar Commodities</h2></th>";
+                                            html = html + "<th><h2>Similarity Score (COM)</h2></th>";
+                                            html = html + "<th><h2>Loss Percentage</h2></th>";
+                                            html = html + "<th><h2>Similarity Score (FL)</h2></th>";
+                                            html = html + "<th><h2>Similarity Total</h2></th>";
+                                            html = html + "<th><h2>Year</h2></th>";
                                             html = html + "</tr>";
 
                                         for (Country entry : data) {
