@@ -1252,23 +1252,25 @@ public class JDBCConnection {
     }
 
 
-    public ArrayList<Group> convertCommodtyToString() {
-        // Create the ArrayList of Country objects to return
-        ArrayList<Group> groups = new ArrayList<Group>();
+    public String convertCommodtyToString(String cpc_code) {
 
         // Setup the variable for the JDBC connection
         Connection connection = null;
 
+        String descriptor="";
+
         try {
             // Connect to JDBC data base
             connection = DriverManager.getConnection(DATABASE);
+
+            
 
             // Prepare a new SQL Query & Set a timeout
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT DISTINCT commodity FROM completeEvents WHERE cpc_code = 'NAME HERE';";
+            String query = "SELECT DISTINCT commodity FROM completeEvents WHERE cpc_code = '" + cpc_code + "';";
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -1276,13 +1278,10 @@ public class JDBCConnection {
             // Process all of the results
             while (results.next()) {
                 // Lookup the columns we need
-                String descriptor     = results.getString("descriptor");
-                String groupId     = results.getString("groupid");
-
-                Group groupsObj = new Group(groupId,descriptor);
-                // Add the Country object to the array
-                groups.add(groupsObj);
+                descriptor = results.getString("commodity");
+                
             }
+            
             statement.close();
 
         } catch (SQLException e) {
@@ -1301,7 +1300,7 @@ public class JDBCConnection {
         }
 
         // Finally we return all of the countries
-        return groups;
+        return descriptor;
     }
 
 }
