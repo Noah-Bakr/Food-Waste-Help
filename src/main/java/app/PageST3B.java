@@ -75,22 +75,48 @@ public class PageST3B implements Handler {
         //Radio buttons to select what to sort by
         html = html + "<div class='switcher'>";
           html = html + "<div>";
-            html = html + "<input type='radio' id='avg' name='sortby' value='AVG' required>";
+            html = html + "<input type='radio' id='avg' name='sortby' value='AVG' required";
+            if(sort_by != null){
+            if(sort_by.equals("AVG"))
+            {
+              html = html + " checked";
+            }
+          }
+            html = html + ">";
             html = html + "<label for='avg'>Food Loss Average </label><br>";
           html = html + "</div>";
           html = html + "<div>";
-            html = html + "<input type='radio' id='highest' name='sortby' value='MAX'>";
+            html = html + "<input type='radio' id='highest' name='sortby' value='MAX'";
+            if(sort_by != null){
+              if(sort_by.equals("MAX"))
+              {
+                html = html + " checked";
+              }
+            }
+            html = html + ">";
             html = html + "<label for='highest'>Highest Percentage of Food Loss</label><br>";
            html = html + "</div>";
           html = html + "<div>";
-            html = html + "<input type='radio' id='lowest' name='sortby' value='MIN'>";
+            html = html + "<input type='radio' id='lowest' name='sortby' value='MIN'";
+            if(sort_by != null){
+              if(sort_by.equals("MIN"))
+              {
+                html = html + " checked";
+              }
+            }
+            html = html + ">";
             html = html + "<label for='lowest'>Lowest Percentage or Food Loss</label>";
           html = html + "</div>";
 
           String maximum = jdbc.getNoOfEvents();
 
           //Text box for how many results you want
-          html = html + "<input type='number' min='1' max='" + maximum + "' class='form-control' id='number_of_results' name='number_of_results' placeholder = 'Enter number of results' autocomplete='off' required style='width:15%; margin-left:10px'>";
+          html = html + "<input type='number' min='1' max='" + maximum + "' class='form-control' id='number_of_results' name='number_of_results' placeholder = 'Enter number of results' autocomplete='off' required style='width:15%; margin-left:10px'";
+              if(no_of_results != null)
+              {
+                html = html + "value='" + no_of_results + "'";
+              }
+          html = html + ">";
           html = html + "   <button type='submit' class='searchButton'>Search</button>";
 
 
@@ -111,25 +137,82 @@ public class PageST3B implements Handler {
 
         ArrayList<CommodityLookup> listSubclassNames = jdbc.getAllAvailableCpcCommodities();
 
-        
+
+        //Generates scrolling list radio buttons for only commodities present in the events table
         for (CommodityLookup output : listSubclassNames) {
         
-          html = html + "<li style='display:flex'><input style='display: flex; flex-direction: row; align-items: center;' type='radio' id='" + output.getDescriptor() + "' class='beans' name='searchList' value='"+output.getCpcCode()+"'  onclick='textChange(" + '"' + output.getDescriptor() + '"' + ")' required> <label for='"+output.getDescriptor()+"'>"+output.getDescriptor()+"</label></li>";
+          html = html + "<li style='display:flex'>";
+          html = html + "<input style='display: flex; flex-direction: row; align-items: center;' type='radio' id='" + output.getDescriptor() + "' class='beans' name='searchList' value='"+output.getCpcCode()+"'  onclick='textChange(" + '"' + output.getDescriptor() + '"' + ")' required ";
+          if(output.getCpcCode().equals(searchedProduct))
+          {
+            html = html + "checked";
+          }
+          html = html + "> ";
+          html = html + "<label for='"+output.getDescriptor()+"'>"+output.getDescriptor()+"</label></li>";
         }
         html = html + "</ul>";
         html = html + "</div>";
-        html = html + "<div><p id='testP'>No Commodity Selected</p></div>";
+        html = html + "<div class='javascriptCheckedContainer'>";
+        
+        if(searchedProduct != null)
+        {
+          html = html + "<p style='color:black' id='testP'>" + searchedProduct + "</p>";
+        }
+        else
+        {
+          html = html + "<p style='color:grey' id='testP'>No Commodity Selected</p>";
+        }
+
+        html = html + "</div>";
         html = html + "</div>";
 
         // Form End-----------------------------------------
         html = html + "</form>";
 
+        html = html + "<div class='tableContainer'>";
+          html = html + "<table class=differenceTable>";
+            html = html + "<tr>";
+              html = html + "<th><h2>Group</h2></th>";
+
+              if(sort_by != null)
+              {
+              html = html + "<th><h2>" + sort_by + "(%) food loss</h2></th>";
+              }
+
+              else
+              {
+              html = html + "<th><h2>Sort By</h2></th>";
+              }
+
+              html = html + "<th><h2>Difference</h2></th>";
+            html = html + "</tr>";
 
             
+              if(sort_by != null)
+              {
+                ArrayList<DifferenceTableResults> lookupResults = jdbc.getTableSimilar(sort_by, no_of_results, searchedProduct);
 
-        html = html + "<p>" + sort_by + "</p>";
-        html = html + "<p>" + no_of_results + "</p>";
-        html = html + "<p>" + searchedProduct + "</p>";
+                for (DifferenceTableResults output : lookupResults) {
+                  html = html + "<tr>";
+                  html = html + "<td><h3>" + output.getDescriptor() + "</h3></td>";
+                  html = html + "<td><h3>" + output.getLossPercentage() + "%</h3></td>";
+                  html = html + "<td><h3>" + output.getDifferences() + "</h3></td>";
+                  html = html + "</tr>";
+                }
+              }
+              else
+              {
+                html = html + "<tr>";
+                html = html + "<td><h3>No</h3></td>";
+                html = html + "<td><h3>Selection</h3></td>";
+                html = html + "<td><h3>Made</h3></td>";
+                html = html + "</tr>";
+              }
+            
+          html = html + "</table>";
+        html = html + "</div>";
+
+
         html = html + "</div>";
         html = html + "</div>";
 
@@ -164,9 +247,8 @@ function myFunction() {
 
 function textChange(newText)
 {
-        alert(2);
         const elem = document.getElementById("testP");
-        elem.style.color = 'red';
+        elem.style.color = 'Black';
         document.getElementById("testP").innerHTML = newText;
 }
 </script>
