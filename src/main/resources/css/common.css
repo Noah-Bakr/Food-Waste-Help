@@ -1091,6 +1091,27 @@ padding-top: 20px;
   margin-left: 5px;
 }
 
+.javascriptCheckedContainer
+{
+  margin-left: 20px;
+}
+
+.javascriptCheckedContainer p 
+{
+  font-size: 30px;
+}
+
+
+.tableContainer
+{
+  width: 80%;
+}
+
+.differenceTable
+{
+  
+}
+
 /* TEMPORARY CSS SUBJECT TO CHANGE */
 
 /* Sourced from w3 schools */
