@@ -16,19 +16,27 @@ public class DifferenceTableSelected {
 
    private String LossPercentage;
 
+   private String Cpc_Code;
+
    /**
     * Create a Country and set the fields
     */
-   public DifferenceTableSelected(String commodity, String descriptor, String groupid, String losspercentage) {
+   public DifferenceTableSelected(String commodity, String descriptor, String groupid, String losspercentage, String cpcCode) {
       this.Commodity = commodity;
       this.GroupDescriptor = descriptor;
       this.GroupId = groupid;
       this.LossPercentage = losspercentage;
+      this.Cpc_Code = cpcCode;
    }
 
    public String getCommodity()
    {
       return Commodity;
+   }
+
+   public String getCpcCode()
+   {
+      return Cpc_Code;
    }
 
    public String getGroupId()

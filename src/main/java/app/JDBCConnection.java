@@ -1303,4 +1303,67 @@ public class JDBCConnection {
         return descriptor;
     }
 
+
+    public ArrayList<DifferenceTableSelected> getTableSelectedResults() {
+        // Create the ArrayList of Country objects to return
+        ArrayList<DifferenceTableSelected> commodities = new ArrayList<DifferenceTableSelected>();
+
+        // Setup the variable for the JDBC connection
+        Connection connection = null;
+
+        try {
+            // Connect to JDBC data base
+            connection = DriverManager.getConnection(DATABASE);
+
+            // Prepare a new SQL Query & Set a timeout
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            // The Query
+            String query = "SELECT \r\n" + //
+                                "    Commodity, GroupDescriptor,groupId, \r\n" + //
+                                "    AVG(loss_percentage) AS LossPercentage\r\n" + //
+                                "FROM completeEvents \r\n" + //
+                                "WHERE groupId == substr('0113', 1, 3);";
+            
+            // Get Result
+            ResultSet results = statement.executeQuery(query);
+
+            // Process all of the results
+            while (results.next()) {
+                // Lookup the columns we need
+
+                String commodity     = results.getString("Commodity");
+                String cpcCode     = results.getString("cpc_code");
+                String descriptor     = results.getString("GroupDescription");
+                String groupId     = results.getString("groupId");
+                String lossPercentage     = results.getString("LossPercentage");
+                
+
+                DifferenceTableSelected selectedCommodity = new DifferenceTableSelected(commodity,cpcCode,descriptor,groupId,lossPercentage);
+                // Add the Country object to the array
+                commodities.add(selectedCommodity);
+            }
+
+            // Close the statement because we are done with it
+            statement.close();
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        // Finally we return all of the countries
+        return commodities;
+    }
+
 }
