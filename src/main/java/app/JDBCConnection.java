@@ -675,28 +675,30 @@ public class JDBCConnection {
                         "LIMIT " + itemsNo + ";";
             } else if (decision.equals("products")) {
                 // The Query
-                query = "SELECT countryName, commodity, count(DISTINCT commodity) AS similar_commodities, (CAST(count(DISTINCT commodity) AS double) /  7.0) * 100.0 AS 'similarity_percentage', year FROM completeEvents \n" + //
+                query = "SELECT countryName, commodity, count(DISTINCT commodity) AS similar_commodities, (CAST(count(DISTINCT commodity) AS double) /  (SELECT count(DISTINCT commodity) AS similar_commodities FROM completeEvents\n" + //
+                                        "WHERE commodity IN (SELECT DISTINCT commodity FROM completeEvents\n" + //
+                                                            "WHERE ((countryName = '" + country + "') AND year = '" + firstYear + "')\n" + //
+                                                            "ORDER BY commodity)\n" + //
+                                        "GROUP BY year HAVING year = '" + firstYear + "'\n" + //
+                        "ORDER BY similar_commodities DESC LIMIT 1)) * 100.0 AS 'similarity_percentage', year FROM completeEvents \n" + //
                         "WHERE commodity IN (SELECT DISTINCT commodity FROM completeEvents\n" + //
-                                            "WHERE ((countryName = '" + country + "') AND year = '" + firstYear + "')\n" + //
-                                            "ORDER BY commodity)\n" + //
-                        "GROUP BY countryName, year HAVING similar_commodities AND year = '" + firstYear + "'\n" + //
-                        
+                        "WHERE ((countryName = '" + country + "') AND year = '" + firstYear + "')\n" + //
+                        "ORDER BY commodity)\n" + //
+                        "GROUP BY countryName, year HAVING similar_commodities AND countryName = '" + country + "' AND year = '" + firstYear + "'\n" + //
+
                         "UNION\n" + //
-                        
-                        "SELECT countryName, commodity, count(DISTINCT commodity) AS similar_commodities, \n" + //
-                            "(CAST(count(DISTINCT commodity) AS double) /  (SELECT count(DISTINCT commodity) AS similar_commodities FROM completeEvents\n" + //
-                                                                                "WHERE commodity IN (SELECT DISTINCT commodity FROM completeEvents\n" + //
-                                                                                                    "WHERE ((countryName = '" + country + "') AND year = '" + firstYear + "')\n" + //
-                                                                                                    "ORDER BY commodity)\n" + //
-                                                                                "GROUP BY year HAVING year = '" + firstYear + "'\n" + //
-                                                                                "ORDER BY similar_commodities DESC LIMIT 1)) * 100.0 AS 'similarity_percentage', year FROM completeEvents \n" + //
+
+                        "SELECT countryName, commodity, count(DISTINCT commodity) AS similar_commodities, (CAST(count(DISTINCT commodity) AS double) /  (SELECT count(DISTINCT commodity) AS similar_commodities FROM completeEvents\n" + //
+                                        "WHERE commodity IN (SELECT DISTINCT commodity FROM completeEvents\n" + //
+                                                            "WHERE ((countryName = '" + country + "') AND year = '" + firstYear + "')\n" + //
+                                                            "ORDER BY commodity)\n" + //
+                                        "GROUP BY year HAVING year = '" + firstYear + "'\n" + //
+                        "ORDER BY similar_commodities DESC LIMIT 1)) * 100.0 AS 'similarity_percentage', year FROM completeEvents \n" + //
                         "WHERE commodity IN (SELECT DISTINCT commodity FROM completeEvents\n" + //
-                                            "WHERE ((countryName = '" + country + "') AND year = '" + firstYear + "')\n" + //
-                                            "GROUP BY year HAVING year = '" + firstYear + "'\n" + //
-                                            "ORDER BY commodity)\n" + //
-                        "GROUP BY countryName, year HAVING similar_commodities AND year = '" + firstYear + "'\n" + //
-                        "ORDER BY similar_commodities " + orderBy + "\n" + //
-                        "LIMIT " + itemsNo + ";";
+                        "WHERE ((countryName = '" + country + "') AND year = '" + firstYear + "')\n" + //
+                        "ORDER BY commodity)\n" + //
+                        "GROUP BY countryName, year HAVING similar_commodities AND countryName != '" + country + "' AND year = '" + firstYear + "'\n" + //
+                        "ORDER BY similarity_percentage " + orderBy + " LIMIT " + itemsNo + ";";
             }
             
                                 
