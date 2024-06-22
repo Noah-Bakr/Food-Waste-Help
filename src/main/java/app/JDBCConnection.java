@@ -1238,16 +1238,17 @@ public class JDBCConnection {
 
             // The Query
             String query = "SELECT \r\n" + //
-                                "    GroupDescriptor, \r\n" + //
-                                "    " + sortBy + "(loss_percentage) AS LossPercentage,\r\n" + //
-                                "    ABS((" + sortBy + "(loss_percentage)-(SELECT " + sortBy + "(loss_percentage) AS averageLoss FROM completeEvents WHERE groupId = substr('" + searchKey + "', 1, 3)))) AS Difference \r\n" + //
+                                "    GroupDescription, \r\n" + //
+                                "    ROUND(" + sortBy + "(loss_percentage),4) AS LossPercentage,\r\n" + //
+                                "    ROUND(ABS((" + sortBy + "(loss_percentage)-(SELECT " + sortBy + "(loss_percentage) AS averageLoss FROM completeEvents WHERE groupId = substr('" + searchKey + "', 1, 3)))),4) AS Difference \r\n" + //
                                 "\r\n" + //
                                 "FROM completeEvents \r\n" + //
                                 "WHERE groupId != substr('" + searchKey + "', 1, 3)\r\n" + //
-                                "GROUP BY GroupDescriptor\r\n" + //
+                                "GROUP BY GroupDescription\r\n" + //
                                 "ORDER BY Difference ASC\r\n" + //
                                 "LIMIT " + numberOfResults + ";";
-            
+
+                              
             // Get Result
             ResultSet results = statement.executeQuery(query);
 
@@ -1255,7 +1256,7 @@ public class JDBCConnection {
             while (results.next()) {
                 // Lookup the columns we need
 
-                String descriptor     = results.getString("GroupDescriptor");
+                String descriptor     = results.getString("GroupDescription");
                 String lossPercentage     = results.getString("lossPercentage");
                 String difference     = results.getString("Difference");
 
@@ -1283,6 +1284,59 @@ public class JDBCConnection {
 
         // Finally we return all of the countries
         return commodities;
+    }
+
+
+    public ArrayList<Group> convertCommodtyToString() {
+        // Create the ArrayList of Country objects to return
+        ArrayList<Group> groups = new ArrayList<Group>();
+
+        // Setup the variable for the JDBC connection
+        Connection connection = null;
+
+        try {
+            // Connect to JDBC data base
+            connection = DriverManager.getConnection(DATABASE);
+
+            // Prepare a new SQL Query & Set a timeout
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            // The Query
+            String query = "SELECT DISTINCT commodity FROM completeEvents WHERE cpc_code = 'NAME HERE';";
+            
+            // Get Result
+            ResultSet results = statement.executeQuery(query);
+
+            // Process all of the results
+            while (results.next()) {
+                // Lookup the columns we need
+                String descriptor     = results.getString("descriptor");
+                String groupId     = results.getString("groupid");
+
+                Group groupsObj = new Group(groupId,descriptor);
+                // Add the Country object to the array
+                groups.add(groupsObj);
+            }
+            statement.close();
+
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        // Finally we return all of the countries
+        return groups;
     }
 
 }
