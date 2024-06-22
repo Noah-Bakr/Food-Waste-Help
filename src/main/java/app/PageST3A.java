@@ -111,7 +111,7 @@ public class PageST3A implements Handler {
                     </div>
                     <div class='graph-grid'>
                         <div class='scroll-menu' id='similarity-menu'>
-                            <div class='scroll-menu-title'>
+                            <div class='scroll-menu-title' id='scroll-menu-title-threeA'>
                                 <h2>Similarity</h2>
                             </div>
                             <div class='similarity-menu-items'> 

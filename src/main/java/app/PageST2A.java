@@ -271,8 +271,8 @@ public class PageST2A implements Handler {
                                     datasets: [
                                         {fill: false,
                                         lineTension: 0,
-                                        backgroundColor: "rgba(0,0,255,1.0)",
-                                        borderColor: "rgba(0,0,255,0.1)",
+                                        backgroundColor: "#4F7302",
+                                        borderColor: "#9FC847",
                                         data: yValues}
                                     ]
                                 },

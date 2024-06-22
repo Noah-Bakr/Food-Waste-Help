@@ -819,6 +819,10 @@ label:last-child span {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  width: 450px;
+}
+
+#scroll-menu-title-threeA {
   width: 350px;
 }
 
