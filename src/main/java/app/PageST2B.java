@@ -93,7 +93,7 @@ html = html + "<form action='/page2B.html' method='post'>";
                         html = html + "<select name='selectedGroup' id='selectedGroup'> <optgroup>";
                         
 
-                        ArrayList<Group> groups = jdbc.getAllGroupsName();
+                        ArrayList<Group> groups = jdbc.getExistingGroupsName();
 
                         for (Group group : groups) {
                             String groupIdValue = group.getGroupId();

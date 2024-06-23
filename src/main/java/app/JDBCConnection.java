@@ -1023,6 +1023,58 @@ public class JDBCConnection {
         return groups;
     }
 
+    public ArrayList<Group> getExistingGroupsName() {
+        // Create the ArrayList of Country objects to return
+        ArrayList<Group> groups = new ArrayList<Group>();
+
+        // Setup the variable for the JDBC connection
+        Connection connection = null;
+
+        try {
+            // Connect to JDBC data base
+            connection = DriverManager.getConnection(DATABASE);
+
+            // Prepare a new SQL Query & Set a timeout
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            // The Query
+            String query = "SELECT DISTINCT Groupid, groupdescription FROM completeevents ORDER BY groupDescription ASC;";
+            
+            // Get Result
+            ResultSet results = statement.executeQuery(query);
+
+            // Process all of the results
+            while (results.next()) {
+                // Lookup the columns we need
+                String descriptor     = results.getString("Groupdescription");
+                String groupId     = results.getString("groupid");
+
+                Group groupsObj = new Group(groupId,descriptor);
+                // Add the Country object to the array
+                groups.add(groupsObj);
+            }
+            statement.close();
+
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        // Finally we return all of the countries
+        return groups;
+    }
+
 
     public String getNoOfEvents() {
         // Create the ArrayList of Country objects to return
