@@ -232,7 +232,7 @@ html = html + "<div class='twobGraphTable'>";
 
 html = html + """
                         <div class='line-graph' style='width:40%; display:flex; align-items:center;'>
-                            <canvas id="line-graph"></canvas>
+                            <canvas id="line-graph" style="max-width:700px"></canvas>
                             <script> """;
 
                                 html = html + "const xValues = [";
