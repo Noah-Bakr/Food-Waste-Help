@@ -1115,11 +1115,19 @@ padding-top: 20px;
 .tableContainer
 {
   width: 80%;
+  padding:10px 10px 10px 10px;
+  border-radius: 10px;
+  background-color: white;
 }
 
 .differenceTable
 {
   
+}
+
+.differenceTable tr td
+{
+  padding-left: 10px;
 }
 
 /* TEMPORARY CSS SUBJECT TO CHANGE */
