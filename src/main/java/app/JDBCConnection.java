@@ -1467,7 +1467,7 @@ public class JDBCConnection {
 
     public DifferenceTableSelected getTableSelectedResults(String searchKey, String sortBy) {
         // Create the ArrayList of Country objects to return
-        DifferenceTableSelected commodities = new DifferenceTableSelected("one", "two", "three", "four", "five");
+        DifferenceTableSelected commodities = new DifferenceTableSelected( "two", "three", "four");
 
         // Setup the variable for the JDBC connection
         Connection connection = null;
@@ -1481,7 +1481,7 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT Commodity, cpc_code ,GroupDescription,groupId, ROUND(" + sortBy + "(loss_percentage),4) AS LossPercentage FROM completeEvents WHERE cpc_code == '" + searchKey + "';";
+            String query = "SELECT GroupDescription, GroupId, " + sortBy + "(loss_percentage) AS LossPercentage FROM completeEvents WHERE groupId == substr('" + searchKey + "', 1, 3);";
 
                                 // System.out.println(query);
             
@@ -1491,15 +1491,67 @@ public class JDBCConnection {
             // Process all of the results
             while (results.next()) {
                 // Lookup the columns we need
-
-                String commodity     = results.getString("Commodity");
-                String cpcCode     = results.getString("cpc_code");
                 String descriptor     = results.getString("GroupDescription");
                 String groupId     = results.getString("groupId");
                 String lossPercentage     = results.getString("LossPercentage");
                 
 
-                commodities = new DifferenceTableSelected(commodity,descriptor,groupId,lossPercentage,cpcCode);
+                commodities = new DifferenceTableSelected(descriptor,groupId,lossPercentage);
+                
+            }
+
+            // Close the statement because we are done with it
+            statement.close();
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        // Finally we return all of the countries
+        return commodities;
+    }
+
+    public DifferenceTableSelected getTableSelectedCommodity(String searchKey) {
+        // Create the ArrayList of Country objects to return
+        DifferenceTableSelected commodities = new DifferenceTableSelected("one", "two");
+
+        // Setup the variable for the JDBC connection
+        Connection connection = null;
+
+        try {
+            // Connect to JDBC data base
+            connection = DriverManager.getConnection(DATABASE);
+
+            // Prepare a new SQL Query & Set a timeout
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            // The Query
+            String query = "SELECT DISTINCT Commodity, cpc_code FROM completeEvents WHERE cpc_code == '21435.01';";
+
+                                // System.out.println(query);
+            
+            // Get Result
+            ResultSet results = statement.executeQuery(query);
+
+            // Process all of the results
+            while (results.next()) {
+                // Lookup the columns we need
+                String commodity     = results.getString("commodity");
+                String cpc_code     = results.getString("cpc_code");
+                
+
+                commodities = new DifferenceTableSelected(commodity,cpc_code);
                 
             }
 

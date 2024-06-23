@@ -29,6 +29,17 @@ public class DifferenceTableSelected {
       this.Cpc_Code = cpcCode;
    }
 
+   public DifferenceTableSelected(String cpcCode,String commodity) {
+      this.Commodity = commodity;
+      this.Cpc_Code = cpcCode;
+   }
+
+   public DifferenceTableSelected(String descriptor, String groupid, String losspercentage) {
+      this.GroupDescriptor = descriptor;
+      this.GroupId = groupid;
+      this.LossPercentage = losspercentage;
+   }
+
    public String getCommodity()
    {
       return Commodity;

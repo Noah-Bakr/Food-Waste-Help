@@ -167,6 +167,7 @@ public class PageST3B implements Handler {
         {
           html = html + "<div class='individualItem'>";
           DifferenceTableSelected lookupResults = jdbc.getTableSelectedResults(searchedProduct, sort_by);
+          DifferenceTableSelected lookupCommodity = jdbc.getTableSelectedCommodity(searchedProduct);
             html = html + "<table>";
 
               html = html + "<tr>";
@@ -178,8 +179,8 @@ public class PageST3B implements Handler {
 
               html = html + "<tr>";
                 html = html + "<td><p><strong>Commodity</strong></p></td>";
-                html = html + "<td><p>" + lookupResults.getCommodity() + "</p></td>";
-                html = html + "<td><p>" + lookupResults.getCpcCode() + "</p></td>";
+                html = html + "<td><p>" + lookupCommodity.getCommodity() + "</p></td>";
+                html = html + "<td><p>" + lookupCommodity.getCpcCode() + "</p></td>";
               html = html + "</tr>";
 
               html = html + "<tr>";
