@@ -1096,6 +1096,83 @@ padding-top: 20px;
   display: flex;
 }
 
+.twoB-table {
+  width: 920px;
+  height: 500px;
+  overflow: scroll;
+  top: 0;
+  margin: 10px 0 0 0;
+  padding: 10px;
+  background-color: #fff;
+  border: 2px solid #4F7302;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.twoB-table table, .twoB-table th, .twoB-table td {
+  border-top: 5px solid #4F7302;
+  border-bottom: 5px solid #4F7302;
+  border-collapse: collapse;
+}
+
+.twoB-table th, .twoB-table td {
+  width: fit-content;
+  height: fit-content;
+  overflow: scroll;
+  text-align: center;
+}
+
+.twoB-table tr {
+  width: fit-content;
+  height: fit-content;
+  overflow: scroll;
+  text-align: center;
+}
+
+.twoB-table table {
+  width: 100%;
+}
+
+
+.twoB-table h2 {
+  font-weight: bold;
+  font-size: 18px;
+  color: #000000;
+  text-align: left;
+  margin: 0px 10px;
+  padding: 5px 0px;
+  width: fit-content;
+  height: fit-content;
+}
+
+.twoB-table h3 {
+  font-weight: normal;
+  font-size: 25px;
+  color: #000000;
+  text-align: left;
+  margin: 0px 10px;
+  padding: 5px 0px;
+  width: fit-content;
+  height: fit-content;
+}
+
+.twoB-table h4 {
+  font-weight: bold;
+  font-size: 25px;
+  color: #4F7302;
+  margin: 0;
+  text-align: center;
+  margin: 0px 20px;
+  padding: 5px 5px;
+}
+
+.twoB-table h4[target="red"] {
+  color: #C84747;
+}
+
 #numberOfResults
 {
   margin-left: 5px;

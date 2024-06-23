@@ -315,7 +315,7 @@ html = html + """
                         
 
                         //Table Generator
-                        html = html + "<div class='twoA-table' style='margin-top:0px; margin-left:5px; width:70%;'>";
+                        html = html + "<div class='twoB-table' style='margin-top:0px; margin-left:5px; width:70%;'>";
                         //Creates Table
                                 html = html +"<table>";
                                 //Generates table headings
