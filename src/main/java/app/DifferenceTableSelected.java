@@ -29,7 +29,7 @@ public class DifferenceTableSelected {
       this.Cpc_Code = cpcCode;
    }
 
-   public DifferenceTableSelected(String cpcCode,String commodity) {
+   public DifferenceTableSelected(String commodity,String cpcCode) {
       this.Commodity = commodity;
       this.Cpc_Code = cpcCode;
    }
