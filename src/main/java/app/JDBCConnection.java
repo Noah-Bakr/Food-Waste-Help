@@ -656,48 +656,196 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             String query = null;
-            if (decision.equals("loss")) {
-                // The Query
-                query = "SELECT countryName, AVG(loss_percentage), year, 100 - (ABS(AVG(loss_percentage) - (SELECT AVG(loss_percentage) FROM completeEvents\n" + //
-                                                                                                            "WHERE (countryName = '" + country + "') AND year = '" + firstYear + "'\n" + //
-                                                                                                            "GROUP BY countryName HAVING AVG(loss_percentage))) / 25 * 100) AS 'similarity_percentage' FROM completeEvents\n" + //
-                        "WHERE (countryName = '" + country + "') AND year = '" + firstYear + "'\n" + //
-                        "GROUP BY countryName HAVING AVG(loss_percentage)\n" + //
-
-                        "UNION\n" + //
-
-                        "SELECT countryName, AVG(loss_percentage), year, 100 - (ABS(AVG(loss_percentage) - (SELECT AVG(loss_percentage) FROM completeEvents\n" + //
-                                                                                                            "WHERE (countryName = '" + country + "') AND year = '" + firstYear + "'\n" + //
-                                                                                                            "GROUP BY countryName HAVING AVG(loss_percentage))) / 25 * 100) AS 'similarity_percentage' FROM completeEvents\n" + //
-                        "WHERE countryName != '" + country + "' AND year = '" + firstYear + "'\n" + //
-                        "GROUP BY countryName HAVING AVG(loss_percentage)\n" + //
-                        "ORDER BY similarity_percentage " + orderBy + ", countryName\n" + //
-                        "LIMIT " + itemsNo + ";";
-            } else if (decision.equals("products")) {
-                // The Query
-                query = "SELECT countryName, commodity, count(DISTINCT commodity) AS similar_commodities, (CAST(count(DISTINCT commodity) AS double) /  7.0) * 100.0 AS 'similarity_percentage', year FROM completeEvents \n" + //
-                        "WHERE commodity IN (SELECT DISTINCT commodity FROM completeEvents\n" + //
-                                            "WHERE ((countryName = '" + country + "') AND year = '" + firstYear + "')\n" + //
-                                            "ORDER BY commodity)\n" + //
-                        "GROUP BY countryName, year HAVING similar_commodities AND year = '" + firstYear + "'\n" + //
-                        
-                        "UNION\n" + //
-                        
-                        "SELECT countryName, commodity, count(DISTINCT commodity) AS similar_commodities, \n" + //
-                            "(CAST(count(DISTINCT commodity) AS double) /  (SELECT count(DISTINCT commodity) AS similar_commodities FROM completeEvents\n" + //
+            if (determination.equals("absolute")) {
+                if (decision.equals("loss")) {
+                    // The Query
+                    query = "SELECT countryName, AVG(loss_percentage), year, 100 - (ABS(AVG(loss_percentage) - (SELECT AVG(loss_percentage) FROM completeEvents\n" + //
+                                                                                                                "WHERE (countryName = '" + country + "') AND year = '" + firstYear + "'\n" + //
+                                                                                                                "GROUP BY countryName HAVING AVG(loss_percentage))) / 25 * 100) AS 'similarity_percentage' FROM completeEvents\n" + //
+                            "WHERE (countryName = '" + country + "') AND year = '" + firstYear + "'\n" + //
+                            "GROUP BY countryName HAVING AVG(loss_percentage)\n" + //
+    
+                            "UNION\n" + //
+    
+                            "SELECT countryName, AVG(loss_percentage), year, 100 - (ABS(AVG(loss_percentage) - (SELECT AVG(loss_percentage) FROM completeEvents\n" + //
+                                                                                                                "WHERE (countryName = '" + country + "') AND year = '" + firstYear + "'\n" + //
+                                                                                                                "GROUP BY countryName HAVING AVG(loss_percentage))) / 25 * 100) AS 'similarity_percentage' FROM completeEvents\n" + //
+                            "WHERE countryName != '" + country + "' AND year = '" + firstYear + "'\n" + //
+                            "GROUP BY countryName HAVING AVG(loss_percentage)\n" + //
+                            "ORDER BY similarity_percentage " + orderBy + ", countryName\n" + //
+                            "LIMIT " + itemsNo + ";";
+                } else if (decision.equals("products")) {
+                    // The Query
+                    query = "SELECT countryName, commodity, count(DISTINCT commodity) AS similar_commodities, (CAST(count(DISTINCT commodity) AS double) /  (SELECT count(DISTINCT commodity) AS similar_commodities FROM completeEvents\n" + //
+                                            "WHERE commodity IN (SELECT DISTINCT commodity FROM completeEvents\n" + //
+                                                                "WHERE ((countryName = '" + country + "') AND year = '" + firstYear + "')\n" + //
+                                                                "ORDER BY commodity)\n" + //
+                                            "GROUP BY year HAVING year = '" + firstYear + "'\n" + //
+                            "ORDER BY similar_commodities DESC LIMIT 1)) * 100.0 AS 'similarity_percentage', year FROM completeEvents \n" + //
+                            "WHERE commodity IN (SELECT DISTINCT commodity FROM completeEvents\n" + //
+                            "WHERE ((countryName = '" + country + "') AND year = '" + firstYear + "')\n" + //
+                            "ORDER BY commodity)\n" + //
+                            "GROUP BY countryName, year HAVING similar_commodities AND countryName = '" + country + "' AND year = '" + firstYear + "'\n" + //
+    
+                            "UNION\n" + //
+    
+                            "SELECT countryName, commodity, count(DISTINCT commodity) AS similar_commodities, (CAST(count(DISTINCT commodity) AS double) /  (SELECT count(DISTINCT commodity) AS similar_commodities FROM completeEvents\n" + //
+                                            "WHERE commodity IN (SELECT DISTINCT commodity FROM completeEvents\n" + //
+                                                                "WHERE ((countryName = '" + country + "') AND year = '" + firstYear + "')\n" + //
+                                                                "ORDER BY commodity)\n" + //
+                                            "GROUP BY year HAVING year = '" + firstYear + "'\n" + //
+                            "ORDER BY similar_commodities DESC LIMIT 1)) * 100.0 AS 'similarity_percentage', year FROM completeEvents \n" + //
+                            "WHERE commodity IN (SELECT DISTINCT commodity FROM completeEvents\n" + //
+                            "WHERE ((countryName = '" + country + "') AND year = '" + firstYear + "')\n" + //
+                            "ORDER BY commodity)\n" + //
+                            "GROUP BY countryName, year HAVING similar_commodities AND countryName != '" + country + "' AND year = '" + firstYear + "'\n" + //
+                            "ORDER BY similarity_percentage " + orderBy + " LIMIT " + itemsNo + ";";
+                } else if (decision.equals("both")) {
+                    // The Query
+                    query = "SELECT countryName, commodity, count(DISTINCT commodity) AS similar_commodities, AVG(loss_percentage), \n" + //
+                                "(CAST(count(DISTINCT commodity) AS double) /  (SELECT count(DISTINCT commodity) AS similar_commodities FROM completeEvents\n" + //
                                                                                 "WHERE commodity IN (SELECT DISTINCT commodity FROM completeEvents\n" + //
                                                                                                     "WHERE ((countryName = '" + country + "') AND year = '" + firstYear + "')\n" + //
                                                                                                     "ORDER BY commodity)\n" + //
                                                                                 "GROUP BY year HAVING year = '" + firstYear + "'\n" + //
-                                                                                "ORDER BY similar_commodities DESC LIMIT 1)) * 100.0 AS 'similarity_percentage', year FROM completeEvents \n" + //
-                        "WHERE commodity IN (SELECT DISTINCT commodity FROM completeEvents\n" + //
-                                            "WHERE ((countryName = '" + country + "') AND year = '" + firstYear + "')\n" + //
-                                            "GROUP BY year HAVING year = '" + firstYear + "'\n" + //
-                                            "ORDER BY commodity)\n" + //
-                        "GROUP BY countryName, year HAVING similar_commodities AND year = '" + firstYear + "'\n" + //
-                        "ORDER BY similar_commodities " + orderBy + "\n" + //
-                        "LIMIT " + itemsNo + ";";
+                                                                                "ORDER BY similar_commodities DESC LIMIT 1)) * 100.0 AS 'similarity_percentageCOMM', \n" + //
+                                "100 - (ABS(AVG(loss_percentage) - (SELECT AVG(loss_percentage) FROM completeEvents\n" + //
+                                                                    "WHERE (countryName = '" + country + "') AND year = '" + firstYear + "'\n" + //
+                                                                    "GROUP BY countryName HAVING AVG(loss_percentage))) / 25 * 100) AS 'similarity_percentageLP', \n" + //
+                                "year, CAST((((CAST(count(DISTINCT commodity) AS double) /  (SELECT count(DISTINCT commodity) AS similar_commodities FROM completeEvents \n" + //
+                                                                                            "WHERE commodity IN (SELECT DISTINCT commodity FROM completeEvents \n" + //
+                                                                                                                "WHERE ((countryName = '" + country + "') AND year = '" + firstYear + "')\n" + //
+                                                                                                                "ORDER BY commodity)\n" + //
+                                                                                                                "GROUP BY year HAVING year = '" + firstYear + "'\n" + //
+                                                                                            "ORDER BY similar_commodities DESC LIMIT 1)) * 100.0) + (100 - (ABS(AVG(loss_percentage) - (SELECT AVG(loss_percentage) FROM completeEvents\n" + //
+                                                                                                                                                                                        "WHERE (countryName = '" + country + "') AND year = '" + firstYear + "'\n" + //
+                                                                                                                    "GROUP BY countryName HAVING AVG(loss_percentage))) / 25 * 100))) / 2.0 AS double) AS similarity_total FROM completeEvents \n" + //
+                            "WHERE commodity IN (SELECT DISTINCT commodity FROM completeEvents\n" + //
+                                                "WHERE ((countryName = '" + country + "') AND year = '" + firstYear + "')\n" + //
+                                                "ORDER BY commodity)\n" + //
+                            "GROUP BY countryName, year HAVING similar_commodities AND countryName = '" + country + "' AND year = '" + firstYear + "'\n" + //
+                            
+                            "UNION\n" + //
+                            
+                            "SELECT countryName, commodity, count(DISTINCT commodity) AS similar_commodities, AVG(loss_percentage), \n" + //
+                                "(CAST(count(DISTINCT commodity) AS double) /  (SELECT count(DISTINCT commodity) AS similar_commodities FROM completeEvents\n" + //
+                                                                                "WHERE commodity IN (SELECT DISTINCT commodity FROM completeEvents\n" + //
+                                                                                                    "WHERE ((countryName = '" + country + "') AND year = '" + firstYear + "')\n" + //
+                                                                                                    "ORDER BY commodity)\n" + //
+                                                                                "GROUP BY year HAVING year = '" + firstYear + "'\n" + //
+                                                                                "ORDER BY similar_commodities DESC LIMIT 1)) * 100.0 AS 'similarity_percentageCOMM', \n" + //
+                                "100 - (ABS(AVG(loss_percentage) - (SELECT AVG(loss_percentage) FROM completeEvents\n" + //
+                                                                    "WHERE (countryName = '" + country + "') AND year = '" + firstYear + "'\n" + //
+                                                                    "GROUP BY countryName HAVING AVG(loss_percentage))) / 25 * 100) AS 'similarity_percentageLP', year, \n" + //
+                                "CAST((((CAST(count(DISTINCT commodity) AS double) /  (SELECT count(DISTINCT commodity) AS similar_commodities FROM completeEvents WHERE commodity IN (SELECT DISTINCT commodity FROM completeEvents \n" + //
+                                                                                                                                                                                        "WHERE ((countryName = '" + country + "') AND year = '" + firstYear + "')\n" + //
+                                                                                                                                                                                        "ORDER BY commodity)\n" + //
+                                                                                    "GROUP BY year HAVING year = '" + firstYear + "'\n" + //
+                                                                                    "ORDER BY similar_commodities DESC LIMIT 1)) * 100.0) + (100 - (ABS(AVG(loss_percentage) - (SELECT AVG(loss_percentage) FROM completeEvents\n" + //
+                                                                                                                                                                                "WHERE (countryName = '" + country + "') AND year = '" + firstYear + "'\n" + //
+                                                                                                                                                                                "GROUP BY countryName HAVING AVG(loss_percentage))) / 25 * 100))) / 2.0 AS double) AS similarity_total FROM completeEvents \n" + //
+                            "WHERE commodity IN (SELECT DISTINCT commodity FROM completeEvents\n" + //
+                                                "WHERE ((countryName = '" + country + "') AND year = '" + firstYear + "')\n" + //
+                                                "ORDER BY commodity)\n" + //
+                            "GROUP BY countryName, year HAVING similar_commodities AND countryName != '" + country + "' AND year = '" + firstYear + "'\n" + //
+                            "ORDER BY similarity_total " + orderBy + " LIMIT " + itemsNo + ";";
+                }
+            } else if (determination.equals("overlap")) {
+                if (decision.equals("loss")) {
+                    // The Query
+                    query = "SELECT countryName, AVG(loss_percentage), year, 100 - (ABS(AVG(loss_percentage) - (SELECT AVG(loss_percentage) FROM completeEvents\n" + //
+                                                                                                                "WHERE (countryName = '" + country + "') AND year = '" + firstYear + "'\n" + //
+                                                                                                                "GROUP BY countryName HAVING AVG(loss_percentage))) / 25 * 100) AS 'similarity_percentage' FROM completeEvents\n" + //
+                            "WHERE (countryName = '" + country + "') AND year = '" + firstYear + "'\n" + //
+                            "GROUP BY countryName HAVING AVG(loss_percentage)\n" + //
+    
+                            "UNION\n" + //
+    
+                            "SELECT countryName, AVG(loss_percentage), year, 100 - (ABS(AVG(loss_percentage) - (SELECT AVG(loss_percentage) FROM completeEvents\n" + //
+                                                                                                                "WHERE (countryName = '" + country + "') AND year = '" + firstYear + "'\n" + //
+                                                                                                                "GROUP BY countryName HAVING AVG(loss_percentage))) / 25 * 100) AS 'similarity_percentage' FROM completeEvents\n" + //
+                            "WHERE countryName != '" + country + "' AND year = '" + firstYear + "'\n" + //
+                            "GROUP BY countryName HAVING AVG(loss_percentage)\n" + //
+                            "ORDER BY similarity_percentage " + orderBy + ", countryName\n" + //
+                            "LIMIT " + itemsNo + ";";
+                } else if (decision.equals("products")) {
+                    // The Query
+                    query = "SELECT countryName, commodity, count(DISTINCT commodity) AS similar_commodities, ((CAST(count(DISTINCT commodity) AS double) /  ((CAST((SELECT count(DISTINCT commodity) AS similar_commodities FROM completeEvents\n" + //
+                                                "WHERE commodity IN (SELECT DISTINCT commodity FROM completeEvents\n" + //
+                                                                    "WHERE year = '" + firstYear + "' AND countryName = '" + country + "'\n" + //
+                                                                    "ORDER BY commodity)\n" + //
+                                                "GROUP BY countryName, year HAVING year = '" + firstYear + "'\n" + //
+                                                "ORDER BY similar_commodities DESC) AS double)))) * 100.0) AS 'similarity_percentage', year FROM completeEvents \n" + //
+                            "WHERE commodity IN (SELECT DISTINCT commodity FROM completeEvents\n" + //
+                            "WHERE ((countryName = '" + country + "') AND year = '" + firstYear + "')\n" + //
+                            "ORDER BY commodity)\n" + //
+                            "GROUP BY countryName, year HAVING similar_commodities AND countryName = '" + country + "' AND year = '" + firstYear + "'\n" + //
+
+                            "UNION\n" + //
+
+                            "SELECT countryName, commodity, count(DISTINCT commodity) AS similar_commodities, (CAST(count(DISTINCT commodity) AS double) /  ((CAST((SELECT count(DISTINCT commodity) AS similar_commodities FROM completeEvents\n" + //
+                                                "WHERE commodity IN (SELECT DISTINCT commodity FROM completeEvents\n" + //
+                                                                    "WHERE year = '" + firstYear + "' AND countryName != '" + country + "'\n" + //
+                                                                    "ORDER BY commodity)\n" + //
+                                                "GROUP BY countryName, year HAVING year = '" + firstYear + "'\n" + //
+                                                "ORDER BY similar_commodities DESC) AS double))) * 100.0) AS 'similarity_percentage', year FROM completeEvents \n" + //
+                            "WHERE commodity IN (SELECT DISTINCT commodity FROM completeEvents\n" + //
+                            "WHERE year = '" + firstYear + "' AND countryName = '" + country + "'\n" + //
+                            "ORDER BY commodity)\n" + //
+                            "GROUP BY countryName, year HAVING similar_commodities AND countryName != '" + country + "' AND year = '" + firstYear + "'\n" + //
+                            "ORDER BY similarity_percentage " + orderBy + " LIMIT " + itemsNo + ";";
+                } else if (decision.equals("both")) {
+                    // The Query
+                    query = "SELECT countryName, commodity, count(DISTINCT commodity) AS similar_commodities, AVG(loss_percentage), \n" + //
+                                "(CAST(count(DISTINCT commodity) AS double) /  ((CAST((SELECT count(DISTINCT commodity) AS similar_commodities FROM completeEvents\n" + //
+                                                                                        "WHERE commodity IN (SELECT DISTINCT commodity FROM completeEvents\n" + //
+                                                                                                            "WHERE year = '" + firstYear + "' AND countryName = '" + country + "'\n" + //
+                                                                                                            "ORDER BY commodity)\n" + //
+                                                                                        "GROUP BY countryName, year HAVING year = '" + firstYear + "'\n" + //
+                                                                                        "ORDER BY similar_commodities DESC) AS double)))) * 100.0 AS 'similarity_percentageCOMM', \n" + //
+                                "100 - (ABS(AVG(loss_percentage) - (SELECT AVG(loss_percentage) FROM completeEvents\n" + //
+                                                                    "WHERE (countryName = '" + country + "') AND year = '" + firstYear + "'\n" + //
+                                                                    "GROUP BY countryName HAVING AVG(loss_percentage))) / 25 * 100) AS 'similarity_percentageLP', \n" + //
+                                "year, CAST((((CAST(count(DISTINCT commodity) AS double) /  (SELECT count(DISTINCT commodity) AS similar_commodities FROM completeEvents\n" + //
+                                                                                "WHERE commodity IN (SELECT DISTINCT commodity FROM completeEvents\n" + //
+                                                                                                    "WHERE ((countryName = '" + country + "') AND year = '" + firstYear + "')\n" + //
+                                                                                                    "ORDER BY commodity)\n" + //
+                                                                                "GROUP BY year HAVING year = '" + firstYear + "'\n" + //
+                                                                                "ORDER BY similar_commodities DESC LIMIT 1)) * 100.0) + (100 - (ABS(AVG(loss_percentage) - (SELECT AVG(loss_percentage) FROM completeEvents\n" + //
+                                                                                                                                                                                        "WHERE (countryName = '" + country + "') AND year = '" + firstYear + "'\n" + //
+                                                                                                                    "GROUP BY countryName HAVING AVG(loss_percentage))) / 25 * 100))) / 2.0 AS double) AS similarity_total FROM completeEvents \n" + //
+                            "WHERE commodity IN (SELECT DISTINCT commodity FROM completeEvents\n" + //
+                                                "WHERE ((countryName = '" + country + "') AND year = '" + firstYear + "')\n" + //
+                                                "ORDER BY commodity)\n" + //
+                            "GROUP BY countryName, year HAVING similar_commodities AND countryName = '" + country + "' AND year = '" + firstYear + "'\n" + //
+                            
+                            "UNION\n" + //
+                            
+                            "SELECT countryName, commodity, count(DISTINCT commodity) AS similar_commodities, AVG(loss_percentage), \n" + //
+                                "(CAST(count(DISTINCT commodity) AS double) /  (SELECT count(DISTINCT commodity) AS similar_commodities FROM completeEvents\n" + //
+                                                                                "WHERE commodity IN (SELECT DISTINCT commodity FROM completeEvents\n" + //
+                                                                                                    "WHERE ((countryName != '" + country + "') AND year = '" + firstYear + "')\n" + //
+                                                                                                    "ORDER BY commodity)\n" + //
+                                                                                "GROUP BY year HAVING year = '" + firstYear + "'\n" + //
+                                                                                "ORDER BY similar_commodities DESC LIMIT 1)) * 100.0 AS 'similarity_percentageCOMM', \n" + //
+                                "100 - (ABS(AVG(loss_percentage) - (SELECT AVG(loss_percentage) FROM completeEvents\n" + //
+                                                                    "WHERE (countryName = '" + country + "') AND year = '" + firstYear + "'\n" + //
+                                                                    "GROUP BY countryName HAVING AVG(loss_percentage))) / 25 * 100) AS 'similarity_percentageLP', year, \n" + //
+                                "CAST((((CAST(count(DISTINCT commodity) AS double) /  (SELECT count(DISTINCT commodity) AS similar_commodities FROM completeEvents WHERE commodity IN (SELECT DISTINCT commodity FROM completeEvents \n" + //
+                                                                                                                                                                                        "WHERE ((countryName = '" + country + "') AND year = '" + firstYear + "')\n" + //
+                                                                                                                                                                                        "ORDER BY commodity)\n" + //
+                                                                                    "GROUP BY year HAVING year = '" + firstYear + "'\n" + //
+                                                                                    "ORDER BY similar_commodities DESC LIMIT 1)) * 100.0) + (100 - (ABS(AVG(loss_percentage) - (SELECT AVG(loss_percentage) FROM completeEvents\n" + //
+                                                                                                                                                                                "WHERE (countryName = '" + country + "') AND year = '" + firstYear + "'\n" + //
+                                                                                                                                                                                "GROUP BY countryName HAVING AVG(loss_percentage))) / 25 * 100))) / 2.0 AS double) AS similarity_total FROM completeEvents \n" + //
+                            "WHERE commodity IN (SELECT DISTINCT commodity FROM completeEvents\n" + //
+                                                "WHERE ((countryName = '" + country + "') AND year = '" + firstYear + "')\n" + //
+                                                "ORDER BY commodity)\n" + //
+                            "GROUP BY countryName, year HAVING similar_commodities AND countryName != '" + country + "' AND year = '" + firstYear + "'\n" + //
+                            "ORDER BY similarity_total " + orderBy + " LIMIT " + itemsNo + ";";
+                }
             }
+            
             
                                 
             // Get Result
@@ -713,6 +861,9 @@ public class JDBCConnection {
                 double similarityPercentage = 0.0;
                 int similarCommodities = 0;
                 Country countryObj = null;
+                double similarCommoditiesPercentage = 0.0;
+                double similarCommoditiesLossPercentage = 0.0;
+                double similarityPercentageTotal = 0.0;
 
                 if (decision.equals("loss")) { //String Double String Double
                     countryName          = results.getString("countryName");
@@ -728,6 +879,16 @@ public class JDBCConnection {
                     year                   = results.getString("year");
 
                     countryObj = new Country(countryName, similarCommodities, similarityPercentage, year);
+                } else if (decision.equals("both")) { //String Int Double Double Double Double String
+                    countryName          = results.getString("countryName");
+                    similarCommodities = results.getInt("similar_commodities");
+                    similarCommoditiesPercentage = Math.round(results.getDouble("similarity_percentageCOMM") * scale) / scale;
+                    AVGloss_percentage     = Math.round(results.getDouble("AVG(loss_percentage)") * scale) / scale;
+                    similarCommoditiesLossPercentage = Math.round(results.getDouble("similarity_percentageLP") * scale) / scale;
+                    similarityPercentageTotal    = Math.round(results.getDouble("similarity_total") * scale) / scale;
+                    year                   = results.getString("year");
+
+                    countryObj = new Country(countryName, similarCommodities, similarCommoditiesPercentage, AVGloss_percentage, similarCommoditiesLossPercentage, similarityPercentageTotal, year);
                 }
                 
 

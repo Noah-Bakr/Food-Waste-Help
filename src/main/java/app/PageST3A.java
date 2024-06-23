@@ -111,7 +111,7 @@ public class PageST3A implements Handler {
                     </div>
                     <div class='graph-grid'>
                         <div class='scroll-menu' id='similarity-menu'>
-                            <div class='scroll-menu-title'>
+                            <div class='scroll-menu-title' id='scroll-menu-title-threeA'>
                                 <h2>Similarity</h2>
                             </div>
                             <div class='similarity-menu-items'> 
@@ -213,7 +213,7 @@ public class PageST3A implements Handler {
                                             </div>
                                             <div>
                                                 <input type="radio" id="overlap" name="determination" value="overlap" checked="checked">
-                                                    <label for="overlap">The level of overlap/waste</label>
+                                                    <label for="overlap">The level of overlap (products)</label>
                                             </div>""";
                                         }
                                     } else {
@@ -224,7 +224,7 @@ public class PageST3A implements Handler {
                                         </div>
                                         <div>
                                             <input type="radio" id="overlap" name="determination" value="overlap">
-                                                <label for="overlap">The level of overlap/waste</label>
+                                                <label for="overlap">The level of overlap (products)</label>
                                         </div>""";
                                     }
         html = html + """
@@ -363,12 +363,14 @@ public class PageST3A implements Handler {
 
                                     if ((Objects.nonNull(country)) && (Objects.nonNull(firstYear)) && (Objects.nonNull(decision)) && (Objects.nonNull(determination)) && (Objects.nonNull(itemsNo)) && (Objects.nonNull(orderBy))) {
                                         ArrayList<Country> data = jdbc.parse3ADataTable(country, firstYear, decision, determination, itemsNo, orderBy); 
-                                        html = html + "<tr>";
+                                        
                                         if (decision.equals("loss")) {
-                                            html = html + "<th><h2>Country<h2></th>";
-                                            html = html + "<th><h2>Loss Percentage<h2></th>";
-                                            html = html + "<th><h2>Year<h2></th>";
-                                            html = html + "<th><h2>Similarity Score<h2></th>";
+                                            html = html + "<tr>";
+
+                                            html = html + "<th><h2>Country</h2></th>";
+                                            html = html + "<th><h2>Loss Percentage</h2></th>";
+                                            html = html + "<th><h2>Similarity Score</h2></th>";
+                                            html = html + "<th><h2>Year</h2></th>";
                                             html = html + "</tr>";
 
                                         for (Country entry : data) {
@@ -376,15 +378,17 @@ public class PageST3A implements Handler {
                                             
                                             html = html + "<td><h3>" + entry.getName() + "</h3></td>";
                                             html = html + "<td><h3>" + entry.getLossPercentage() + "</h3></td>";
-                                            html = html + "<td><h3>" + entry.getYear() + "</h3></td>";
                                             html = html + "<td><h3>" + entry.getSimilarityPercentage() + "</h3></td>";
+                                            html = html + "<td><h3>" + entry.getYear() + "</h3></td>";
                                             html = html + "</tr>";
                                             }
                                         } else if (decision.equals("products")) {
-                                            html = html + "<th><h2>Country<h2></th>";
-                                            html = html + "<th><h2>No. of Similar Commodities<h2></th>";
-                                            html = html + "<th><h2>Similarity Score<h2></th>";
-                                            html = html + "<th><h2>Year<h2></th>";
+                                            html = html + "<tr>";
+
+                                            html = html + "<th><h2>Country</h2></th>";
+                                            html = html + "<th><h2>No. of Similar Commodities</h2></th>";
+                                            html = html + "<th><h2>Similarity Score</h2></th>";
+                                            html = html + "<th><h2>Year</h2></th>";
                                             html = html + "</tr>";
 
                                         for (Country entry : data) {
@@ -396,9 +400,31 @@ public class PageST3A implements Handler {
                                             html = html + "<td><h3>" + entry.getYear() + "</h3></td>";
                                             html = html + "</tr>";
                                             }
-                                        }
+                                        } else if (decision.equals("both")) {
+                                            html = html + "<tr>";
 
-                                        
+                                            html = html + "<th><h2>Country</h2></th>";
+                                            html = html + "<th><h2>No. of Similar Commodities</h2></th>";
+                                            html = html + "<th><h2>Similarity Score (COM)</h2></th>";
+                                            html = html + "<th><h2>Loss Percentage</h2></th>";
+                                            html = html + "<th><h2>Similarity Score (FL)</h2></th>";
+                                            html = html + "<th><h2>Similarity Total</h2></th>";
+                                            html = html + "<th><h2>Year</h2></th>";
+                                            html = html + "</tr>";
+
+                                        for (Country entry : data) {
+                                            html = html + "<tr>";
+                                            
+                                            html = html + "<td><h3>" + entry.getName() + "</h3></td>";
+                                            html = html + "<td><h3>" + entry.getSimilarCommoditiesNo() + "</h3></td>";
+                                            html = html + "<td><h3>" + entry.getSimilarCommoditiesPercentage() + "</h3></td>";
+                                            html = html + "<td><h3>" + entry.getLossPercentage() + "</h3></td>";
+                                            html = html + "<td><h3>" + entry.getSimilarCommoditiesLossPercentage() + "</h3></td>";
+                                            html = html + "<td><h3>" + entry.getSimilarityPercentageTotal() + "</h3></td>";
+                                            html = html + "<td><h3>" + entry.getYear() + "</h3></td>";
+                                            html = html + "</tr>";
+                                            }
+                                        }
                                     }
                     html = html + """
                             </table>
@@ -418,5 +444,4 @@ public class PageST3A implements Handler {
         // Makes Javalin render the webpage
         context.html(html);
     }
-
 }

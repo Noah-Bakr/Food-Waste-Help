@@ -18,6 +18,9 @@ public class Country {
    private double similarityPercentage;
 
    private int similarCommodities;
+   private double similarCommoditiesPercentage;
+   private double similarityPercentageTotal;
+   private double similarCommoditiesLossPercentage;
 
    /**
     * Create a Country and set the fields
@@ -38,6 +41,17 @@ public class Country {
       name = countryName;
       this.similarCommodities = similarCommodities;
       this.similarityPercentage = similarityPercentage;
+      this.year = year;
+   }
+
+   //String Int Double Double Double Double String
+   public Country(String countryName, int similarCommodities, double similarCommoditiesPercentage, double AVGloss_percentage, double similarCommoditiesLossPercentage, double similarityPercentageTotal, String year) {
+      name = countryName;
+      this.similarCommodities = similarCommodities;
+      this.similarCommoditiesPercentage = similarCommoditiesPercentage;
+      this.AVGloss_percentage = AVGloss_percentage;
+      this.similarCommoditiesLossPercentage = similarCommoditiesLossPercentage;
+      this.similarityPercentageTotal = similarityPercentageTotal;
       this.year = year;
    }
 
@@ -63,5 +77,17 @@ public class Country {
 
    public int getSimilarCommoditiesNo() {
       return similarCommodities;
+   }
+
+   public double getSimilarCommoditiesPercentage() {
+      return similarCommoditiesPercentage;
+   }
+
+   public double getSimilarityPercentageTotal() {
+      return similarityPercentageTotal;
+   }
+
+   public double getSimilarCommoditiesLossPercentage() {
+      return similarCommoditiesLossPercentage;
    }
 }
