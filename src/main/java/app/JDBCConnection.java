@@ -1198,7 +1198,7 @@ public class JDBCConnection {
         return Data;
     }
 
-    public ArrayList<LossPercentageData> getGraphTable(String Year1, String Year2, String GroupId) {
+    public ArrayList<LossPercentageData> getGraphTable(String Year1, String Year2, String GroupId, boolean limiter) {
         // Create the ArrayList of Country objects to return
         ArrayList<LossPercentageData> Data = new ArrayList<LossPercentageData>();
         int FirstYearValue = Integer.parseInt(Year1);
@@ -1223,8 +1223,13 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT year, loss_percentage, countryName, commodity, activity, food_supply_stage, cause_of_loss FROM completeevents WHERE GroupId = '" + GroupId + "' AND year BETWEEN " + FirstYearValue + " AND " + SecondYearValue + " ORDER BY year DESC;";
             
+            String query = "SELECT year, loss_percentage, countryName, commodity, activity, food_supply_stage, cause_of_loss FROM completeevents WHERE GroupId = '" + GroupId + "' AND year BETWEEN " + FirstYearValue + " AND " + SecondYearValue + " ORDER BY year DESC LIMIT 500;";
+            
+            if(limiter !=true)
+            {
+                query = "SELECT year, loss_percentage, countryName, commodity, activity, food_supply_stage, cause_of_loss FROM completeevents WHERE GroupId = '" + GroupId + "' AND year BETWEEN " + FirstYearValue + " AND " + SecondYearValue + " ORDER BY year DESC;";
+            }
             // Get Result
             ResultSet results = statement.executeQuery(query);
 

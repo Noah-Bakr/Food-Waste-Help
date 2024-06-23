@@ -43,6 +43,18 @@ public class PageST2B implements Handler {
         String actSelect = context.formParam("actSelector");
         String fssSelect = context.formParam("fssSelector");
         String colSelect = context.formParam("colSelector");
+        String ShowMoreometer;
+    
+        try{
+        ShowMoreometer = context.formParam("ShowMore");
+        }
+        finally{}
+        boolean limiter = true;
+
+        if(ShowMoreometer!=null)
+        {
+            limiter = false;
+        }
 
         // if(key1 != null)
 
@@ -54,6 +66,12 @@ public class PageST2B implements Handler {
         html = html + "<link rel='stylesheet' type='text/css' href='common.css' />";
         html = html + "<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js'></script>";
         html = html + nav.getExtraCSS();
+
+        if(ShowMoreometer!=null)
+        {
+            html = html + "<style>.twob-table h3{font-size:20px;}</style>";
+        }
+
         html = html + "</head>";
 
         // Add the body
@@ -219,7 +237,7 @@ html = html + """
                 
                 
     
-html = html + "</form>";
+
 
 // Form End ------------------------------------------------------------------------------------
 ArrayList<GraphData> ReturnedGraphData = jdbc.createTemp();
@@ -309,7 +327,7 @@ html = html + """
                         ArrayList<LossPercentageData> TableData = jdbc.createTempTable();
 
                         if(key1!=null){
-                        TableData = jdbc.getGraphTable(years1,years2,key1);
+                        TableData = jdbc.getGraphTable(years1,years2,key1,limiter);
                         }
                         
                         
@@ -516,7 +534,24 @@ html = html + """
                                                 html = html + "</tr>";
                                             }
                                            }
+                                           
+                                           if(!numberOfEvents.equals("No Group Selected"))
+                                           {
+                                            if(Integer.valueOf(numberOfEvents) > 500)
+                                            {
+                                                if(ShowMoreometer==null){   
+                                                html = html + "<tr>";
+                                                    html = html + "<td></td>";
+                                                    html = html + "<td></td>";
+                                                    html = html + "<td></td>";
+                                                    html = html + "<td><button type='submit' name='ShowMore' value='ShowMeMore' style='padding:1% 3% 1% 3%; border-radius:20px; font-size:30px; margin-top: 5px;'>Reload With More Results</button></td>";
+                                                html = html + "</tr>";
+                                                }
+                                            }
+                                           }
                                 html = html + "</table>";
+
+                                html = html + "</form>";
                                 
                                 
                                 // html = html + "<p>Test Text Trust Me</p>";
