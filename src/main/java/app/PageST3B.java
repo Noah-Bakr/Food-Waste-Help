@@ -157,7 +157,6 @@ public class PageST3B implements Handler {
         if(searchedProduct != null)
         {
           html = html + "<p style='color:black' id='testP'>" + jdbc.convertCommodtyToString(searchedProduct) + "</p>";
-          System.out.println("Product Code = " + searchedProduct);
         }
         else
         {
@@ -166,18 +165,28 @@ public class PageST3B implements Handler {
 
         if(searchedProduct != null)
         {
-          html = html + "<div>";
-          DifferenceTableSelected lookupResults = jdbc.getTableSelectedResults(searchedProduct);
+          html = html + "<div class='individualItem'>";
+          DifferenceTableSelected lookupResults = jdbc.getTableSelectedResults(searchedProduct, sort_by);
             html = html + "<table>";
+
               html = html + "<tr>";
-                html = html + "<td>" + lookupResults.getCommodity() + "</td>";
-                html = html + "<td>" + lookupResults.getCpcCode() + "</td>";
+                html = html + "<th><h3></h3></th>";
+                html = html + "<th><h3>Name</h3></th>";
+                html = html + "<th><h3>Code</h3></th>";
+                html = html + "<th><h3>(%)Loss</h3></th>";
+                html = html + "</tr>";
+
+              html = html + "<tr>";
+                html = html + "<td><p><strong>Commodity</strong></p></td>";
+                html = html + "<td><p>" + lookupResults.getCommodity() + "</p></td>";
+                html = html + "<td><p>" + lookupResults.getCpcCode() + "</p></td>";
               html = html + "</tr>";
 
               html = html + "<tr>";
-                html = html + "<td>" + lookupResults.getGroupDescriptor() + "</td>";
-                html = html + "<td>" + lookupResults.getGroupId() + "</td>";
-                html = html + "<td>" + lookupResults.getLossPercentage() + "</td>";
+                html = html + "<td><p><strong>Group</strong></p></td>";
+                html = html + "<td><p>" + lookupResults.getGroupDescriptor() + "</p></td>";
+                html = html + "<td><p>" + lookupResults.getGroupId() + "</p></td>";
+                html = html + "<td><p>" + lookupResults.getLossPercentage() + "%</p></td>";
               html = html + "</tr>";
             html = html + "</table>";
 

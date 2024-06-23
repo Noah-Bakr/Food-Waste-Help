@@ -1465,7 +1465,7 @@ public class JDBCConnection {
     }
 
 
-    public DifferenceTableSelected getTableSelectedResults(String searchKey) {
+    public DifferenceTableSelected getTableSelectedResults(String searchKey, String sortBy) {
         // Create the ArrayList of Country objects to return
         DifferenceTableSelected commodities = new DifferenceTableSelected("one", "two", "three", "four", "five");
 
@@ -1481,9 +1481,9 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT Commodity, cpc_code ,GroupDescription,groupId, ROUND(AVG(loss_percentage),4) AS LossPercentage FROM completeEvents WHERE cpc_code == '" + searchKey + "';";
+            String query = "SELECT Commodity, cpc_code ,GroupDescription,groupId, ROUND(" + sortBy + "(loss_percentage),4) AS LossPercentage FROM completeEvents WHERE cpc_code == '" + searchKey + "';";
 
-                                System.out.println(query);
+                                // System.out.println(query);
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
