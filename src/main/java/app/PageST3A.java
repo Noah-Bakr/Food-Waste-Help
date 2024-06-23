@@ -224,7 +224,7 @@ public class PageST3A implements Handler {
                                         </div>
                                         <div>
                                             <input type="radio" id="overlap" name="determination" value="overlap">
-                                                <label for="overlap">The level of overlap/waste</label>
+                                                <label for="overlap">The level of overlap (products)</label>
                                         </div>""";
                                     }
         html = html + """
