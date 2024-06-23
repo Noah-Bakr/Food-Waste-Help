@@ -1304,9 +1304,9 @@ public class JDBCConnection {
     }
 
 
-    public ArrayList<DifferenceTableSelected> getTableSelectedResults() {
+    public DifferenceTableSelected getTableSelectedResults(String searchKey) {
         // Create the ArrayList of Country objects to return
-        ArrayList<DifferenceTableSelected> commodities = new ArrayList<DifferenceTableSelected>();
+        DifferenceTableSelected commodities = new DifferenceTableSelected("one", "two", "three", "four", "five");
 
         // Setup the variable for the JDBC connection
         Connection connection = null;
@@ -1320,11 +1320,9 @@ public class JDBCConnection {
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT \r\n" + //
-                                "    Commodity, GroupDescriptor,groupId, \r\n" + //
-                                "    AVG(loss_percentage) AS LossPercentage\r\n" + //
-                                "FROM completeEvents \r\n" + //
-                                "WHERE groupId == substr('0113', 1, 3);";
+            String query = "SELECT Commodity, cpc_code ,GroupDescription,groupId, ROUND(AVG(loss_percentage),4) AS LossPercentage FROM completeEvents WHERE cpc_code == '" + searchKey + "';";
+
+                                System.out.println(query);
             
             // Get Result
             ResultSet results = statement.executeQuery(query);
@@ -1340,9 +1338,8 @@ public class JDBCConnection {
                 String lossPercentage     = results.getString("LossPercentage");
                 
 
-                DifferenceTableSelected selectedCommodity = new DifferenceTableSelected(commodity,cpcCode,descriptor,groupId,lossPercentage);
-                // Add the Country object to the array
-                commodities.add(selectedCommodity);
+                commodities = new DifferenceTableSelected(commodity,descriptor,groupId,lossPercentage,cpcCode);
+                
             }
 
             // Close the statement because we are done with it
