@@ -157,10 +157,32 @@ public class PageST3B implements Handler {
         if(searchedProduct != null)
         {
           html = html + "<p style='color:black' id='testP'>" + jdbc.convertCommodtyToString(searchedProduct) + "</p>";
+          System.out.println("Product Code = " + searchedProduct);
         }
         else
         {
           html = html + "<p style='color:grey' id='testP'>No Commodity Selected</p>";
+        }
+
+        if(searchedProduct != null)
+        {
+          html = html + "<div>";
+          DifferenceTableSelected lookupResults = jdbc.getTableSelectedResults(searchedProduct);
+            html = html + "<table>";
+              html = html + "<tr>";
+                html = html + "<td>" + lookupResults.getCommodity() + "</td>";
+                html = html + "<td>" + lookupResults.getCpcCode() + "</td>";
+              html = html + "</tr>";
+
+              html = html + "<tr>";
+                html = html + "<td>" + lookupResults.getGroupDescriptor() + "</td>";
+                html = html + "<td>" + lookupResults.getGroupId() + "</td>";
+                html = html + "<td>" + lookupResults.getLossPercentage() + "</td>";
+              html = html + "</tr>";
+            html = html + "</table>";
+
+          
+          html = html + "</div>";
         }
 
         html = html + "</div>";
