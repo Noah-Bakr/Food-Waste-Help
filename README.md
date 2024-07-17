@@ -3,6 +3,7 @@
 # Programming Studio 1
 [![Project Version][version-image]][version-url]
 [![Backend][Backend-image]][Backend-url]
+<br>
 [![SQLite][SQLite-image]][SQLite-url]
 [![Java][Java-image]][Java-url]
 [![HTML][HTML-image]][HTML-url]
