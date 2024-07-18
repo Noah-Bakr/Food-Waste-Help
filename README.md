@@ -36,6 +36,8 @@ One or two paragraphs about your project and what it does.
 
 ## Showcase
 
+![Webpage-Showcase-image]
+
 This project was designed to demonstrate:
 
 * Milestone 1
@@ -178,6 +180,8 @@ Remember this is a showcase, thus your potential employer might want to see an a
 [header-link]: https://github.com/Noah-Bakr
 
 [repository-url]: https://github.com/alexandrerosseto/wbshopping
+
+[Webpage-Showcase-image]: Webpage-Showcase.png
 
 [xerial-sqlite-jdbc-url]: https://github.com/xerial/sqlite-jdbc
 [javalin-url]: https://javalin.io/
