@@ -21,6 +21,19 @@ One or two paragraphs about your project and what it does.
     Text
 </details>
 
+<details>
+    <summary>Assignment (Challenge) Details</summary>
+    <br>
+    Food loss and waste is defined as food products that end up not being eaten for a variety of reasons. Food loss occurs along the food supply chain from harvest/catch/slaughter up to, but not including, the sales level. Food waste occurs at the retail and consumption level. Reasons for loss and waste can vary during each stage. For example, consumption by pests, and spoilage/decay due to improper temperature control, can both occur during the storage stage. Food lose and waste both have a significant impact on many other current global issues, including climate change, food security (availability), resource usage (land and water) as well an impact on biodiversity among others. <br><br>
+    Your challenge is to develop a web-application to <strong>help various key parties in the supply chain (including consumers and policy makers) explore unbiased information on the sources of food loss and waste over an extended time period.</strong> You will need to present statistics and calculated information about the types of food loss/waste. You will need to: <br><br>
+    <ul>
+        <li>Present this information in an informative, respectful, and unbiased manner.</li>
+        <li>Cater for a diverse range of users who are seeking to become more informed on this topic.</li>
+        <li>Provide diverse types of information and functionality, including both high-level summaries, and enabling an in-depth analysis of the data.</li>
+    </ul>
+    By using your website, users should be able to become well-informed of the levels of food waste/loss across the world.
+</details>
+
 ---
 ## Authors
 
@@ -40,14 +53,34 @@ One or two paragraphs about your project and what it does.
 
 This project was designed to demonstrate:
 
-* Milestone 1
-  * Tech 1 subitem
-* Milestone 2
-  * Tech 1 subitem
-* Milestone 3
-  * Tech 1 subitem
-* Milestone 4
-  * Tech 1 subitem
+* **UX/UI**
+  * Nielsen Design Heuristics
+  * Mockup Creation (Figma)
+  * Design Patterns
+* **Usability Testing**
+  * Participant Information Form (PIF)
+  * Personas
+  * Context Scenario(s)
+  * Key Path Scenario(s)
+  * Survey
+* **Database**
+  * ER Diagram
+  * Database Schema (3NF)
+    * Functional Dependencies
+  * SQL Queries
+* **Web Development**
+  * Programming (Java, HTML, CSS, Javascript)
+* **Presentation and Demonstration**
+    * Structure of Slideshow
+      * Use of slides, diagrams, code examples, and other presentation aids.
+    * Level of Preparation
+    * Ability to Leave Assessors (and Audience) with Few Questions.
+      * Ability to handle follow-up questions
+* **Teamwork and Contribution**
+    * Organisational Skills of Group Members.
+    * Contributions of Group Members to the Project.
+    * Communication of Group Members during the Project.
+    * Evaluation of the Teamwork of Group Members
 
 ---
 
@@ -139,12 +172,9 @@ You can modify this file as you wish, for other tables and CSVs. When modifying 
 
 ## Presentation
 
-Describe and reference the slideshow  
+![M4 Presentation](https://github.com/user-attachments/assets/7744e460-ed9a-4ddb-a60c-85a14979bd94)
 
-```sh
-make install
-npm test
-```
+{Describe and reference the slideshow}
 
 ## Running the tests
 
