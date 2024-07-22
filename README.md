@@ -124,7 +124,7 @@ Folders:
 ### Assignment Related
 Folders:
 ```bash
-├── /Assignment Documents                    - Location of all other documents required for the assignment
+├── /Assignment-Documents                    - Location of all other documents required for the assignment
 │         ├── ER Diagram                     - ER Diagram from the planning stage and, the latest (revised) Diagram
 │         ├── Mockup Images                  - Images of each webpage mockups & color palette
 │         ├── Presentation                   - The slideshow used to aid the assignment presentation
@@ -199,7 +199,7 @@ The web application 'Food Loss Waste.org' was showcased to assessors and other a
 Emphasis on user experience (UX) and user interface (UI) ensured alignment with personas' needs and goals, integrating contextual scenarios effectively. Design choices were justified through Nielsen's heuristics, with implementation of common design patterns for intuitive navigation. Iterative design improvements were driven by usability testing, addressing a specific user-identified issue and achieving solutions. The presentation included demonstrations of seamless website functionality through various user scenarios, highlighting practical application and user interaction. 
 
 > [!NOTE]
-> The presentation file ``Presentation.pptx`` is located in the ``Assignment Documents/Presentation`` folder. A ``Presentation.pdf`` alternative has been supplied.
+> The presentation file ``Presentation.pptx`` is located in the ``Assignment-Documents/Presentation`` folder. A ``Presentation.pdf`` alternative has been supplied.
 
 ## Running the tests
 
