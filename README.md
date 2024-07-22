@@ -126,10 +126,10 @@ Folders:
 ```bash
 ├── /Assignment Documents                    - Location of all other documents required for the assignment
 │         ├── ER Diagram                     - ER Diagram from the planning stage and, the latest (revised) Diagram
-│         ├── Mockup Images                  - Images of each webpage's mockups & color palette
+│         ├── Mockup Images                  - Images of each webpage mockups & color palette
 │         ├── Presentation                   - The slideshow used to aid the assignment presentation
 │         ├── Usability Testing              - Location of all files required to conduct Usability Testing. PIF document not supplied
-│               ├── Personas-KPS             - PDF containing the Personas, their Context Scenarios and Key Path Scenarios (KPS)
+│               ├── Personas-KPS.pdf         - PDF containing the Personas, their Context Scenarios and Key Path Scenarios (KPS)
 │         └── Website Images                 - Location of all webpages as images
 │               ├── Website Layout (A)       - Images of all webpages before Usability Testing was conducted
 │               └── Website Layout (B)       - Images of all webpages after Usability Testing was conducted
@@ -231,20 +231,18 @@ Remember this is a showcase, thus your potential employer might want to see an a
 
 <!-- Markdown link & img dfn's -->
 
-[header-url]: PS-Header.png
+[header-url]: README-Images/PS-Header.png
 [header-link]: https://github.com/Noah-Bakr
 
 [repository-url]: https://github.com/alexandrerosseto/wbshopping
 
-[Webpage-Showcase-image]: Webpage-Showcase.png
+[Webpage-Showcase-image]: README-Images/Webpage-Showcase.png
 
 [xerial-sqlite-jdbc-url]: https://github.com/xerial/sqlite-jdbc
 [javalin-url]: https://javalin.io/
 [thymeleaf-url]: https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html
 
 [linkedin-url]: https://www.linkedin.com/in/Noah-Bakr
-
-[wiki]: https://github.com/yourname/yourproject/wiki
 
 [version-image]: https://img.shields.io/badge/Version-1.0.0-brightgreen?style=for-the-badge&logo=appveyor
 [version-url]: https://img.shields.io/badge/version-1.0.0-green

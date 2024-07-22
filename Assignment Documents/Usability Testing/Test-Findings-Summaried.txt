@@ -1,0 +1,31 @@
+Summary
+Good
+- Good colour scheme with white on black text
+- Good font size, maybe too big for 2a,b and 3a,b
+- Can clearly know something is a button because it changes colour on hover
+- The drop down with the years change starting order ("That is fucking clever")
+- Looks minimalistic
+- Radio buttons are intuitive
+- Charts look good
+- The red and green on the table in Index allows for easier information viewing at a glance
+
+Bad
+- Difficulty reading black text on green background
+- Drop down lists looking bad on apple devices
+- The text on businesses in Index are a little small
+- Default values are not updated when a form is submitted
+- 2B | Should be able to select multiple choice for 2b selections
+- On the grind, should not have to re-enter search results
+- 2A | Country would work better as a drop down
+- 2A | Graph does not follow proper graph formatting
+- NAV| Change titles to be more usable
+- NAV| Make it clear where the escape hatch is
+
+Changes
+- Should add a text box that tells you what you selected in 3b as the user may forget what they selected in the scrolling list
+- Add multiple choice to 2b switching the radio buttons to multiple choice
+- Add persisting search result settings to all parts
+- Change the country radio button list in 2a to be a drop down
+- Add a title to the graphs
+- Add Axis labels as well as units to the labels
+- Add a key if necessary
