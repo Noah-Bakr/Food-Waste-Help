@@ -62,6 +62,7 @@ This project was designed to demonstrate:
   * Personas
   * Context Scenario(s)
   * Key Path Scenario(s)
+  * Participant Information Form (PIF)
   * Survey
 * **Database**
   * ER Diagram
@@ -85,18 +86,19 @@ This project was designed to demonstrate:
 ---
 
 ## File Directory
+### Website Related
 Classes backing Web pages:
 ```bash
 ├── PageIndex.java                    - Homepage page for Level 1 Sub-task A
 ├── PageMission.java                  - Mission Statement page for Level 1 Sub-task B
-├── PageST2/3.java                    - Sets of 4 Java files backing the 4 pages for 4 Level2/3 sub-tasks. Student in group of 3 will need to add additional Java files
+├── PageST2/3.java                    - Sets of 4 Java files backing the 4 pages for 4 Level2/3 sub-tasks
 ```
 
 Other Classes:
 ```bash
 ├── java/app                                - Package location for all Java files for the webserver
 │         ├── App.java                      - Main Application entrypoint for Javalin
-│         └── JDBCConnection.java           - Example JDBC Connection class based on Studio Project Workshop content
+│         └── JDBCConnection.java           - JDBC Connection class containing all Website/Database methods
 ├── java/helper                             - Location of the helper file for loading SQLite with JDBC
 │         └── FoodProcessCSV.java           - Helper Java program to load SQLite database from the provided CSVs
 ```
@@ -108,14 +110,33 @@ Folders:
 │         │    ├── app           - Package location for all Java files for the webserver
 │         │    └── helper        - Location of the helper file for loading SQLite with JDBC
 │         └── resources          - Web resources (html templates / style sheets)
-│               ├── css          - CSS Style-sheets. Base example style sheet (common.css) provided
-│               └── images       - Image files. Base example image (RMIT Logo) provided
+│               ├── css          - CSS Style-sheets
+│               └── images       - Image files
 │ 
-├── /target                      - build directory (DO NOT MODIFY)
-├── /database                    - The folder to store sqlite database files (*.db files) and data files (*.csv) related to the database
-├── pom.xml                      - Configure Build (DO NOT MODIFY)
-└── README.md                    - This file ;)
+├── /target                      - Build directory
+├── /database                    - The folder to store SQLite database files (*.db files) and data files (*.csv) related to the database
+├── pom.xml                      - Configure Build
+│ 
+├── README.md                    - This file
+├── Starter-Code-README.md       - The initial README.md file for the website template (created by RMIT)
 ```
+
+### Assignment Related
+Folders:
+```bash
+├── /Assignment Documents                    - Location of all other documents required for the assignment
+│         ├── ER Diagram                     - ER Diagram from the planning stage and, the latest (revised) Diagram
+│         ├── Mockup Images                  - Images of each webpage's mockups & color palette
+│         ├── Presentation                   - The slideshow used to aid the assignment presentation
+│         ├── Usability Testing              - Location of all files required to conduct Usability Testing. PIF document not supplied
+│               ├── Personas-KPS             - PDF containing the Personas, their Context Scenarios and Key Path Scenarios (KPS)
+│         └── Website Images                 - Location of all webpages as images
+│               ├── Website Layout (A)       - Images of all webpages before Usability Testing was conducted
+│               └── Website Layout (B)       - Images of all webpages after Usability Testing was conducted
+│ 
+└── /README-Images                           - Location of images for this file
+```
+
 
 ---
 
@@ -133,12 +154,12 @@ Folders:
 
 ---
 
-# Building & Running the code
+## Building & Running the code
 There are two places code can be run from
 1. The **main** web server program
 2. The **optional** helper program to use JDBC to load the SQLite database from the CSVs using Java
 
-## Running the Main web server
+### Running the Main web server
 1. Open this project within VSCode
 2. Allow VSCode to read the ``pom.xml`` file
  - Allow the popups to run and "say yes" to VSCode configuring the build
@@ -150,7 +171,7 @@ There are two places code can be run from
 <details>
 <summary>Running the Helper Program</summary>
 
-## Running the Helper Program
+### Running the Helper Program
 The helper program in ``src/main/java/helper/FoodProcessCSV.java`` can be run separetly from the main webserver. This gives a demonstration of how you can use Java to read the provided CSV files and store the information in an SQLite database. This example loads a subset of the data in the ``database/FoodLoss.csv`` and ``database/CPC.csv`` files into a database. It also runs a series of queries to do lookups to check records match, but this can be modified to do lookups and insert other data into related tables if necessary.
 
 You can run the optional helper program by
