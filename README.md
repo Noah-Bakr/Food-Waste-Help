@@ -11,7 +11,7 @@
 [![Js][Js-image]][Js-url]
 [![Figma][Figma-image]][Figma-url]
 
-> Website development with a focus on database management
+> Website Development with a Focus on Database Management
 
 The project focused on creating a robust website using Javalin, emphasizing user experience through Nielsen's Design Heuristics and attentive usability testing. Integration of Java for backend development, designed a 3NF database schema with attention to functional dependencies, and showcased our work through a structured presentation that highlighted our technical proficiency and teamwork. Our goal was to deliver a user-centric web application while demonstrating our skills in UX/UI design, database management, and effective project execution.
 
