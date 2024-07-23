@@ -11,14 +11,24 @@
 [![Js][Js-image]][Js-url]
 [![Figma][Figma-image]][Figma-url]
 
-> Short blurb about your project idea.
+> Website development with a focus on database management
 
-One or two paragraphs about your project and what it does.
+The project focused on creating a robust website using Javalin, emphasizing user experience through Nielsen's Design Heuristics and attentive usability testing. Integration of Java for backend development, designed a 3NF database schema with attention to functional dependencies, and showcased our work through a structured presentation that highlighted our technical proficiency and teamwork. Our goal was to deliver a user-centric web application while demonstrating our skills in UX/UI design, database management, and effective project execution.
 
 <details>
     <summary>Further project information</summary>
     <br>
-    Text
+    A project showcasing a comprehensive approach to web development and user experience design. At its core, the aim was to create a dynamic website using Javalin, leveraging its lightweight framework and robust capabilities to deliver a responsive and efficient web application. This choice facilitated exploration into backend development using Java but also provided a platform for integrating frontend functionalities.
+
+Central to our project was a adherence to Nielsen's Design Heuristics, ensuring that every aspect of the user interface and experience was intuitive, efficient, and conducive to user satisfaction. Through iterative design processes and usability testing, the interface was refined to prioritize user needs, enhancing usability through intuitive navigation, clear information architecture, and seamless interaction flows.
+
+Simultaneously, the team excelled in database management and design. An ER diagram and database schema were created in third normal form (3NF), ensuring data integrity and optimal query performance. Functional dependencies were carefully analyzed and implemented, supporting the foundation for seamless data management within the web application.
+
+Throughout the project lifecycle, effective teamwork and organizational skills were paramount. Each team member made significant contributions, from persona development and contextual scenarios to frontend mockup creation using Figma and web development utilising the Javalin framework. Clear communication and collaborative efforts were pivotal in aligning our goals and achieving milestones effectively.
+
+In preparation for the final presentation, slideshow was meticulously structured to encompass key elements: from detailed ER diagrams and SQL queries to live demonstrations of the web application's functionality. The presentation not only highlighted technical expertise, but also underscored the ability to convey complex concepts clearly and engage the audience effectively.
+
+Ultimately, the project aimed not just to deliver a functional website, but to showcase the comprehensive skill set across UX/UI design, backend development, database management, and effective teamwork. By leaving assessors and the audience with a clear understanding and minimal questions, the project demonstrated the capability to handle sophisticated projects and adapt to dynamic challenges in the world of web development and user experience design.
 </details>
 
 <details>
