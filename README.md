@@ -137,7 +137,6 @@ Folders:
 └── /README-Images                           - Location of images for this file
 ```
 
-
 ---
 
 ## Libraries
@@ -201,16 +200,15 @@ Emphasis on user experience (UX) and user interface (UI) ensured alignment with 
 > [!NOTE]
 > The presentation file ``Presentation.pptx`` is located in the ``Assignment-Documents/Presentation`` folder. A ``Presentation.pdf`` alternative has been supplied.
 
-## Running the tests
-
-Remember this is a showcase, thus your potential employer might want to see an automated test-suite of some kind up running.
-
 ---
 
 ## Built With
 
 * [Javalin][javalin-url] - lightweight Java Framework
 * [SQLite](https://www.sqlite.org/) - Database
+* [Figma](https://www.figma.com/) - Mockups
+* [Lucidchart](https://www.lucidchart.com/pages/) - ER Diagram
+* [PowerPoint](https://www.microsoft.com/en-au/microsoft-365/powerpoint) - Slideshow
 
 ## Release History
 
