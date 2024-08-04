@@ -242,8 +242,6 @@ Emphasis on user experience (UX) and user interface (UI) ensured alignment with 
 [header-url]: README-Images/PS-Header.png
 [header-link]: https://github.com/Noah-Bakr
 
-[repository-url]: https://github.com/alexandrerosseto/wbshopping
-
 [Webpage-Showcase-image]: README-Images/Webpage-Showcase.png
 
 [xerial-sqlite-jdbc-url]: https://github.com/xerial/sqlite-jdbc
