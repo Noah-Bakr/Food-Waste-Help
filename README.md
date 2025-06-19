@@ -1,6 +1,6 @@
 [![header][header-url]][header-link]
 
-# Programming Studio 1
+# Food Waste Help
 [![Project Version][version-image]][version-url]
 [![Backend][Backend-image]][Backend-url]
 <br>
